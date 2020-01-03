@@ -11,6 +11,7 @@ const Skills = () => {
 
   return (
     <div>
+      <h1>Available Skills</h1>
       <Skill
         title={skillsState.skills[0].title}
         description={skillsState.skills[0].description}/>

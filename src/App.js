@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Skills from './Skills/Skills';
 import HomePage from './HomePage/HomePage';
 import { Route, Switch } from 'react-router-dom'
 
-const App = (props) => {
-
-
+const App = () => {
   return (
     <div className="App">
       <Switch>
