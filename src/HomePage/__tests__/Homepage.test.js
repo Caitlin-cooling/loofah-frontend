@@ -1,7 +1,7 @@
-import HomePage from '../HomePage'
+import HomePage from '../HomePage';
 import React from 'react';
 import Skills from '../../Skills/Skills';
-import { BrowserRouter, Link } from 'react-router-dom'
+import { BrowserRouter, Link } from 'react-router-dom';
 import { mount } from 'enzyme';
 
 it('renders Loofah heading', () => {
@@ -22,5 +22,5 @@ it('clicking the button takes you to skills page', () => {
 
   wrapper.find('button').simulate('click');
 
-  expect(wrapper.find(Skills)).toHaveLength(0)
+  expect(wrapper.find(Skills)).toHaveLength(0);
 });

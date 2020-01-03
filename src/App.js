@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Skills from './Skills/Skills';
 import HomePage from './HomePage/HomePage';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
       </Switch>
     </div>
   );
-}
+};
 
 export default App;
 

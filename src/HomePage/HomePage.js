@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const homePage = () => {
   return(
@@ -9,7 +9,7 @@ const homePage = () => {
         <Link to="/skills">See the available skills</Link>
       </button>
     </div>
-  )
-}
+  );
+};
 
 export default homePage;
