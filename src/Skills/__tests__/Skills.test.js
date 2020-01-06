@@ -3,13 +3,13 @@ import Skill from '../../Skill/Skill';
 import Skills from '../Skills';
 import { mount } from 'enzyme';
 
-it('renders available skills heading', () => {
+test('renders available skills heading', () => {
   const wrapper = mount(<Skills/>);
 
   expect(wrapper.contains(<h1>Available Skills</h1>)).toEqual(true);
 });
 
-it('renders the skill components', () =>{
+test('renders the skill components', () =>{
   const wrapper = mount(<Skills/>);
   const skill1 = <Skill
     title="JavaScript"

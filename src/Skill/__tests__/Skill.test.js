@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import Skill from '../Skill';
 
-it('renders the title and description of given given', () => {
+test('renders the title and description of given', () => {
   const wrapper = mount(
     <Skill title="test title" description="test description"/>
   );

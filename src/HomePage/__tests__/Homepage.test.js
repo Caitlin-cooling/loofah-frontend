@@ -4,20 +4,20 @@ import Skills from '../../Skills/Skills';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { mount } from 'enzyme';
 
-it('renders Loofah heading', () => {
+test('renders Loofah heading', () => {
   const wrapper = mount((<BrowserRouter><HomePage /></BrowserRouter>));
 
   expect(wrapper.contains(<h1>Loofah</h1>)).toEqual(true);
 });
 
-it('renders skills link', () => {
+test('renders skills link', () => {
   const wrapper = mount((<BrowserRouter><HomePage /></BrowserRouter>));
   const link = <Link to="/skills">See the available skills</Link>;
 
   expect(wrapper.contains(link)).toEqual(true);
 });
 
-it('clicking the button takes you to skills page', () => {
+test('clicking the button takes you to skills page', () => {
   const wrapper = mount(<BrowserRouter><HomePage /></BrowserRouter>);
 
   wrapper.find('button').simulate('click');

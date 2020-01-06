@@ -5,7 +5,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
 
-it('/ route goes to home page', () => {
+test('/ route goes to home page', () => {
   const wrapper = mount(
     <MemoryRouter initialEntries={[ '/' ]}>
       <App/>
@@ -15,7 +15,7 @@ it('/ route goes to home page', () => {
   expect(wrapper.contains(HomePage)).toEqual(true);
 });
 
-it('/skills route goes to skills page', () => {
+test('/skills route goes to skills page', () => {
   const wrapper = mount(
     <MemoryRouter initialEntries={[ '/' ]}>
       <App/>
