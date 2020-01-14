@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
 import Skill from '../Skill/Skill';
 
+import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
+import { graphql } from 'graphql';
+
+const schemaString = `type Skill {
+  id: ID!
+  title: String!
+  description: String!
+}
+type Query {
+  skills: [Skill!]!
+}`;
+const schema = makeExecutableSchema({ typeDefs: schemaString });
+addMockFunctionsToSchema({ schema });
+
+const query = `
+  query skill {
+    skills {
+      title
+      description
+    }
+  }
+`;
+
+graphql(schema, query).then((result) => console.log('Got result', result));
+
 const Skills = () => {
   const [skillsState] = useState({
     skills: [
