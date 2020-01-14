@@ -3,20 +3,33 @@ import Skill from '../Skill/Skill';
 
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import { graphql } from 'graphql';
+import casual from 'casual-browserify'
 
-const schemaString = `type Skill {
+const schemaString = `type SkillMock {
   id: ID!
   title: String!
   description: String!
 }
 type Query {
-  skills: [Skill!]!
+  skills: [SkillMock!]!
 }`;
+
+const mocks = {
+  SkillMock: () => ({
+    title: casual.title,
+    description: casual.description,
+  })
+ };
+
 const schema = makeExecutableSchema({ typeDefs: schemaString });
-addMockFunctionsToSchema({ schema });
+
+addMockFunctionsToSchema({
+  schema,
+  mocks
+});
 
 const query = `
-  query skill {
+  query skillMock {
     skills {
       title
       description
