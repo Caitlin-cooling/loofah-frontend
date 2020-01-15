@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Skill from '../Skill/Skill';
 
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
@@ -23,11 +23,6 @@ const Skills = () => {
 
   const schema = makeExecutableSchema({ typeDefs: schemaString });
 
-  addMockFunctionsToSchema({
-    schema,
-    mocks
-  });
-
   const query = `
     query skillMock {
       skills {
@@ -38,10 +33,14 @@ const Skills = () => {
   `;
 
   const [skillsState, setSkillsState] = useState({
-    skills: [
-      {title: 'JavaScript', description: 'Learn it'},
-      {title: 'Java', description: 'Keep learning it'}
-    ]
+    skills: []
+  });
+
+  const skillsList = [];
+
+  addMockFunctionsToSchema({
+    schema,
+    mocks
   });
 
   const updateSkillsState = () => {
@@ -52,17 +51,23 @@ const Skills = () => {
     });
   };
 
-  // we should be iterating over the array here to avoid hard coding the number of skills
+  useEffect(() => {
+    updateSkillsState();
+  });
+
+  for(const [index] of skillsState.skills.entries()) {
+    skillsList.push(
+      <Skill key={index}
+        title={skillsState.skills[index].title}
+        description={skillsState.skills[index].description}
+      />
+    );
+  }
+
   return (
     <div>
       <h1>Available Skills</h1>
-      <Skill
-        title={skillsState.skills[0].title}
-        description={skillsState.skills[0].description}/>
-      <Skill
-        title={skillsState.skills[1].title}
-        description={skillsState.skills[1].description}/>
-        <button onClick={updateSkillsState}>click me</button>
+      {skillsList}
     </div>
   );
 };
