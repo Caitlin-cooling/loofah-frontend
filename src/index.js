@@ -8,7 +8,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const client = new ApolloClient({
-  uri: 'https://countries.trevorblades.com/'
+  uri: 'http://localhost:8080/skills'
 });
 
 ReactDOM.render(
