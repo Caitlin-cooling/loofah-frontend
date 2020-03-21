@@ -1,6 +1,6 @@
 import HomePage from '../HomePage';
 import React from 'react';
-import Skills from '../../Skills/Skills';
+import { Skills } from '../../Skills/Skills';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { mount } from 'enzyme';
 

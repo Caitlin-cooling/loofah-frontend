@@ -1,6 +1,6 @@
 import App from './App';
 import HomePage from './HomePage/HomePage';
-import Skills from './Skills/Skills';
+import { Skills } from './Skills/Skills';
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
