@@ -1,0 +1,23 @@
+// Breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+$xs--max-width: map-get($grid-breakpoints, sm) - 1px;
+$sm--min-width: map-get($grid-breakpoints, sm);
+$sm--max-width: map-get($grid-breakpoints, md) - 1px;
+$md--min-width: map-get($grid-breakpoints, md);
+$md--max-width: map-get($grid-breakpoints, lg) - 1px;
+$lg--min-width: map-get($grid-breakpoints, lg);
+$lg--max-width: map-get($grid-breakpoints, xl) - 1px;
+$xl--min-width: map-get($grid-breakpoints, xl);
+
+// Playlist color pallette
+$dark-purple: purple;
+$light-purple: #ece6ff;
+$light-grey: lightgrey;
+$orange: orange;

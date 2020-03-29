@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaylistItem from '../PlaylistItem/PlaylistItem';
+import { ReactComponent as DownArrow } from 'assets/icons/down-arrow.svg';
 import './PlaylistCategory.scss';
 
 const PlaylistCategory = (props) => {
@@ -11,6 +12,7 @@ const PlaylistCategory = (props) => {
   return <li className="playlist-category">
     <h4>{props.category.title}</h4>
     <ul>{playlistItems}</ul>
+    <DownArrow title="down arrow" className="playlist-category__down-arrow"/>
   </li>;
 };
 

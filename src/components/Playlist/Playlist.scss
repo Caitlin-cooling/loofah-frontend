@@ -1,11 +1,14 @@
-@import 'src/styles/globals/colors.scss';
+@import 'src/assets/scss/_variables.scss';
 
 .playlist {
   display: flex;
   flex-direction: column;
-  max-width: 33%;
   height: 100%;
   padding: 20px;
   border: 2px solid lightgrey;
   color: $dark-purple;
+
+  @media (min-width: $lg--min-width) {
+    width: 40%;
+  }
 }

@@ -1,2 +1,12 @@
+@import 'src/assets/scss/_variables.scss';
+
 .playlist-category {
+  display: flex;
+  flex-direction: column;
+
+  &__down-arrow {
+    fill: $dark-purple;
+    height: 15px;
+    padding: 10px;
+  }
 }
