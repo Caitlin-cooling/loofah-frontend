@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Skills } from './Skills/Skills';
-import HomePage from './HomePage/HomePage';
+import { Skills } from './components/Skills/Skills';
+import Playlist from './components/Playlist/Playlist';
+import HomePage from './components/HomePage/HomePage';
 import { Route, Switch } from 'react-router-dom';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/skills" component={Skills} />
+        <Route path="/playList" component={Playlist} />
       </Switch>
     </div>
   );

@@ -1,6 +1,7 @@
 import App from './App';
-import HomePage from './HomePage/HomePage';
-import { Skills } from './Skills/Skills';
+import HomePage from './components/HomePage/HomePage';
+import { Skills } from './components/Skills/Skills';
+import Playlist from './components/Playlist/Playlist';
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
@@ -23,4 +24,14 @@ test('/skills route goes to skills page', () => {
   );
 
   expect(wrapper.contains(Skills)).toEqual(true);
+});
+
+test('/playlist route goes to playlist page', () => {
+  const wrapper = mount(
+    <MemoryRouter initialEntries={[ '/' ]}>
+      <App/>
+    </MemoryRouter>
+  );
+
+  expect(wrapper.contains(Playlist)).toEqual(true);
 });

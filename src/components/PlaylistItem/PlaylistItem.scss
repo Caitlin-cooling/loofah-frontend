@@ -1,0 +1,32 @@
+@import 'src/styles/globals/colors.scss';
+
+.playlist-item {
+  border: 1px solid $light-grey;
+  border-radius: 7px;
+  background-color:	$light-purple;
+  padding: 0px 12px;
+  margin: 12px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__progress-bar {
+    display: flex;
+
+    .progress {
+      width: 100px;
+      border: 1px solid $dark-purple;
+      border-radius: 3px;
+      height: 1rem;
+    }
+
+    &--bar {
+      height: 1rem;
+      background-color: $orange;
+    }
+
+    &--text {
+      padding-left: 8px;
+    }
+  }
+}
