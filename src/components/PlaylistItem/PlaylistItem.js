@@ -12,7 +12,7 @@ const PlaylistItem = (props) => {
     <div className="playlist-item__progress-bar">
       <Progress
         value={skill.percentCompleted}
-        max="100" color="info"
+        max="100"
         barClassName="playlist-item__progress-bar--bar"
       />
       <div className="playlist-item__progress-bar--text">{skill.percentCompleted}%</div>
