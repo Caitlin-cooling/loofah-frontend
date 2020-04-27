@@ -6,9 +6,10 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { loofahApiUrl } from './Config/config';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8080/skills'
+  uri: `${loofahApiUrl}/skills`
 });
 
 ReactDOM.render(
