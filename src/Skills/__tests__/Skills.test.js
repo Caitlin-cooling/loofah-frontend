@@ -1,25 +1,81 @@
 import React from 'react';
-import Skill from '../../Skill/Skill';
-import Skills from '../Skills';
-import { mount } from 'enzyme';
+import { Skills, GET_SKILLS_QUERY } from '../Skills';
+import { act, render } from '@testing-library/react';
+import { MockedProvider } from '@apollo/react-testing';
+const wait = require('waait');
 
-test('renders available skills heading', () => {
-  const wrapper = mount(<Skills/>);
+const mock = {
+    request: {
+      query: GET_SKILLS_QUERY
+    },
+    result: {
+      data: {
+        allSkills: [{ id: '1', title: 'Title', description: 'Description' }],
+      },
+    },
+  };
 
-  expect(wrapper.contains(<h1>Available Skills</h1>)).toEqual(true);
+let wrapper;
+
+test('renders without error', () => {
+  act(() => {
+    render(
+      <MockedProvider mocks={[mock]} addTypename={false}>
+        <Skills />
+      </MockedProvider>
+    );
+  });
 });
 
-test('renders the skill components', () =>{
-  const wrapper = mount(<Skills/>);
-  const skill1 = <Skill
-    title="JavaScript"
-    description="Learn it"
-  />;
-  const skill2 = <Skill
-    title="Java"
-    description="Keep learning it"
-  />;
+test('loading state', () => {
+  act(() => {
+    wrapper = render(
+      <MockedProvider mocks={[mock]} addTypename={false}>
+        <Skills />
+      </MockedProvider>
+    );
+  });
 
-  expect(wrapper.contains(skill1)).toEqual(true);
-  expect(wrapper.contains(skill2)).toEqual(true);
+  const { getByText } = wrapper;
+  expect(getByText('Loading...').textContent).toBe('Loading...');
+});
+
+test('error response', async () => {
+  const errorMock = {
+      request: {
+        query: GET_SKILLS_QUERY
+      },
+      result: {
+        error: new Error('Oh no')
+      },
+    };
+
+  act(() => {
+    wrapper = render(
+      <MockedProvider mocks={[errorMock]} addTypename={false}>
+        <Skills />
+      </MockedProvider>
+    );
+  });
+
+  await wait(0);
+
+  const { getByText } = wrapper;
+  expect(getByText('Error').textContent).toBe('Error');
+});
+
+test('renders skill information', async () => {
+  act(() => {
+    wrapper = render(
+      <MockedProvider mocks={[mock]} addTypename={false}>
+        <Skills />
+      </MockedProvider>
+    );
+  });
+
+  await wait(0);
+
+  const { getByText } = wrapper;
+  expect(getByText('Title').textContent).toBe('Title');
+  expect(getByText('Description').textContent).toBe('Description');
 });

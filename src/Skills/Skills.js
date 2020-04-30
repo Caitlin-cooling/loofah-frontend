@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Skill from '../Skill/Skill';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
-const Skills = () => {
-  const [skillsState] = useState({
-    skills: [
-      {title: 'JavaScript', description: 'Learn it'},
-      {title: 'Java', description: 'Keep learning it'}
-    ]
-  });
+export const GET_SKILLS_QUERY =  gql`
+{
+  allSkills {
+      id
+      title
+      description
+  }
+}
+`;
 
-  return (
-    <div>
-      <h1>Available Skills</h1>
-      <Skill
-        title={skillsState.skills[0].title}
-        description={skillsState.skills[0].description}/>
-      <Skill
-        title={skillsState.skills[1].title}
-        description={skillsState.skills[1].description}/>
-    </div>
-  );
+export const Skills = () => {
+  const { loading, error, data } = useQuery(GET_SKILLS_QUERY);
+
+  if (loading) return <p>Loading...</p>;
+
+  //TODO: handle errors in a more comprehensive way
+  if (error) return <p>Error</p>;
+
+  return data.allSkills.map(({id, title, description}) => (
+        <Skill key={id} title={title} description={description}/>
+      ));
 };
-
-export default Skills;
