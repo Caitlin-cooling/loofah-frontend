@@ -24,6 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "eslint": "./node_modules/.bin/eslint ."
