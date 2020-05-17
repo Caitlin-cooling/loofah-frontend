@@ -1,14 +1,13 @@
-import { mount } from 'enzyme';
-import React from 'react';
-import Skill from '../Skill';
+import { render } from "@testing-library/react";
+import React from "react";
+import Skill from "../Skill";
 
-test('renders the title and description of given', () => {
-  const wrapper = mount(
-    <Skill title="test title" description="test description"/>
+test("renders the title and description of given", () => {
+  const wrapper = render(
+    <Skill title="test title" description="test description" />
   );
-  const title = <h2>test title</h2>;
-  const description = <p>test description</p>;
+  const { getByText } = wrapper;
 
-  expect(wrapper.contains(title)).toEqual(true);
-  expect(wrapper.contains(description)).toEqual(true);
+  expect(getByText("test title").textContent).toEqual("test title");
+  expect(getByText("test description").textContent).toEqual("test description");
 });
