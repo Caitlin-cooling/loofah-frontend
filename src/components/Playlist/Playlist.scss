@@ -5,10 +5,16 @@
   flex-direction: column;
   height: 100%;
   padding: 20px;
-  border: 2px solid lightgrey;
-  color: $dark-purple;
+  border: 2px solid $light-grey;
+  color: $dark-grey;
 
   @media (min-width: $lg--min-width) {
     width: 40%;
+  }
+
+  &__down-arrow {
+    fill: $dark-grey;
+    height: 15px;
+    padding: 10px;
   }
 }
