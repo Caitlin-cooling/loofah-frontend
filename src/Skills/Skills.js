@@ -19,7 +19,10 @@ export const Skills = () => {
   if (loading) return <p>Loading...</p>;
 
   //TODO: handle errors in a more comprehensive way
-  if (error) return <p>Error</p>;
+  if (error) {
+    console.log(error)
+    return <p>Error</p>;
+  }
 
   return data.allSkills.map(({id, title, description}) => (
         <Skill key={id} title={title} description={description}/>

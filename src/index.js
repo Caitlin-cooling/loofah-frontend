@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { loofahApiUrl } from './Config/config';
 
 const client = new ApolloClient({
-  uri: `${loofahApiUrl}/skills`
+  uri: `${loofahApiUrl}`
 });
 
 ReactDOM.render(
