@@ -23,15 +23,15 @@ module.exports = {
         "react"
     ],
     "rules": {
-      "semi": ["error", "always"],
-      "quotes": ["error", "single"],
-      "no-trailing-spaces": "error",
+      "semi": ["warn", "always"],
+      "quotes": ["warn", "single"],
+      "no-trailing-spaces": "warn",
       "max-len": [1, 120],
       "no-case-declarations": "warn",
-      "no-console": "error",
-      "no-irregular-whitespace": "error",
+      "no-console": "warn",
+      "no-irregular-whitespace": "warn",
       "no-unreachable": "warn",
       "no-unused-expressions": [1, { "allowTernary": true }],
-      "no-unused-vars": "error",
+      "no-unused-vars": "warn",
     }
 };
