@@ -25,4 +25,4 @@ export const SkillsByCategory = () => {
       {categoryId && <Skills categoryId={categoryId}/>}
     </div>
   );
-}
+};
