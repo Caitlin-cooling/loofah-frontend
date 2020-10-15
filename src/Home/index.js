@@ -8,6 +8,9 @@ const Home = () => {
       <button>
         <Link to="/skills-by-category">See the available skills</Link>
       </button>
+      <button>
+        <Link to="/crafts">See the available crafts</Link>
+      </button>
     </div>
   );
 };
