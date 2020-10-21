@@ -22,7 +22,13 @@ export const SkillsByCategory = () => {
           {category.title}
         </button>;
       })}
-      {categoryId && <Skills queryDetails={{variables: { categoryId }, query: GET_SKILLS_BY_CATEGORY_QUERY}}/>}
+      {categoryId && <Skills queryDetails={
+        {
+          variables: { categoryId },
+          query: GET_SKILLS_BY_CATEGORY_QUERY,
+          data: 'skillsByCategory'
+        }
+      }/>}
     </div>
   );
 };

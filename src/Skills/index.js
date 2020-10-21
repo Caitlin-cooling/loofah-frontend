@@ -14,7 +14,7 @@ export const Skills = ({ queryDetails }) => {
     <div>
       <h1>Skills</h1>
       <ul>
-        {data.skillsByCategory.map((skill) => {
+        {data[queryDetails.data].map((skill) => {
           return <li key={skill.id}>{skill.title}</li>;
         })}
       </ul>
