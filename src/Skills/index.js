@@ -1,11 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
-import { GET_SKILLS_BY_CATEGORY_QUERY } from './queries';
 
-export const Skills = ({ categoryId }) => {
-  const { loading, error, data } = useQuery(GET_SKILLS_BY_CATEGORY_QUERY, {
-    variables: { categoryId }
+export const Skills = ({ queryDetails }) => {
+  const { loading, error, data } = useQuery(queryDetails.query, {
+    variables: queryDetails.variables
   });
 
   if (loading) return <p>Loading...</p>;
@@ -24,5 +23,5 @@ export const Skills = ({ categoryId }) => {
 };
 
 Skills.propTypes = {
-  categoryId: PropTypes.string
+  queryDetails: PropTypes.object
 };
