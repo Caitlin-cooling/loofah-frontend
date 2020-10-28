@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import  { Skills } from '../Skills';
-import { GET_CATEGORIES_QUERY, GET_SKILLS_BY_CATEGORY_QUERY } from './queries';
+import { GET_CATEGORIES_QUERY } from './queries';
 
 export const SkillsByCategory = () => {
     const [categoryId, setCategoryId] = useState(null);
@@ -24,9 +24,7 @@ export const SkillsByCategory = () => {
       })}
       {categoryId && <Skills queryDetails={
         {
-          variables: { categoryId },
-          query: GET_SKILLS_BY_CATEGORY_QUERY,
-          data: 'skillsByCategory'
+          variables: { filter: { categoryId } },
         }
       }/>}
     </div>
