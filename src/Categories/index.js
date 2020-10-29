@@ -24,7 +24,7 @@ export const SkillsByCategory = () => {
       })}
       {categoryId && <Skills queryDetails={
         {
-          variables: { filter: { categoryId } },
+          variables: { filter: { categoryId } }
         }
       }/>}
     </div>
