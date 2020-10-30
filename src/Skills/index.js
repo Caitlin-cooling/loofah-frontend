@@ -1,9 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
+import { GET_SKILLS_QUERY } from './queries';
 
 export const Skills = ({ queryDetails }) => {
-  const { loading, error, data } = useQuery(queryDetails.query, {
+  const { loading, error, data } = useQuery(GET_SKILLS_QUERY, {
     variables: queryDetails.variables
   });
 
@@ -14,7 +15,7 @@ export const Skills = ({ queryDetails }) => {
     <div>
       <h1>Skills</h1>
       <ul>
-        {data[queryDetails.data].map((skill) => {
+        {data['skills'].map((skill) => {
           return <li key={skill.id}>{skill.title}</li>;
         })}
       </ul>

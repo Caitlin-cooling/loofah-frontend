@@ -8,12 +8,3 @@ export const GET_GRADES_QUERY = gql`
     }
   }
 `;
-
-export const GET_SKILLS_BY_GRADE_QUERY = gql`
-  query SkillsByGrade($gradeId: String) {
-    skillsByGrade(gradeId: $gradeId) {
-      id
-      title
-    }
-  }
-`;

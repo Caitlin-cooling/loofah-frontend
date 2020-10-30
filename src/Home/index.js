@@ -6,13 +6,13 @@ const Home = () => {
     <div>
       <h1>Loofah</h1>
       <button>
-        <Link to="/skills-by-category">See the available categories and skills</Link>
+        <Link to="/skills-by-category">See the available skills by category</Link>
       </button>
       <button>
-        <Link to="/crafts">See the available crafts</Link>
+        <Link to="/skills-by-craft">See the available skills by craft</Link>
       </button>
       <button>
-        <Link to="/skills-by-grade">See the available grades and skills</Link>
+        <Link to="/skills-by-grade">See the available skills by grade</Link>
       </button>
     </div>
   );

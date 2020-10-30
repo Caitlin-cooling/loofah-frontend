@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_CRAFTS_QUERY  } from './queries';
-import { Craft } from  './Craft';
+import  { Skills } from '../Skills';
 
-export const Crafts = () => {
-  const [craftId, setCraftId] = useState(null);
+export const SkillsByCraft = () => {
+  const [craftIds, setCraftIds] = useState([]);
     const { loading, error, data } = useQuery(GET_CRAFTS_QUERY);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
 
-    function handleCraftSelection(e) {
-      setCraftId(e.target.value);
+    function handleCraftsSelection(e) {
+      e.persist();
+      setCraftIds(oldArray => [...oldArray, e.target.value]);
     }
 
   return(
     <div>
       <h1>Select a craft</h1>
       {data.crafts.map(function (craft) {
-        return <button key={craft.id} value={craft.id} onClick={handleCraftSelection}>
-          {craft.title}
-        </button>;
+        return <div key={craft.id}>
+          <input type="checkbox" id={craft.id} name={craft.title} value={craft.id} onChange={handleCraftsSelection}/>
+          <label htmlFor={craft.title}>{craft.title}</label><br />
+        </div>;
       })}
-      {craftId && <Craft id={craftId}/>}
+      {craftIds.length && <Skills queryDetails={{
+        variables: { filter: { craftIds } }
+      }}/>}
     </div>
   );
 };
