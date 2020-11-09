@@ -5,6 +5,9 @@ export const GET_SKILLS_QUERY = gql`
     skills(filter: $filter) {
       id
       title
+      description
+      categoryId
+      gradeId
     }
   }
 `;

@@ -1,32 +1,57 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_CRAFTS_QUERY  } from './queries';
-import  { Skills } from '../Skills';
+import { GET_CRAFTS_QUERY } from './queries';
+import startCase from 'lodash/startCase';
+import { FormGroup, FormControl, FormControlLabel, Checkbox, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const SkillsByCraft = () => {
+const useStyles = makeStyles((theme) => ({
+  formGroup: {
+    paddingLeft: theme.spacing(2)
+  },
+  heading: {
+    paddingLeft: theme.spacing(2),
+    marginTop: theme.spacing(2)
+  },
+}));
+
+export const Crafts = () => {
+  const classes = useStyles();
   const [craftIds, setCraftIds] = useState([]);
-    const { loading, error, data } = useQuery(GET_CRAFTS_QUERY);
+  const { loading, error, data } = useQuery(GET_CRAFTS_QUERY);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error</p>;
 
-    function handleCraftsSelection(e) {
-      e.persist();
-      setCraftIds(oldArray => [...oldArray, e.target.value]);
+  function handleCraftsSelection(e) {
+    e.persist();
+    const value = e.currentTarget.getAttribute('value');
+    if (craftIds.includes(value)) {
+      setCraftIds(craftIds.filter(id => id !== value));
+    } else {
+      setCraftIds(oldArray => [...oldArray, value]);
     }
+  }
 
   return(
-    <div>
-      <h1>Select a craft</h1>
-      {data.crafts.map(function (craft) {
-        return <div key={craft.id}>
-          <input type="checkbox" id={craft.id} name={craft.title} value={craft.id} onChange={handleCraftsSelection}/>
-          <label htmlFor={craft.title}>{craft.title}</label><br />
-        </div>;
-      })}
-      {craftIds.length && <Skills queryDetails={{
-        variables: { filter: { craftIds } }
-      }}/>}
-    </div>
+    <FormControl component="fieldset">
+      <Typography variant="h6" className={classes.heading}>
+        <legend>Crafts</legend>
+      </Typography>
+        <FormGroup className={classes.formGroup}>
+          {data.crafts.map((craft) => (
+            <FormControlLabel
+              key={craft.id}
+              control={<Checkbox
+                checked={craftIds.includes(craft.id)}
+                onChange={handleCraftsSelection}
+                name={craft.title}
+                value={craft.id}
+              />}
+              label={startCase(craft.title)}
+            />
+          ))}
+      </FormGroup>
+  </FormControl>
   );
 };

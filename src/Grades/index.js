@@ -1,32 +1,55 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import  { Skills } from '../Skills';
-import { GET_GRADES_QUERY} from './queries';
+import { GET_GRADES_QUERY } from './queries';
+import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import startCase from 'lodash/startCase';
+import { makeStyles } from '@material-ui/core/styles';
+import teal from '@material-ui/core/colors/teal';
 
-export const SkillsByGrade = () => {
-    const [gradeId, setGradeId] = useState(null);
-    const { loading, error, data } = useQuery(GET_GRADES_QUERY);
+const useStyles = makeStyles((theme) => ({
+  heading: {
+    paddingLeft: theme.spacing(2),
+    marginTop: theme.spacing(2)
+  },
+  selected: {
+    color: teal[500],
+    fontWeight: 'bold'
+  }
+}));
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error</p>;
+export const Grades = () => {
+  const classes = useStyles();
+  const [gradeId, setGradeId] = useState(null);
+  const { loading, error, data } = useQuery(GET_GRADES_QUERY);
 
-    function handleGradeSelection(e) {
-      setGradeId(e.target.value);
-    }
+  if (error) return <p>Error</p>;
+  if (loading) return <p>Loading...</p>;
+
+  function handleGradeSelection(e) {
+    setGradeId(e.currentTarget.getAttribute('value'));
+  }
 
   return(
     <div>
-      <h1>Select a grade</h1>
-      {data.grades.map(function (grade) {
-        return <button key={grade.id} value={grade.id} onClick={handleGradeSelection}>
-          {grade.title}
-        </button>;
-      })}
-      {gradeId && <Skills queryDetails={
-        {
-          variables: { filter: { gradeId } }
-        }
-      }/>}
+      <Typography variant="h6" className={classes.heading}>
+        Grade
+      </Typography>
+      <List>
+        <ListItem button onClick={handleGradeSelection} value={null}>
+          <ListItemText
+            primary='All'
+            classes={{ primary: gradeId === null ? classes.selected : '' }}
+          />
+        </ListItem>
+        {data.grades.map((grade) => (
+          <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.id}>
+            <ListItemText
+              primary={startCase(grade.title)}
+              classes={{ primary: gradeId === grade.id ? classes.selected : '' }}
+            />
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 };
