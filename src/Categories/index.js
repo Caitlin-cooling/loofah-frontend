@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
 import { GET_CATEGORIES_QUERY } from './queries';
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Categories = () => {
+export const Categories = ({ handleFilterChange }) => {
   const classes = useStyles();
   const [categoryId, setCategoryId] = useState(null);
   const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
@@ -26,7 +27,9 @@ export const Categories = () => {
   if (loading) return <p>Loading...</p>;
 
   function handleCategorySelection(e) {
-    setCategoryId(e.currentTarget.getAttribute('value'));
+    const value = e.currentTarget.getAttribute('value');
+    setCategoryId(value);
+    handleFilterChange({ categoryId: value });
   }
 
   return(
@@ -52,4 +55,8 @@ export const Categories = () => {
       </List>
     </div>
   );
+};
+
+Categories.propTypes = {
+  handleFilterChange: PropTypes.func
 };

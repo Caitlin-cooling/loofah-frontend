@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Grades = (props) => {
+export const Grades = ({ handleFilterChange }) => {
   const classes = useStyles();
   const [gradeId, setGradeId] = useState(null);
   const { loading, error, data } = useQuery(GET_GRADES_QUERY);
@@ -29,7 +29,7 @@ export const Grades = (props) => {
   function handleGradeSelection(e) {
     const value = e.currentTarget.getAttribute('value');
     setGradeId(value);
-    props.handleFilterChange({ gradeId: value });
+    handleFilterChange({ gradeId: value });
   }
 
   return(
