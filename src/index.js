@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { loofahApiUrl } from './Config/config';
+import { loofahApiUrl } from './config/config';
 
 const client = new ApolloClient({
   uri: `${loofahApiUrl}`
