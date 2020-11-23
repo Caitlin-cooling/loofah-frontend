@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/react-hooks';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { loofahApiUrl } from './config/config';
 
-const client = new ApolloClient({
-  uri: `${loofahApiUrl}`
+export const client = new ApolloClient({
+  uri: `${loofahApiUrl}`,
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
