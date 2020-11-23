@@ -54,7 +54,7 @@ const Home = () => {
           <div className={classes.drawerContainer}>
             <Grades handleFilterChange={handleFilterChange} />
             <Divider />
-            <Categories />
+            <Categories handleFilterChange={handleFilterChange} />
             <Divider />
             <Crafts />
           </div>
