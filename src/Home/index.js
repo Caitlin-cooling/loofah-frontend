@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Drawer, Divider, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grades } from '../Grades';
@@ -34,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+  const [queryFilter, setQueryFilter] = useState({});
+
+  function handleFilterChange(value) {
+    setQueryFilter(oldDetails => {
+      return { ...oldDetails, ...value };
+     });
+  }
 
   return(
     <main className={classes.root}>
@@ -45,7 +52,7 @@ const Home = () => {
           }}
         >
           <div className={classes.drawerContainer}>
-            <Grades />
+            <Grades handleFilterChange={handleFilterChange} />
             <Divider />
             <Categories />
             <Divider />
@@ -57,7 +64,7 @@ const Home = () => {
         <Typography variant="h1" className={classes.heading}>
             Skills
           </Typography>
-        <Skills queryDetails={ { variables: {} } } />
+        <Skills queryDetails={ { variables: { filter: queryFilter } } } />
       </div>
     </main>
   );

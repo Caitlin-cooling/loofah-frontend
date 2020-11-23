@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import { GET_SKILLS_QUERY } from './queries';
@@ -26,8 +26,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Skills = ({ queryDetails }) => {
   const classes = useStyles();
-  const { loading, error, data } = useQuery(GET_SKILLS_QUERY, {
+  const { loading, error, data, refetch } = useQuery(GET_SKILLS_QUERY, {
     variables: queryDetails.variables
+  });
+
+  useEffect(() => {
+    refetch();
   });
 
   if (loading) return <p>Loading...</p>;

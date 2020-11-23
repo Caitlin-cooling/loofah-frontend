@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_GRADES_QUERY } from './queries';
 import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Grades = () => {
+export const Grades = (props) => {
   const classes = useStyles();
   const [gradeId, setGradeId] = useState(null);
   const { loading, error, data } = useQuery(GET_GRADES_QUERY);
@@ -26,7 +27,9 @@ export const Grades = () => {
   if (loading) return <p>Loading...</p>;
 
   function handleGradeSelection(e) {
-    setGradeId(e.currentTarget.getAttribute('value'));
+    const value = e.currentTarget.getAttribute('value');
+    setGradeId(value);
+    props.handleFilterChange({ gradeId: value });
   }
 
   return(
@@ -52,4 +55,8 @@ export const Grades = () => {
       </List>
     </div>
   );
+};
+
+Grades.propTypes = {
+  handleFilterChange: PropTypes.func
 };
