@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_CRAFTS_QUERY } from './queries';
 import startCase from 'lodash/startCase';
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Crafts = () => {
+export const Crafts = ({ handleFilterChange }) => {
   const classes = useStyles();
   const [craftIds, setCraftIds] = useState([]);
   const { loading, error, data } = useQuery(GET_CRAFTS_QUERY);
@@ -26,11 +27,15 @@ export const Crafts = () => {
   function handleCraftsSelection(e) {
     e.persist();
     const value = e.currentTarget.getAttribute('value');
+
+    let ids = [];
     if (craftIds.includes(value)) {
-      setCraftIds(craftIds.filter(id => id !== value));
+      ids = craftIds.filter(id => id !== value);
     } else {
-      setCraftIds(oldArray => [...oldArray, value]);
+      ids = [...craftIds, value];
     }
+    setCraftIds(ids);
+    ids.length ? handleFilterChange({ craftIds: ids }) : handleFilterChange({ craftIds: null });
   }
 
   return(
@@ -54,4 +59,8 @@ export const Crafts = () => {
       </FormGroup>
   </FormControl>
   );
+};
+
+Crafts.propTypes = {
+  handleFilterChange: PropTypes.func
 };

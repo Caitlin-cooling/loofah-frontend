@@ -56,7 +56,7 @@ const Home = () => {
             <Divider />
             <Categories handleFilterChange={handleFilterChange} />
             <Divider />
-            <Crafts />
+            <Crafts handleFilterChange={handleFilterChange} />
           </div>
         </Drawer>
       </nav>
