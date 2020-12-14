@@ -5,6 +5,7 @@ import { GET_SKILLS_QUERY } from './queries';
 import { List, ListItem, ListItemText, Typography, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { teal, purple } from '@material-ui/core/colors';
+import startCase from 'lodash/startCase';
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -66,8 +67,7 @@ export const Skills = ({ queryDetails }) => {
           }
         />
         <div>
-          <Chip label={skill.grade.title} className={classes.gradeChip} />
-          <Chip label={skill.category.title} className={classes.categoryChip} />
+          <Chip label={startCase(skill.category.title)} className={classes.categoryChip} />
         </div>
         </ListItem>;
       })}
