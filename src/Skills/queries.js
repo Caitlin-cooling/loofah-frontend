@@ -6,8 +6,12 @@ export const GET_SKILLS_QUERY = gql`
       id
       title
       description
-      categoryId
-      gradeId
+      category {
+        title
+      }
+      grade {
+        title
+      }
     }
   }
 `;

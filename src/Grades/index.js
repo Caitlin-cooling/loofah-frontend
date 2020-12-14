@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Grades = ({ handleFilterChange }) => {
   const classes = useStyles();
-  const [gradeId, setGradeId] = useState(null);
+  const [gradeTitle, setGradeIdTitle] = useState(null);
   const { loading, error, data } = useQuery(GET_GRADES_QUERY);
 
   if (error) return <p>Error</p>;
@@ -28,8 +28,8 @@ export const Grades = ({ handleFilterChange }) => {
 
   function handleGradeSelection(e) {
     const value = e.currentTarget.getAttribute('value');
-    setGradeId(value);
-    handleFilterChange({ gradeId: value });
+    setGradeIdTitle(value);
+    handleFilterChange({ gradeTitle: value });
   }
 
   return(
@@ -38,17 +38,11 @@ export const Grades = ({ handleFilterChange }) => {
         Grade
       </Typography>
       <List>
-        <ListItem button onClick={handleGradeSelection} value={null}>
-          <ListItemText
-            primary='All'
-            classes={{ primary: gradeId === null ? classes.selected : '' }}
-          />
-        </ListItem>
         {data.grades.map((grade) => (
-          <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.id}>
+          <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.title}>
             <ListItemText
               primary={startCase(grade.title)}
-              classes={{ primary: gradeId === grade.id ? classes.selected : '' }}
+              classes={{ primary: gradeTitle === grade.title ? classes.selected : '' }}
             />
           </ListItem>
         ))}
