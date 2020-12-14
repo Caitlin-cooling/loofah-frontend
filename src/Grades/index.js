@@ -29,7 +29,7 @@ export const Grades = ({ handleFilterChange }) => {
   function handleGradeSelection(e) {
     const value = e.currentTarget.getAttribute('value');
     setGradeId(value);
-    handleFilterChange({ gradeId: value });
+    handleFilterChange({ gradeTitle: value });
   }
 
   return(
@@ -45,7 +45,7 @@ export const Grades = ({ handleFilterChange }) => {
           />
         </ListItem>
         {data.grades.map((grade) => (
-          <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.id}>
+          <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.title}>
             <ListItemText
               primary={startCase(grade.title)}
               classes={{ primary: gradeId === grade.id ? classes.selected : '' }}

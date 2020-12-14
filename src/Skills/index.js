@@ -66,8 +66,8 @@ export const Skills = ({ queryDetails }) => {
           }
         />
         <div>
-          <Chip label={skill.gradeId} className={classes.gradeChip} />
-          <Chip label={skill.categoryId} className={classes.categoryChip} />
+          <Chip label={skill.grade.title} className={classes.gradeChip} />
+          <Chip label={skill.category.title} className={classes.categoryChip} />
         </div>
         </ListItem>;
       })}

@@ -29,7 +29,7 @@ export const Categories = ({ handleFilterChange }) => {
   function handleCategorySelection(e) {
     const value = e.currentTarget.getAttribute('value');
     setCategoryId(value);
-    handleFilterChange({ categoryId: value });
+    handleFilterChange({ categoryTitle: value });
   }
 
   return(
@@ -45,7 +45,7 @@ export const Categories = ({ handleFilterChange }) => {
           />
         </ListItem>
         {data.categories.map((category) => (
-          <ListItem button key={category.id} onClick={handleCategorySelection} value={category.id}>
+          <ListItem button key={category.id} onClick={handleCategorySelection} value={category.title}>
             <ListItemText
               primary={startCase(category.title)}
               classes={{ primary: categoryId === category.id ? classes.selected : '' }}

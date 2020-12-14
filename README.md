@@ -6,17 +6,26 @@
 
 
 
-## Available Scripts
+## Run locally
 
-In the project directory, you can run:
+This app requires the back end components to be running in order to start. Speak to @Caitlin-cooling to get the required api reo, db repo and 
+tooling repo. 
 
-### `npm start`
+Once the required repo's have been cloned, to start the app, navigate to the tooling repo: 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `./scripts/runLoofah.sh`
+This will build and run all the required components for loofah. 
+Open [http://localhost:3000](http://localhost:3000) to view the UI in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Run without building backend
+During front end development it can be slow to constantly restart the UI using the runLoofah script. 
+
+A quicker way to start the UI, if you are not making changes to the API and therefore do not require it to be rebuilt, 
+is to run this command, which will not rebuild the java components like the runLoofah script does: 
+
+```docker-compose -f docker-compose-loofah.yml down -v && docker-compose  -f docker-compose-loofah.yml build && docker-compose  -f docker-compose-loofah.yml up```
+
+We are working on a better way to do this :) 
 
 ### `npm test`
 

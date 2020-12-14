@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Crafts = ({ handleFilterChange }) => {
   const classes = useStyles();
-  const [craftIds, setCraftIds] = useState([]);
+  const [craftTitles, setCraftTitles] = useState([]);
   const { loading, error, data } = useQuery(GET_CRAFTS_QUERY);
 
   if (loading) return <p>Loading...</p>;
@@ -28,14 +28,14 @@ export const Crafts = ({ handleFilterChange }) => {
     e.persist();
     const value = e.currentTarget.getAttribute('value');
 
-    let ids = [];
-    if (craftIds.includes(value)) {
-      ids = craftIds.filter(id => id !== value);
+    let titles = [];
+    if (craftTitles.includes(value)) {
+      titles = craftTitles.filter(id => id !== value);
     } else {
-      ids = [...craftIds, value];
+      titles = [...craftTitles, value];
     }
-    setCraftIds(ids);
-    ids.length ? handleFilterChange({ craftIds: ids }) : handleFilterChange({ craftIds: null });
+    setCraftTitles(titles);
+    titles.length ? handleFilterChange({ craftTitles: titles }) : handleFilterChange({ craftTitles: null });
   }
 
   return(
@@ -48,10 +48,10 @@ export const Crafts = ({ handleFilterChange }) => {
             <FormControlLabel
               key={craft.id}
               control={<Checkbox
-                checked={craftIds.includes(craft.id)}
+                checked={craftTitles.includes(craft.title)}
                 onChange={handleCraftsSelection}
                 name={craft.title}
-                value={craft.id}
+                value={craft.title}
               />}
               label={startCase(craft.title)}
             />
