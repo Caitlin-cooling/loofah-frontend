@@ -7,9 +7,11 @@ export const GET_SKILLS_QUERY = gql`
       title
       description
       category {
+        id
         title
       }
       grade {
+        id
         title
       }
     }
