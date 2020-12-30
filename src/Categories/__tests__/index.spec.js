@@ -1,9 +1,9 @@
-import React from 'react';
-import { SkillsByCategory } from '../index';
-import { GET_CATEGORIES_QUERY } from '../queries';
-import { act, render } from '@testing-library/react';
-import { MockedProvider } from '@apollo/react-testing';
-const wait = require('waait');
+import React from "react";
+import { SkillsByCategory } from "../index";
+import { GET_CATEGORIES_QUERY } from "../queries";
+import { act, render } from "@testing-library/react";
+import { MockedProvider } from "@apollo/react-testing";
+const wait = require("waait");
 
 const mock = {
   request: {
@@ -13,14 +13,14 @@ const mock = {
     data: {
       categories: [
         {
-            'id': '1',
-            'title': 'categoryTitle1',
-            'description': 'categoryDescription1'
+            "id": "1",
+            "title": "categoryTitle1",
+            "description": "categoryDescription1"
         },
         {
-            'id': '2',
-            'title': 'categoryTitle2',
-            'description': 'categoryDescription1'
+            "id": "2",
+            "title": "categoryTitle2",
+            "description": "categoryDescription1"
         }
       ]
     },
@@ -29,7 +29,7 @@ const mock = {
 
 let wrapper;
 
-test('renders without error', () => {
+test("renders without error", () => {
   act(() => {
     render(
       <MockedProvider mocks={[mock]} addTypename={false}>
@@ -39,7 +39,7 @@ test('renders without error', () => {
   });
 });
 
-test('loading state', () => {
+test("loading state", () => {
   act(() => {
     wrapper = render(
       <MockedProvider mocks={[mock]} addTypename={false}>
@@ -48,16 +48,16 @@ test('loading state', () => {
     );
   });
   const { getByText } = wrapper;
-  expect(getByText('Loading...').textContent).toBe('Loading...');
+  expect(getByText("Loading...").textContent).toBe("Loading...");
 });
 
-test('error response', async () => {
+test("error response", async () => {
   const errorMock = {
       request: {
         query: GET_CATEGORIES_QUERY
       },
       result: {
-        error: new Error('Error')
+        error: new Error("Error")
       },
     };
   act(() => {
@@ -69,10 +69,10 @@ test('error response', async () => {
   });
   await wait(0);
   const { getByText } = wrapper;
-  expect(getByText('Error').textContent).toBe('Error');
+  expect(getByText("Error").textContent).toBe("Error");
 });
 
-test('renders categories', async () => {
+test("renders categories", async () => {
   act(() => {
     wrapper = render(
       <MockedProvider mocks={[mock]} addTypename={false}>
@@ -82,6 +82,6 @@ test('renders categories', async () => {
   });
   await wait(0);
   const { getByText } = wrapper;
-  expect(getByText('categoryTitle1').textContent).toBe('categoryTitle1');
-  expect(getByText('categoryTitle2').textContent).toBe('categoryTitle2');
+  expect(getByText("categoryTitle1").textContent).toBe("categoryTitle1");
+  expect(getByText("categoryTitle2").textContent).toBe("categoryTitle2");
 });

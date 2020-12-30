@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import PropTypes from 'prop-types';
-import { GET_SKILLS_QUERY } from './queries';
-import { List, ListItem, ListItemText, Typography, Chip } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { teal, purple } from '@material-ui/core/colors';
-import startCase from 'lodash/startCase';
+import React, { useEffect } from "react";
+import { useQuery } from "@apollo/react-hooks";
+import PropTypes from "prop-types";
+import { GET_SKILLS_QUERY } from "./queries";
+import { List, ListItem, ListItemText, Typography, Chip } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { teal, purple } from "@material-ui/core/colors";
+import startCase from "lodash/startCase";
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start"
   },
   gradeChip: {
-    color: 'white',
+    color: "white",
     backgroundColor: teal[500],
     margin: theme.spacing(0.5)
   },
   categoryChip: {
-    color: 'white',
+    color: "white",
     backgroundColor: purple[500],
     margin: theme.spacing(0.5)
   }
@@ -40,7 +40,7 @@ export const Skills = ({ queryDetails }) => {
 
   return(
     <List>
-      {data['skills'].map((skill) => {
+      {data["skills"].map((skill) => {
         return <ListItem key={skill.id}  className={classes.listItem}>
           <ListItemText
           primary={

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_CRAFTS_QUERY } from './queries';
-import startCase from 'lodash/startCase';
-import { FormGroup, FormControl, FormControlLabel, Checkbox, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_CRAFTS_QUERY } from "./queries";
+import startCase from "lodash/startCase";
+import { FormGroup, FormControl, FormControlLabel, Checkbox, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   formGroup: {
@@ -26,7 +26,7 @@ export const Crafts = ({ handleFilterChange }) => {
 
   function handleCraftsSelection(e) {
     e.persist();
-    const value = e.currentTarget.getAttribute('value');
+    const value = e.currentTarget.getAttribute("value");
 
     let titles = [];
     if (craftTitles.includes(value)) {

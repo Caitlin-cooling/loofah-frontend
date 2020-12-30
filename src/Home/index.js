@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Drawer, Divider, Typography, AppBar, Toolbar, } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grades } from '../Grades';
-import { Categories } from '../Categories';
-import { Crafts } from '../Crafts';
-import { Skills } from '../Skills';
+import React, { useState } from "react";
+import { Drawer, Divider, Typography, AppBar, Toolbar, } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grades } from "../Grades";
+import { Categories } from "../Categories";
+import { Crafts } from "../Crafts";
+import { Skills } from "../Skills";
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
-    backgroundColor: '#323232',
+    backgroundColor: "#323232",
     zIndex: theme.zIndex.drawer + 1
   },
   drawer: {
