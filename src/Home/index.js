@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
-import { Drawer, Divider, Typography } from '@material-ui/core';
+import { Drawer, Divider, Typography, AppBar, Toolbar, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grades } from '../Grades';
 import { Categories } from '../Categories';
 import { Crafts } from '../Crafts';
 import { Skills } from '../Skills';
 
+const drawerWidth = 300;
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
     display: 'flex',
-    position: 'absolute',
-    marginTop: theme.spacing(6)
+  },
+  appBar: {
+    backgroundColor: '#323232',
+    zIndex: theme.zIndex.drawer + 1
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: 300,
-      flexShrink: 0
-    }
-  },
-  drawerContainer: {
-    overflow: 'auto',
+    width: drawerWidth,
+    flexShrink: 0
   },
   drawerPaper: {
-    overflow: 'auto',
-    position: 'inherit'
+    width: drawerWidth,
   },
-  mainContainer: {
-    paddingLeft: theme.spacing(3)
-  }
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
 }));
 
 const Home = () => {
@@ -43,15 +40,23 @@ const Home = () => {
   }
 
   return(
-    <main className={classes.root}>
-      <nav className={classes.drawer} aria-label="filter options">
+    <div className={classes.root}>
+      <AppBar className={classes.appBar} position="fixed" >
+        <Toolbar>
+          <Typography variant="h6" noWrap>
+            LOOFAH
+          </Typography>
+        </Toolbar>
+      </AppBar>
         <Drawer
+          className={classes.drawer}
           variant="permanent"
           classes={{
             paper: classes.drawerPaper,
           }}
         >
-          <div className={classes.drawerContainer}>
+          <Toolbar />
+          <div>
             <Grades handleFilterChange={handleFilterChange} />
             <Divider />
             <Categories handleFilterChange={handleFilterChange} />
@@ -59,14 +64,14 @@ const Home = () => {
             <Crafts handleFilterChange={handleFilterChange} />
           </div>
         </Drawer>
-      </nav>
-      <div className={classes.mainContainer}>
+      <main className={classes.content}>
+        <Toolbar />
         <Typography variant="h1" className={classes.heading}>
             Skills
           </Typography>
         <Skills queryDetails={ { variables: { filter: queryFilter } } } />
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 
