@@ -1,7 +1,7 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import PropTypes from 'prop-types';
-import { GET_CRAFT_BY_ID } from './queries';
+import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+import PropTypes from "prop-types";
+import { GET_CRAFT_BY_ID } from "./queries";
 
 export const Craft = ({ id }) => {
   const { loading, error, data } = useQuery(GET_CRAFT_BY_ID, {

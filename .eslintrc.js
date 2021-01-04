@@ -24,7 +24,7 @@ module.exports = {
     ],
     "rules": {
       "semi": ["warn", "always"],
-      "quotes": ["warn", "single"],
+      "quotes": ["warn", "double"],
       "no-trailing-spaces": "warn",
       "max-len": [1, 120],
       "no-case-declarations": "warn",

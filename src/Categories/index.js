@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
-import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
-import { GET_CATEGORIES_QUERY } from './queries';
-import startCase from 'lodash/startCase';
-import { makeStyles } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { useQuery } from "@apollo/react-hooks";
+import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
+import { GET_CATEGORIES_QUERY } from "./queries";
+import startCase from "lodash/startCase";
+import { makeStyles } from "@material-ui/core/styles";
+import purple from "@material-ui/core/colors/purple";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   selected: {
     color: purple[500],
-    fontWeight: 'bold'
+    fontWeight: "bold"
   }
 }));
 
@@ -27,7 +27,7 @@ export const Categories = ({ handleFilterChange }) => {
   if (loading) return <p>Loading...</p>;
 
   function handleCategorySelection(e) {
-    const value = e.currentTarget.getAttribute('value');
+    const value = e.currentTarget.getAttribute("value");
     setCategoryTitle(value);
     handleFilterChange({ categoryTitle: value });
   }
@@ -40,15 +40,15 @@ export const Categories = ({ handleFilterChange }) => {
       <List>
         <ListItem button onClick={handleCategorySelection} value={null}>
           <ListItemText
-            primary='All'
-            classes={{ primary: categoryTitle === null ? classes.selected : '' }}
+            primary="All"
+            classes={{ primary: categoryTitle === null ? classes.selected : "" }}
           />
         </ListItem>
         {data.categories.map((category) => (
           <ListItem button key={category.id} onClick={handleCategorySelection} value={category.title}>
             <ListItemText
               primary={startCase(category.title)}
-              classes={{ primary: categoryTitle === category.title ? classes.selected : '' }}
+              classes={{ primary: categoryTitle === category.title ? classes.selected : "" }}
             />
           </ListItem>
         ))}
