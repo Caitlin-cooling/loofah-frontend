@@ -26,6 +26,7 @@ module.exports = {
       "semi": ["warn", "always"],
       "quotes": ["warn", "double"],
       "no-trailing-spaces": "warn",
+      "comma-dangle": "warn",
       "max-len": [1, 120],
       "no-case-declarations": "warn",
       "no-console": "warn",

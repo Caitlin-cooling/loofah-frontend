@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_GRADES_QUERY } from "./queries";
 import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
 import startCase from "lodash/startCase";
 import { makeStyles } from "@material-ui/core/styles";
 import teal from "@material-ui/core/colors/teal";
+import { DEFAULT_GRADE } from "./data";
 
 const useStyles = makeStyles((theme) => ({
   heading: {
     paddingLeft: theme.spacing(2),
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
+    fontFamily: "ChronicleDisp-Roman",
+    fontWeight: "bold"
   },
   selected: {
     color: teal[500],
@@ -18,13 +19,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Grades = ({ handleFilterChange }) => {
+export const Grades = ({ handleFilterChange, gradeList }) => {
   const classes = useStyles();
-  const [gradeTitle, setGradeIdTitle] = useState(null);
-  const { loading, error, data } = useQuery(GET_GRADES_QUERY);
-
-  if (error) return <p>Error</p>;
-  if (loading) return <p>Loading...</p>;
+  const [gradeTitle, setGradeIdTitle] = useState(DEFAULT_GRADE);
 
   function handleGradeSelection(e) {
     const value = e.currentTarget.getAttribute("value");
@@ -34,11 +31,11 @@ export const Grades = ({ handleFilterChange }) => {
 
   return(
     <div>
-      <Typography variant="h6" className={classes.heading}>
+      <Typography variant="h4" className={classes.heading}>
         Grade
       </Typography>
       <List>
-        {data.grades.map((grade) => (
+        {gradeList.map((grade) => (
           <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.title}>
             <ListItemText
               primary={startCase(grade.title)}
@@ -52,5 +49,6 @@ export const Grades = ({ handleFilterChange }) => {
 };
 
 Grades.propTypes = {
-  handleFilterChange: PropTypes.func
+  handleFilterChange: PropTypes.func,
+  gradeList: PropTypes.array
 };

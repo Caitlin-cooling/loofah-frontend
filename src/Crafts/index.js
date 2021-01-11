@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_CRAFTS_QUERY } from "./queries";
 import startCase from "lodash/startCase";
 import { FormGroup, FormControl, FormControlLabel, Checkbox, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,17 +10,15 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     paddingLeft: theme.spacing(2),
-    marginTop: theme.spacing(2)
-  },
+    marginTop: theme.spacing(2),
+    fontFamily: "ChronicleDisp-Roman",
+    fontWeight: "bold"
+  }
 }));
 
-export const Crafts = ({ handleFilterChange }) => {
+export const Crafts = ({ handleFilterChange, craftList }) => {
   const classes = useStyles();
   const [craftTitles, setCraftTitles] = useState([]);
-  const { loading, error, data } = useQuery(GET_CRAFTS_QUERY);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
 
   function handleCraftsSelection(e) {
     e.persist();
@@ -40,11 +36,11 @@ export const Crafts = ({ handleFilterChange }) => {
 
   return(
     <FormControl component="fieldset">
-      <Typography variant="h6" className={classes.heading}>
+      <Typography variant="h4" className={classes.heading}>
         <legend>Crafts</legend>
       </Typography>
         <FormGroup className={classes.formGroup}>
-          {data.crafts.map((craft) => (
+          {craftList.map((craft) => (
             <FormControlLabel
               key={craft.id}
               control={<Checkbox
@@ -62,5 +58,6 @@ export const Crafts = ({ handleFilterChange }) => {
 };
 
 Crafts.propTypes = {
-  handleFilterChange: PropTypes.func
+  handleFilterChange: PropTypes.func,
+  craftList: PropTypes.array
 };
