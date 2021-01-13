@@ -5,6 +5,7 @@ export const GET_GRADES_QUERY = gql`
     grades {
       id
       title
+      description
     }
   }
 `;

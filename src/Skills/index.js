@@ -5,24 +5,15 @@ import { GET_SKILLS_QUERY } from "./queries";
 import { groupSkillsByTitle } from "../utils/formatters";
 import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { teal, purple } from "@material-ui/core/colors";
 import startCase from "lodash/startCase";
+import isEmpty from "lodash/isEmpty";
 
 const useStyles = makeStyles((theme) => ({
-  listItem: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start"
+  container: {
+    marginTop: theme.spacing(4)
   },
-  gradeChip: {
-    color: "white",
-    backgroundColor: teal[500],
-    margin: theme.spacing(0.5)
-  },
-  categoryChip: {
-    color: "white",
-    backgroundColor: purple[500],
-    margin: theme.spacing(0.5)
+  topicContainer: {
+    marginBottom: theme.spacing(4)
   }
 }));
 
@@ -41,39 +32,31 @@ export const Skills = ({ queryDetails }) => {
 
   const groupedSkills = groupSkillsByTitle(data["skills"]);
 
-  return(
+  const skills = <div className={classes.container}>
+  {Object.keys(groupedSkills).map((title, index) => {
+    return <div key={index} className={classes.topicContainer}>
+      <Typography
+      component="h5"
+      variant="h5"
+    >
+      {startCase(title)}
+      </Typography>
     <List>
-      {Object.keys(groupedSkills).map((title, index) => {
-        return <ListItem key={index} className={classes.listItem}>
-          <ListItemText
-            primary={
-              <React.Fragment>
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  color="textPrimary"
-                >
-                  {startCase(title)}
-                </Typography>
-              </React.Fragment>
-            }
-            secondary={
-              groupedSkills[title].map((skill) => {
-                return <React.Fragment key={skill.id}>
-                <Typography
-                  component="p"
-                  color="textSecondary"
-                >
-                  {skill.description}
-                </Typography>
-              </React.Fragment>;
-              })
-            }
-          />
+      {groupedSkills[title].map((skill) => {
+        return <ListItem key={skill.id}>
+          <ListItemText primary={skill.description} />
         </ListItem>;
       })}
     </List>
-  );
+    </div>;
+  })}
+</div>;
+
+  const noResults = <Typography component="p" variant="body-2" className={classes.container}>
+      No results found. Try changing your filters.
+    </Typography>;
+
+  return(isEmpty(groupedSkills) ? noResults : skills);
 };
 
 Skills.propTypes = {
