@@ -1,59 +1,60 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
-import startCase from "lodash/startCase";
+import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
+import grey from "@material-ui/core/colors/grey";
+import cyan from "@material-ui/core/colors/cyan";
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
-    paddingLeft: theme.spacing(2),
+  tabText: {
+    color: grey[900],
     marginTop: theme.spacing(2),
-    fontFamily: "ChronicleDisp-Roman",
-    fontWeight: "bold"
+    textTransform: "capitalize",
+    fontSize: "1.5rem",
   },
   selected: {
-    color: purple[500],
-    fontWeight: "bold"
-  }
+    borderBottom: `${cyan[300]} 4px solid`,
+  },
 }));
 
 export const Categories = ({ handleFilterChange, categoryList }) => {
   const classes = useStyles();
-  const [categoryTitle, setCategoryTitle] = useState(null);
+  const [categoryIndex, setCategoryIndex] = useState(0);
 
-  function handleCategorySelection(e) {
-    const value = e.currentTarget.getAttribute("value");
-    setCategoryTitle(value);
-    handleFilterChange({ categoryTitle: value });
+  function handleCategorySelection(e, value) {
+    setCategoryIndex(value);
+    handleFilterChange({ categoryTitle: categoryList[value].title });
   }
 
-  return(
+  return (
     <div>
-      <Typography variant="h4" className={classes.heading}>
-        Categories
-      </Typography>
-      <List>
-        <ListItem button onClick={handleCategorySelection} value={null}>
-          <ListItemText
-            primary="All"
-            classes={{ primary: categoryTitle === null ? classes.selected : "" }}
+      <Tabs
+        value={categoryIndex}
+        onChange={handleCategorySelection}
+        indicatorColor="primary"
+        textColor="primary"
+        TabIndicatorProps={{ style: { display: "none" } }}
+      >
+        {categoryList.map((category, index) => (
+          <Tab
+            key={category.id}
+            label={
+              <span
+                className={`${classes.tabText} ${
+                  index === categoryIndex ? classes.selected : ""
+                }`}
+              >
+                {category.title}
+              </span>
+            }
           />
-        </ListItem>
-        {categoryList.map((category) => (
-          <ListItem button key={category.id} onClick={handleCategorySelection} value={category.title}>
-            <ListItemText
-              primary={startCase(category.title)}
-              classes={{ primary: categoryTitle === category.title ? classes.selected : "" }}
-            />
-          </ListItem>
         ))}
-      </List>
+      </Tabs>
     </div>
   );
 };
 
 Categories.propTypes = {
   handleFilterChange: PropTypes.func,
-  categoryList: PropTypes.array
+  categoryList: PropTypes.array,
 };
