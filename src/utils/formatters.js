@@ -1,14 +1,13 @@
 import groupBy from "lodash/groupBy";
 
-export const groupSkillsByTitle = (skills) => {
+export const groupSkillsByTitleAndGrade = (skills) => {
   if (skills) {
-    const unorderedGroups = groupBy(skills, (skill) => skill.title);
-    return Object.keys(unorderedGroups)
-    .sort()
-    .reduce(function (acc, title) {
-        acc[title] = unorderedGroups[title];
-        return acc;
-    }, {});
+    const groupedByTitle = groupBy(skills, (skill) => skill.title);
+    const groupedByGrade = {};
+    Object.keys(groupedByTitle).forEach((title) => {
+      groupedByGrade[title] = groupBy(groupedByTitle[title], (skill) => skill.grade.title);
+    });
+    return groupedByGrade;
   } else {
     return null;
   }
