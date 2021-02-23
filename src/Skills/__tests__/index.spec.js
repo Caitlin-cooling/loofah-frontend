@@ -11,9 +11,9 @@ const mock = {
     },
     result: {
       data: {
-        skillsByCategory: [{ id: "1", title: "Title" }],
-      },
-    },
+        skillsByCategory: [{ id: "1", topic: "Title" }]
+      }
+    }
   };
 
 let wrapper;

@@ -2,10 +2,10 @@ import groupBy from "lodash/groupBy";
 
 export const groupSkillsByTitleAndGrade = (skills) => {
   if (skills) {
-    const groupedByTitle = groupBy(skills, (skill) => skill.title);
+    const groupedByTopic = groupBy(skills, (skill) => skill.topic);
     const groupedByGrade = {};
-    Object.keys(groupedByTitle).forEach((title) => {
-      groupedByGrade[title] = groupBy(groupedByTitle[title], (skill) => skill.grade.title);
+    Object.keys(groupedByTopic).forEach((topic) => {
+      groupedByGrade[topic] = groupBy(groupedByTopic[topic], (skill) => skill.grade.title);
     });
     return groupedByGrade;
   } else {
