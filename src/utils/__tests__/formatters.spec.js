@@ -12,7 +12,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
         description: "You understand a wide range of design patterns and how they solve common recurring problems",
         grade: {id: "5feca323bce133e744d09b2d", title: "analystDeveloper", __typename: "Grade"},
         id: "5feca323bc67214a38e40710",
-        title: "running and deploying",
+        topic: "running and deploying",
         __typename: "SkillDTO"
       },
       {
@@ -20,7 +20,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
         description: "You understand algorithmic (time and space) and code (cyclomatic) complexity",
         grade: {id: "5feca323bce133e744d09b2d", title: "developer", __typename: "Grade"},
         id: "5feca323bc67214a38e4070d",
-        title: "algorithms and data structures",
+        topic: "algorithms and data structures",
         __typename: "SkillDTO"
       },
       {
@@ -28,7 +28,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
         description: "You understand a wide range of design patterns and how they solve common recurring problems",
         grade: {id: "5feca323bce133e744d09b2d", title: "developer", __typename: "Grade"},
         id: "5feca323bc67214a38e40710",
-        title: "code quality",
+        topic: "code quality",
         __typename: "SkillDTO"
       },
       {
@@ -36,7 +36,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
         description: "You have an awareness of common data structures and their benefits / limitations",
         grade: {id: "5feca323bce133e744d09b2d", title: "analystDeveloper", __typename: "Grade"},
         id: "5feca323bc67214a38e4070e",
-        title: "algorithms and data structures",
+        topic: "algorithms and data structures",
         __typename: "SkillDTO"
       }
     ]);
@@ -48,7 +48,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
             description: "You have an awareness of common data structures and their benefits / limitations",
             grade: {id: "5feca323bce133e744d09b2d", title: "analystDeveloper", __typename: "Grade"},
             id: "5feca323bc67214a38e4070e",
-            title: "algorithms and data structures",
+            topic: "algorithms and data structures",
             __typename: "SkillDTO"
           }
         ],
@@ -58,7 +58,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
             description: "You understand algorithmic (time and space) and code (cyclomatic) complexity",
             grade: {id: "5feca323bce133e744d09b2d", title: "developer", __typename: "Grade"},
             id: "5feca323bc67214a38e4070d",
-            title: "algorithms and data structures",
+            topic: "algorithms and data structures",
             __typename: "SkillDTO"
           }
         ]
@@ -70,7 +70,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
             description: "You understand a wide range of design patterns and how they solve common recurring problems",
             grade: {id: "5feca323bce133e744d09b2d", title: "developer", __typename: "Grade"},
             id: "5feca323bc67214a38e40710",
-            title: "code quality",
+            topic: "code quality",
             __typename: "SkillDTO"
           }
         ]
@@ -83,11 +83,11 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
               "You understand a wide range of design patterns and how they solve common recurring problems",
             grade: {id: "5feca323bce133e744d09b2d", title: "analystDeveloper", __typename: "Grade"},
             id: "5feca323bc67214a38e40710",
-            title: "running and deploying",
+            topic: "running and deploying",
             __typename: "SkillDTO"
           }
         ]
-      },
+      }
     });
   });
 });

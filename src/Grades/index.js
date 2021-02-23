@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Grades = ({ handleFilterChange, gradeList }) => {
   const classes = useStyles();
-  const [gradeTitle, setGradeIdTitle] = useState(DEFAULT_GRADE);
+  const [gradeTitles, setGradeIdTitle] = useState(DEFAULT_GRADE);
 
   function handleGradeSelection(e) {
     const value = e.currentTarget.getAttribute("value");
     setGradeIdTitle(value);
-    handleFilterChange({ gradeTitle: value });
+    handleFilterChange({ gradeTitles: value });
   }
 
   return(
@@ -39,7 +39,7 @@ export const Grades = ({ handleFilterChange, gradeList }) => {
           <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.title}>
             <ListItemText
               primary={startCase(grade.title)}
-              classes={{ primary: gradeTitle === grade.title ? classes.selected : "" }}
+              classes={{ primary: gradeTitles === grade.title ? classes.selected : "" }}
             />
           </ListItem>
         ))}

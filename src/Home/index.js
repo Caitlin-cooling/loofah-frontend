@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const [queryFilter, setQueryFilter] = useState({gradeTitle: DEFAULT_GRADE});
+  const [queryFilter, setQueryFilter] = useState({gradeTitles: DEFAULT_GRADE});
 
   const {
     loading: gradesLoading,
@@ -62,7 +62,7 @@ const Home = () => {
     data: craftsResponse
   } = useQuery(GET_CRAFTS_QUERY);
 
-  const selectedGradeTitle = queryFilter.gradeTitle;
+  const selectedGradeTitle = queryFilter.gradeTitles;
 
   function getSelectedGradeByTitle(title) {
     return gradesResponse.grades.find((grade) => grade.title === title);
