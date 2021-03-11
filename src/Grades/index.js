@@ -1,50 +1,73 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
+import { FormGroup, FormControl, FormControlLabel, Checkbox, Typography } from "@material-ui/core";
 import startCase from "lodash/startCase";
 import { makeStyles } from "@material-ui/core/styles";
-import teal from "@material-ui/core/colors/teal";
-import { DEFAULT_GRADE } from "./data";
+import cyan from "@material-ui/core/colors/cyan";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    "&$checked": {
+      color: cyan[300]
+    }
+  },
+  checked: {},
   heading: {
     paddingLeft: theme.spacing(2),
     marginTop: theme.spacing(2),
     fontFamily: "ChronicleDisp-Roman",
     fontWeight: "bold"
   },
-  selected: {
-    color: teal[500],
-    fontWeight: "bold"
+  formGroup: {
+    paddingLeft: theme.spacing(2)
+  },
+  fieldset: {
+    paddingBottom: theme.spacing(2)
   }
 }));
 
 export const Grades = ({ handleFilterChange, gradeList }) => {
   const classes = useStyles();
-  const [gradeTitle, setGradeIdTitle] = useState(DEFAULT_GRADE);
+  const [gradeTitles, setGradeIdTitles] = useState([]);
 
   function handleGradeSelection(e) {
+    e.persist();
     const value = e.currentTarget.getAttribute("value");
-    setGradeIdTitle(value);
-    handleFilterChange({ gradeTitle: value });
+
+    let titles = [];
+    if (gradeTitles.includes(value)) {
+      titles = gradeTitles.filter(title => title !== value);
+    } else {
+      titles = [...gradeTitles, value];
+    }
+    setGradeIdTitles(titles);
+    titles.length ? handleFilterChange({ gradeTitles: titles }) : handleFilterChange({ gradeTitles: null });
   }
 
   return(
-    <div>
+    <FormControl component="fieldset" className={classes.fieldset}>
       <Typography variant="h4" className={classes.heading}>
-        Grade
+        <legend>Grade</legend>
       </Typography>
-      <List>
-        {gradeList.map((grade) => (
-          <ListItem button key={grade.id} onClick={handleGradeSelection} value={grade.title}>
-            <ListItemText
-              primary={startCase(grade.title)}
-              classes={{ primary: gradeTitle === grade.title ? classes.selected : "" }}
+        <FormGroup className={classes.formGroup}>
+          {gradeList.map((grade) => (
+            <FormControlLabel
+              key={grade.id}
+              control={<Checkbox
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked
+                }}
+                checked={gradeTitles.includes(grade.title)}
+                onChange={handleGradeSelection}
+                name={grade.title}
+                value={grade.title}
+              />}
+              label={startCase(grade.title)}
             />
-          </ListItem>
-        ))}
-      </List>
-    </div>
+          ))}
+      </FormGroup>
+    </FormControl>
   );
 };
 
