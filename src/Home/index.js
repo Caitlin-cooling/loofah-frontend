@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import startCase from "lodash/startCase";
 
 import { Drawer, Divider, Typography, AppBar, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Grades } from "../Grades";
 import { GET_GRADES_QUERY } from "../Grades/queries";
-import { DEFAULT_GRADE } from "../Grades/data";
 import { Categories } from "../Categories";
 import { GET_CATEGORIES_QUERY } from "../Categories/queries";
 import { Crafts } from "../Crafts";
@@ -19,6 +17,9 @@ const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex"
+  },
+  loofah: {
+    fontWeight: "bold"
   },
   appBar: {
     backgroundColor: "#323232",
@@ -36,13 +37,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3)
   },
   heading: {
-    fontFamily: "ChronicleDisp-Roman"
+    fontFamily: "ChronicleDisp-Roman",
+    fontSize: "4rem"
   }
 }));
 
 const Home = () => {
   const classes = useStyles();
-  const [queryFilter, setQueryFilter] = useState({gradeTitle: DEFAULT_GRADE});
+  const [queryFilter, setQueryFilter] = useState();
 
   const {
     loading: gradesLoading,
@@ -62,12 +64,6 @@ const Home = () => {
     data: craftsResponse
   } = useQuery(GET_CRAFTS_QUERY);
 
-  const selectedGradeTitle = queryFilter.gradeTitle;
-
-  function getSelectedGradeByTitle(title) {
-    return gradesResponse.grades.find((grade) => grade.title === title);
-  }
-
   function handleFilterChange(value) {
     setQueryFilter(oldDetails => {
       return { ...oldDetails, ...value };
@@ -81,7 +77,7 @@ const Home = () => {
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="fixed" >
         <Toolbar>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className={classes.loofah}>
             LOOFAH
           </Typography>
         </Toolbar>
@@ -114,10 +110,7 @@ const Home = () => {
       <main className={classes.content}>
         <Toolbar />
         <Typography variant="h1" className={classes.heading}>
-          { startCase(selectedGradeTitle) }
-        </Typography>
-        <Typography variant="body2">
-          { getSelectedGradeByTitle(selectedGradeTitle).description }
+          Engineering pathways
         </Typography>
         <Skills queryDetails={ { variables: { filter: queryFilter } } } />
       </main>
