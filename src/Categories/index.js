@@ -31,7 +31,6 @@ export const Categories = ({ handleFilterChange, categoryList }) => {
       <Tabs
         value={categoryIndex}
         onChange={handleCategorySelection}
-        indicatorColor="primary"
         textColor="primary"
         TabIndicatorProps={{ style: { display: "none" } }}
       >
