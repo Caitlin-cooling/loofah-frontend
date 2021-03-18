@@ -23,8 +23,8 @@ const mock = {
             "description": "categoryDescription1"
         }
       ]
-    },
-  },
+    }
+  }
 };
 
 let wrapper;
@@ -58,7 +58,7 @@ test("error response", async () => {
       },
       result: {
         error: new Error("Error")
-      },
+      }
     };
   act(() => {
     wrapper = render(

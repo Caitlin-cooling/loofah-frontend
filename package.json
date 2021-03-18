@@ -15,6 +15,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "graphql": "^14.7.0",
+    "husky": "^4.3.8",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -31,6 +32,17 @@
     "eject": "react-scripts eject",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "eslint": "./node_modules/.bin/eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +61,10 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.17.0"
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.17.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "2.2.1"
   }
 }
