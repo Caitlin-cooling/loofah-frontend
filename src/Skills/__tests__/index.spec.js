@@ -47,7 +47,7 @@ test("error response", async () => {
       },
       result: {
         error: new Error("Error")
-      },
+      }
     };
   act(() => {
     wrapper = render(
