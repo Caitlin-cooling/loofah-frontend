@@ -16,7 +16,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "graphql": "^14.7.0",
     "husky": "^4.3.8",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
