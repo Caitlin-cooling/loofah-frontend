@@ -26,44 +26,46 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Grades = ({ handleFilterChange, gradeList }) => {
+export const CheckboxGroup = ({ groupTitle, handleFilterChange, listItems, keyName }) => {
   const classes = useStyles();
-  const [gradeTitles, setGradeIdTitles] = useState([]);
+  const [titles, setTitles] = useState([]);
 
-  function handleGradeSelection(e) {
+  function handleSelection(e) {
     e.persist();
     const value = e.currentTarget.getAttribute("value");
 
-    let titles = [];
-    if (gradeTitles.includes(value)) {
-      titles = gradeTitles.filter(title => title !== value);
+    let selectedTitles = [];
+    if (titles.includes(value)) {
+      selectedTitles = titles.filter(title => title !== value);
     } else {
-      titles = [...gradeTitles, value];
+      selectedTitles = [...titles, value];
     }
-    setGradeIdTitles(titles);
-    titles.length ? handleFilterChange({ gradeTitles: titles }) : handleFilterChange({ gradeTitles: null });
+    setTitles(selectedTitles);
+    selectedTitles.length
+      ? handleFilterChange({ [keyName]: selectedTitles })
+      : handleFilterChange({ [keyName]: null });
   }
 
   return(
     <FormControl component="fieldset" className={classes.fieldset}>
       <Typography variant="h4" className={classes.heading}>
-        <legend>Grade</legend>
+        <legend>{groupTitle}</legend>
       </Typography>
         <FormGroup className={classes.formGroup}>
-          {gradeList.map((grade) => (
+          {listItems.map((item) => (
             <FormControlLabel
-              key={grade.id}
+              key={item.id}
               control={<Checkbox
                 classes={{
                   root: classes.root,
                   checked: classes.checked
                 }}
-                checked={gradeTitles.includes(grade.title)}
-                onChange={handleGradeSelection}
-                name={grade.title}
-                value={grade.title}
+                checked={titles.includes(item.title)}
+                onChange={handleSelection}
+                name={item.title}
+                value={item.title}
               />}
-              label={startCase(grade.title)}
+              label={startCase(item.title)}
             />
           ))}
       </FormGroup>
@@ -71,7 +73,9 @@ export const Grades = ({ handleFilterChange, gradeList }) => {
   );
 };
 
-Grades.propTypes = {
+CheckboxGroup.propTypes = {
+  groupTitle: PropTypes.string,
   handleFilterChange: PropTypes.func,
-  gradeList: PropTypes.array
+  listItems: PropTypes.array,
+  keyName: PropTypes.string
 };

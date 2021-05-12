@@ -2,23 +2,17 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 
 import {
-  Drawer,
-  Divider,
   Typography,
   AppBar,
   Toolbar
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Grades } from "../Grades";
-import { GET_GRADES_QUERY } from "../Grades/queries";
 import { Categories } from "../Categories";
+import { SidePanel } from "../SidePanel";
 import { GET_CATEGORIES_QUERY } from "../Categories/queries";
-import { Crafts } from "../Crafts";
-import { GET_CRAFTS_QUERY } from "../Crafts/queries";
 import { Skills } from "../Skills";
 
-const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,13 +24,6 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: "#323232",
     zIndex: theme.zIndex.drawer + 1
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
-  drawerPaper: {
-    width: drawerWidth
   },
   content: {
     flexGrow: 1,
@@ -53,22 +40,10 @@ const Home = () => {
   const [queryFilter, setQueryFilter] = useState();
 
   const {
-    loading: gradesLoading,
-    error: gradesError,
-    data: gradesResponse
-  } = useQuery(GET_GRADES_QUERY);
-
-  const {
     loading: categoriesLoading,
     error: categoriesError,
     data: categoriesResponse
   } = useQuery(GET_CATEGORIES_QUERY);
-
-  const {
-    loading: craftsLoading,
-    error: craftsError,
-    data: craftsResponse
-  } = useQuery(GET_CRAFTS_QUERY);
 
   function handleFilterChange(value) {
     setQueryFilter((oldDetails) => {
@@ -76,9 +51,9 @@ const Home = () => {
     });
   }
 
-  if (gradesLoading || categoriesLoading || craftsLoading)
+  if (categoriesLoading)
     return <p>Loading...</p>;
-  if (gradesError || categoriesError || craftsError) return <p>Error</p>;
+  if (categoriesError) return <p>Error</p>;
 
   return (
     <div className={classes.root}>
@@ -89,31 +64,7 @@ const Home = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <Toolbar />
-        <div>
-          <Grades
-            handleFilterChange={handleFilterChange}
-            gradeList={gradesResponse.grades}
-          />
-          <Divider />
-          {/* <Categories
-              handleFilterChange={handleFilterChange}
-              categoryList={categoriesResponse.categories}
-            />
-            <Divider /> */}
-          <Crafts
-            handleFilterChange={handleFilterChange}
-            craftList={craftsResponse.crafts}
-          />
-        </div>
-      </Drawer>
+      <SidePanel handleFilterChange={handleFilterChange} />
       <main className={classes.content}>
         <Toolbar />
         <Categories
