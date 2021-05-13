@@ -1,46 +1,110 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import PropTypes from "prop-types";
-import { GET_SKILLS_QUERY } from "../queries/skill.queries";
-import { groupSkillsByTitleAndGrade } from "../utils/formatters";
-import SimpleAccordion from "./SimpleAccordion";
-import { Typography } from "@material-ui/core";
+
+import {
+  Drawer,
+  Divider,
+  Typography,
+  Toolbar
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import isEmpty from "lodash/isEmpty";
+
+import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../queries";
+import { DEFAULT_GRADE } from "../data";
+import { TabGroup } from "../TabGroup";
+import { Crafts } from "../Crafts";
+import { SkillsList } from "./SkillsList";
+
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    marginTop: theme.spacing(4)
+  root: {
+    display: "flex"
   },
-  topicContainer: {
-    marginBottom: theme.spacing(4)
+  toolbar: {
+    padding: "0 0 1.5em"
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0
+  },
+  drawerPaper: {
+    width: drawerWidth
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  heading: {
+    fontFamily: "ChronicleDisp-Roman",
+    fontSize: "4rem"
   }
 }));
 
-export const Skills = ({ queryDetails }) => {
+const Skills = () => {
   const classes = useStyles();
-  const { loading, error, data, refetch } = useQuery(GET_SKILLS_QUERY, {
-    variables: queryDetails.variables
-  });
+  const [queryFilter, setQueryFilter] = useState({gradeTitles: [DEFAULT_GRADE]});
 
-  useEffect(() => {
-    refetch();
-  });
+  const {
+    loading: gradesLoading,
+    error: gradesError,
+    data: gradesResponse
+  } = useQuery(GET_GRADES_QUERY);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  const {
+    loading: craftsLoading,
+    error: craftsError,
+    data: craftsResponse
+  } = useQuery(GET_CRAFTS_QUERY);
 
-  const groupedSkills = groupSkillsByTitleAndGrade(data["skills"]);
+  const selectedGradeTitle = queryFilter.gradeTitles[0];
 
-  const skills = <SimpleAccordion skills={groupedSkills} />;
+  function getSelectedGradeByTitle(title) {
+    return gradesResponse.grades.find((grade) => grade.title === title);
+  }
 
-  const noResults = <Typography component="p" variant="body-2" className={classes.container}>
-      No results found. Try changing your filters.
-    </Typography>;
+  function handleFilterChange(value) {
+    setQueryFilter((oldDetails) => {
+      return { ...oldDetails, ...value };
+    });
+  }
 
-  return(isEmpty(groupedSkills) ? noResults : skills);
+  if (gradesLoading || craftsLoading)
+    return <p>Loading...</p>;
+  if (gradesError || craftsError) return <p>Error</p>;
+
+  return (
+    <div className={classes.root}>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper
+        }}
+      >
+        <Toolbar className={classes.toolbar} />
+        <div>
+          <Divider />
+          <Crafts
+            handleFilterChange={handleFilterChange}
+            craftList={craftsResponse.crafts}
+          />
+        </div>
+      </Drawer>
+      <main className={classes.content}>
+        <Toolbar />
+        <TabGroup
+          handleFilterChange={handleFilterChange}
+          listItems={gradesResponse.grades}
+          keyName="gradeTitles"
+        />
+        <Typography variant="body1">
+          { getSelectedGradeByTitle(selectedGradeTitle).description }
+        </Typography>
+        <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+      </main>
+    </div>
+  );
 };
 
-Skills.propTypes = {
-  queryDetails: PropTypes.object
-};
+export default Skills;

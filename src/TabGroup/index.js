@@ -24,7 +24,7 @@ export const TabGroup = ({ handleFilterChange, listItems, keyName }) => {
 
   function handleSelection(e, value) {
     setSelectedIndex(value);
-    handleFilterChange({ [keyName]: listItems[value].title });
+    handleFilterChange({ [keyName]: [listItems[value].title] });
   }
 
   return (
