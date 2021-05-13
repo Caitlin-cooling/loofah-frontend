@@ -4,46 +4,47 @@ import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
 import cyan from "@material-ui/core/colors/cyan";
+import startCase from "lodash/startCase";
 
 const useStyles = makeStyles((theme) => ({
   tabText: {
     color: grey[900],
     marginTop: theme.spacing(2),
     textTransform: "capitalize",
-    fontSize: "1.5rem",
+    fontSize: "1.5rem"
   },
   selected: {
-    borderBottom: `${cyan[300]} 4px solid`,
-  },
+    borderBottom: `${cyan[300]} 4px solid`
+  }
 }));
 
-export const Categories = ({ handleFilterChange, categoryList }) => {
+export const TabGroup = ({ handleFilterChange, listItems, keyName }) => {
   const classes = useStyles();
-  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  function handleCategorySelection(e, value) {
-    setCategoryIndex(value);
-    handleFilterChange({ categoryTitle: categoryList[value].title });
+  function handleSelection(e, value) {
+    setSelectedIndex(value);
+    handleFilterChange({ [keyName]: listItems[value].title });
   }
 
   return (
     <div>
       <Tabs
-        value={categoryIndex}
-        onChange={handleCategorySelection}
+        value={selectedIndex}
+        onChange={handleSelection}
         textColor="primary"
         TabIndicatorProps={{ style: { display: "none" } }}
       >
-        {categoryList.map((category, index) => (
+        {listItems.map((item, index) => (
           <Tab
-            key={category.id}
+            key={item.id}
             label={
               <span
                 className={`${classes.tabText} ${
-                  index === categoryIndex ? classes.selected : ""
+                  index === selectedIndex ? classes.selected : ""
                 }`}
               >
-                {category.title}
+                {startCase(item.title)}
               </span>
             }
           />
@@ -53,7 +54,8 @@ export const Categories = ({ handleFilterChange, categoryList }) => {
   );
 };
 
-Categories.propTypes = {
+TabGroup.propTypes = {
   handleFilterChange: PropTypes.func,
-  categoryList: PropTypes.array,
+  listItems: PropTypes.array,
+  keyName: PropTypes.string.isRequired
 };

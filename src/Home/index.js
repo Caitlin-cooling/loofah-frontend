@@ -10,12 +10,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Grades } from "../Grades";
-import { GET_GRADES_QUERY } from "../Grades/queries";
-import { Categories } from "../Categories";
-import { GET_CATEGORIES_QUERY } from "../Categories/queries";
+import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../queries/index";
+import { TabGroup } from "../TabGroup";
 import { Crafts } from "../Crafts";
-import { GET_CRAFTS_QUERY } from "../Crafts/queries";
 import { Skills } from "../Skills";
 
 const drawerWidth = 300;
@@ -59,12 +56,6 @@ const Home = () => {
   } = useQuery(GET_GRADES_QUERY);
 
   const {
-    loading: categoriesLoading,
-    error: categoriesError,
-    data: categoriesResponse
-  } = useQuery(GET_CATEGORIES_QUERY);
-
-  const {
     loading: craftsLoading,
     error: craftsError,
     data: craftsResponse
@@ -76,9 +67,9 @@ const Home = () => {
     });
   }
 
-  if (gradesLoading || categoriesLoading || craftsLoading)
+  if (gradesLoading || craftsLoading)
     return <p>Loading...</p>;
-  if (gradesError || categoriesError || craftsError) return <p>Error</p>;
+  if (gradesError || craftsError) return <p>Error</p>;
 
   return (
     <div className={classes.root}>
@@ -98,16 +89,7 @@ const Home = () => {
       >
         <Toolbar />
         <div>
-          <Grades
-            handleFilterChange={handleFilterChange}
-            gradeList={gradesResponse.grades}
-          />
           <Divider />
-          {/* <Categories
-              handleFilterChange={handleFilterChange}
-              categoryList={categoriesResponse.categories}
-            />
-            <Divider /> */}
           <Crafts
             handleFilterChange={handleFilterChange}
             craftList={craftsResponse.crafts}
@@ -116,9 +98,10 @@ const Home = () => {
       </Drawer>
       <main className={classes.content}>
         <Toolbar />
-        <Categories
+        <TabGroup
           handleFilterChange={handleFilterChange}
-          categoryList={categoriesResponse.categories}
+          listItems={gradesResponse.grades}
+          keyName="gradeTitles"
         />
         <Typography variant="h1" className={classes.heading}>
           Engineering pathways

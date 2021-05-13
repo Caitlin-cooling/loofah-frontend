@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { GET_SKILLS_QUERY } from "./queries";
+import { GET_SKILLS_QUERY } from "../queries/skill.queries";
 import { groupSkillsByTitleAndGrade } from "../utils/formatters";
 import SimpleAccordion from "./SimpleAccordion";
 import { Typography } from "@material-ui/core";
