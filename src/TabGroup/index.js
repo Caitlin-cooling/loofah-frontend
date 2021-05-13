@@ -7,6 +7,9 @@ import cyan from "@material-ui/core/colors/cyan";
 import startCase from "lodash/startCase";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "16px 0"
+  },
   tabText: {
     color: grey[900],
     marginTop: theme.spacing(2),
@@ -28,12 +31,14 @@ export const TabGroup = ({ handleFilterChange, listItems, keyName }) => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Tabs
         value={selectedIndex}
         onChange={handleSelection}
         textColor="primary"
         TabIndicatorProps={{ style: { display: "none" } }}
+        centered
+        variant="fullWidth"
       >
         {listItems.map((item, index) => (
           <Tab

@@ -20,7 +20,6 @@ import { startCase, range } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "75%",
     display: "flex",
     flexDirection: "column"
   },

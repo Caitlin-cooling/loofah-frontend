@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth
   },
   content: {
-    flexGrow: 1,
+    maxWidth: "70%",
+    margin: "auto",
     padding: theme.spacing(3)
   },
   heading: {
@@ -75,7 +76,7 @@ const Skills = () => {
 
   return (
     <div className={classes.root}>
-      <Drawer
+      {/* <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
@@ -90,18 +91,18 @@ const Skills = () => {
             craftList={craftsResponse.crafts}
           />
         </div>
-      </Drawer>
+      </Drawer> */}
       <main className={classes.content}>
-        <Toolbar />
-        <TabGroup
-          handleFilterChange={handleFilterChange}
-          listItems={gradesResponse.grades}
-          keyName="gradeTitles"
-        />
-        <Typography variant="body1">
-          { getSelectedGradeByTitle(selectedGradeTitle).description }
-        </Typography>
-        <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+        <Toolbar className={classes.toolbar} />
+          <TabGroup
+            handleFilterChange={handleFilterChange}
+            listItems={gradesResponse.grades}
+            keyName="gradeTitles"
+          />
+          <Typography variant="body1">
+            { getSelectedGradeByTitle(selectedGradeTitle).description }
+          </Typography>
+          <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
       </main>
     </div>
   );

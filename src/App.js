@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     zIndex: theme.zIndex.drawer + 1
   },
-  toolbar: {
-    padding: "0 0 1.5em"
+  divider: {
+    margin: "0 0.6rem"
   }
 }));
 
@@ -34,7 +34,7 @@ const App = () => {
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
           <img src="/src/assets/dd-logo.png" alt="Deloitte Digital logo" />
-          <Divider orientation="vertical" flexItem />
+          <Divider orientation="vertical" flexItem className={classes.divider} />
           <Typography variant="h5" noWrap className={classes.loofah}>
             LOOFAH
           </Typography>
