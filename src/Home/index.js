@@ -8,9 +8,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Categories } from "../Categories";
+import { TabGroup } from "../TabGroup";
 import { SidePanel } from "../SidePanel";
-import { GET_CATEGORIES_QUERY } from "../Categories/queries";
+import { GET_CATEGORIES_QUERY } from "../queries/category.queries";
 import { Skills } from "../Skills";
 
 
@@ -67,9 +67,10 @@ const Home = () => {
       <SidePanel handleFilterChange={handleFilterChange} />
       <main className={classes.content}>
         <Toolbar />
-        <Categories
+        <TabGroup
           handleFilterChange={handleFilterChange}
-          categoryList={categoriesResponse.categories}
+          tabList={categoriesResponse.categories}
+          keyName="categoryTitle"
         />
         <Typography variant="h1" className={classes.heading}>
           Engineering pathways

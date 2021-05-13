@@ -10,40 +10,40 @@ const useStyles = makeStyles((theme) => ({
     color: grey[900],
     marginTop: theme.spacing(2),
     textTransform: "capitalize",
-    fontSize: "1.5rem",
+    fontSize: "1.5rem"
   },
   selected: {
-    borderBottom: `${cyan[300]} 4px solid`,
-  },
+    borderBottom: `${cyan[300]} 4px solid`
+  }
 }));
 
-export const Categories = ({ handleFilterChange, categoryList }) => {
+export const TabGroup = ({ handleFilterChange, tabList, keyName }) => {
   const classes = useStyles();
-  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  function handleCategorySelection(e, value) {
-    setCategoryIndex(value);
-    handleFilterChange({ categoryTitle: categoryList[value].title });
+  function handleSelection(e, value) {
+    setSelectedIndex(value);
+    handleFilterChange({ [keyName]: tabList[value].title });
   }
 
   return (
     <div>
       <Tabs
-        value={categoryIndex}
-        onChange={handleCategorySelection}
+        value={selectedIndex}
+        onChange={handleSelection}
         textColor="primary"
         TabIndicatorProps={{ style: { display: "none" } }}
       >
-        {categoryList.map((category, index) => (
+        {tabList.map((item, index) => (
           <Tab
-            key={category.id}
+            key={item.id}
             label={
               <span
                 className={`${classes.tabText} ${
-                  index === categoryIndex ? classes.selected : ""
+                  selectedIndex === index ? classes.selected : ""
                 }`}
               >
-                {category.title}
+                {item.title}
               </span>
             }
           />
@@ -53,7 +53,8 @@ export const Categories = ({ handleFilterChange, categoryList }) => {
   );
 };
 
-Categories.propTypes = {
+TabGroup.propTypes = {
   handleFilterChange: PropTypes.func,
-  categoryList: PropTypes.array,
+  tabList: PropTypes.array,
+  keyName: PropTypes.string
 };

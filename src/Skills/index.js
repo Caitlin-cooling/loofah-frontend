@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { GET_SKILLS_QUERY } from "./queries";
+import { GET_SKILLS_QUERY } from "../queries/skill.queries";
 import { groupSkillsByTitleAndGrade } from "../utils/formatters";
 import SimpleAccordion from "./SimpleAccordion";
 import { Typography } from "@material-ui/core";
@@ -32,7 +32,7 @@ export const Skills = ({ queryDetails }) => {
 
   const groupedSkills = groupSkillsByTitleAndGrade(data["skills"]);
 
-  const skills = <SimpleAccordion skills={groupedSkills} />;
+  const skills = <SimpleAccordion listItems={groupedSkills} />;
 
   const noResults = <Typography component="p" variant="body-2" className={classes.container}>
       No results found. Try changing your filters.
