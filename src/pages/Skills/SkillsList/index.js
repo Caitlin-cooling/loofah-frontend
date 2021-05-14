@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { GET_SKILLS_QUERY } from "../../queries/skill.queries";
-import { groupSkillsByTitleAndGrade } from "../../utils/formatters";
+import { GET_SKILLS_QUERY } from "../../../queries/skill.queries";
+import { groupSkillsByTitleAndGrade } from "../../../utils/formatters";
 import SimpleAccordion from "./SimpleAccordion";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";

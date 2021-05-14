@@ -8,7 +8,7 @@ import startCase from "lodash/startCase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "16px 0"
+    paddingBottom: theme.spacing(2)
   },
   tabText: {
     color: grey[900],

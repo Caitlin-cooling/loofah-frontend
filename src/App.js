@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Skills from "./Skills";
+import Skills from "./pages/Skills";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   Typography,
@@ -9,19 +9,20 @@ import {
   Divider
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import logo from "./assets/Deloitte-Digital-Logo.png";
 
 const useStyles = makeStyles((theme) => ({
-  loofah: {
-    fontWeight: "bold"
+  logo: {
+    height: theme.spacing(5)
   },
   appBar: {
-    padding: "1.5em",
+    padding: theme.spacing(3),
     backgroundColor: "white",
     color: "black",
     zIndex: theme.zIndex.drawer + 1
   },
   divider: {
-    margin: "0 0.6rem"
+    margin: theme.spacing(1)
   }
 }));
 
@@ -33,9 +34,9 @@ const App = () => {
       <div className="App">
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
-          <img src="/src/assets/dd-logo.png" alt="Deloitte Digital logo" />
+          <img src={logo} alt="Deloitte Digital logo" className={classes.logo} />
           <Divider orientation="vertical" flexItem className={classes.divider} />
-          <Typography variant="h5" noWrap className={classes.loofah}>
+          <Typography variant="h6">
             LOOFAH
           </Typography>
         </Toolbar>

@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 
 import {
-  Drawer,
-  Divider,
   Typography,
   Toolbar
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../queries";
-import { DEFAULT_GRADE } from "../data";
-import { TabGroup } from "../TabGroup";
-import { Crafts } from "../Crafts";
+import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
+import { DEFAULT_GRADE } from "../../data";
+import { TabGroup } from "../../components/TabGroup";
+import { ChipGroup } from "../../components/ChipGroup";
 import { SkillsList } from "./SkillsList";
 
 const drawerWidth = 300;
@@ -38,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontFamily: "ChronicleDisp-Roman",
-    fontSize: "4rem"
+    fontSize: "4rem",
+    paddingTop: theme.spacing(3)
   }
 }));
 
@@ -76,24 +75,11 @@ const Skills = () => {
 
   return (
     <div className={classes.root}>
-      {/* <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <Toolbar className={classes.toolbar} />
-        <div>
-          <Divider />
-          <Crafts
-            handleFilterChange={handleFilterChange}
-            craftList={craftsResponse.crafts}
-          />
-        </div>
-      </Drawer> */}
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
+          <Typography variant="h1" className={classes.heading}>
+            Engineering pathways
+          </Typography>
           <TabGroup
             handleFilterChange={handleFilterChange}
             listItems={gradesResponse.grades}
@@ -102,6 +88,11 @@ const Skills = () => {
           <Typography variant="body1">
             { getSelectedGradeByTitle(selectedGradeTitle).description }
           </Typography>
+          <ChipGroup
+            handleFilterChange={handleFilterChange}
+            chipItems={craftsResponse.crafts}
+            keyName="craftTitles"
+          />
           <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
       </main>
     </div>
