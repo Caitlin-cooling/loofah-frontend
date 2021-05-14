@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%"
   },
   expandAllSwitch: {
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    marginBottom: theme.spacing(1)
   }
 }));
 
@@ -89,7 +90,7 @@ export default function SimpleAccordion({ skills }) {
             value="top"
             control={
               <Switch
-                color="default"
+                color="primary"
                 checked={state.showAll}
                 onChange={handleExpandAll}
                 name="showAll"

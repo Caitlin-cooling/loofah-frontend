@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
-import cyan from "@material-ui/core/colors/cyan";
 import startCase from "lodash/startCase";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.5rem"
   },
   selected: {
-    borderBottom: `${cyan[300]} 4px solid`
+    background: `linear-gradient(to top, ${theme.palette.secondary.main}, ${theme.palette.secondary.main} 100%,transparent 100%,transparent)`,
+    backgroundSize: "100% 40%",
+    backgroundPosition: "center 100%",
+    backgroundRepeat: "no-repeat",
+    lineHeight: "1em"
   }
 }));
 
@@ -35,7 +38,7 @@ export const TabGroup = ({ handleFilterChange, listItems, keyName }) => {
       <Tabs
         value={selectedIndex}
         onChange={handleSelection}
-        textColor="primary"
+        textColor="secondary"
         TabIndicatorProps={{ style: { display: "none" } }}
         centered
         variant="fullWidth"

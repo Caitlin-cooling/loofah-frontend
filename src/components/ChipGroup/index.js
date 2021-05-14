@@ -6,14 +6,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import camelCase from "lodash/camelCase";
 
 const useStyles = makeStyles((theme) => ({
-  formGroup: {
-    paddingLeft: theme.spacing(2)
+  chipGroup: {
+    paddingTop: theme.spacing(2)
   },
-  heading: {
-    paddingLeft: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    fontFamily: "ChronicleDisp-Roman",
-    fontWeight: "bold"
+  chip: {
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1)
+  },
+  selected: {
+    border: `3px solid ${theme.palette.primary.main}`
   }
 }));
 
@@ -36,10 +37,10 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
   }
 
   return(
-    <div>
+    <div className={classes.chipGroup}>
       {chipItems.map((item) => (
         <Chip
-          color="primary"
+          className={`${classes.chip} ${selectedTitles.includes(item.title) ? classes.selected: ""}`}
           key={item.id}
           onClick={handleSelection}
           label={startCase(item.title)}

@@ -6,7 +6,6 @@ import {
   Toolbar
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
 import { DEFAULT_GRADE } from "../../data";
 import { TabGroup } from "../../components/TabGroup";
@@ -37,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontFamily: "ChronicleDisp-Roman",
     fontSize: "4rem",
+    paddingTop: theme.spacing(3)
+  },
+  craftFilter:{
+    fontWeight: "bold",
     paddingTop: theme.spacing(3)
   }
 }));
@@ -87,6 +90,9 @@ const Skills = () => {
           />
           <Typography variant="body1">
             { getSelectedGradeByTitle(selectedGradeTitle).description }
+          </Typography>
+          <Typography variant="body1" className={classes.craftFilter}>
+            By Craft:
           </Typography>
           <ChipGroup
             handleFilterChange={handleFilterChange}
