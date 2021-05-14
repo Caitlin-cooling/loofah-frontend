@@ -31,19 +31,12 @@ const useStyles = makeStyles((theme) => ({
   summary: {
     borderBottom: `${grey[300]} solid 3px`
   },
-  grade: {
-    padding: `${theme.spacing(2)}px 0 ${theme.spacing(2)}px ${theme.spacing(2)}px`,
-    borderBottom: `${grey[300]} solid 1px`
-  },
   skills: {
     paddingLeft: 0,
     paddingRight: 0,
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
     width: "auto"
-  },
-  borderBottom: {
-    borderBottom: `${grey[300]} solid 1px`
   },
   details: {
     paddingLeft: 0,
@@ -120,25 +113,13 @@ export default function SimpleAccordion({ skills }) {
             </AccordionSummary>
           <AccordionDetails className={classes.details}>
               <List className={classes.list}>
-                {Object.keys(skills[topic]).map((grade) => {
-                    return <div key={grade}>
-                      <Typography variant="h6" component="h6" className={classes.grade}>
-                        {startCase(grade)}
-                      </Typography>
-                      {skills[topic][grade].map((skill, index) => {
-                        return <ListItem
-                          key={skill.id}
-                          className={
-                            classes.skills
-                            + " "
-                            + (index + 1 >= skills[topic][grade].length ? "" : classes.borderBottom)
-                          }
-                        >
-                          <ListItemText primary={skill.description} />
-                        </ListItem>;
-                      })}
-                    </div>;
-                  })}
+                {skills[topic].map((skill) => {
+                  return <ListItem
+                    key={skill.id}
+                  >
+                    <ListItemText primary={skill.description} />
+                  </ListItem>;
+                })}
               </List>
           </AccordionDetails>
         </Accordion>;
