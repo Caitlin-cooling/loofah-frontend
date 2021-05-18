@@ -8,7 +8,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
   it("returns correctly grouped skills", () => {
     const result = groupSkillsByTitleAndGrade([
       {
-        category: {id: "5feca3235c775b1ddfe93a68", title: "technical", __typename: "Category"},
+        category: {id: "5feca3235c775b1ddfe93a00", title: "communication", __typename: "Category"},
         description: "You understand a wide range of design patterns and how they solve common recurring problems",
         grade: {id: "5feca323bce133e744d09b2d", title: "analystDeveloper", __typename: "Grade"},
         id: "5feca323bc67214a38e40710",
@@ -24,7 +24,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
         __typename: "SkillDTO"
       },
       {
-        category: {id: "5feca3235c775b1ddfe93a68", title: "technical", __typename: "Category"},
+        category: {id: "5feca3235c775b1ddfe93a11", title: "delivery", __typename: "Category"},
         description: "You understand a wide range of design patterns and how they solve common recurring problems",
         grade: {id: "5feca323bce133e744d09b2d", title: "developer", __typename: "Grade"},
         id: "5feca323bc67214a38e40710",
@@ -41,7 +41,7 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
       }
     ]);
     expect(result).toEqual({
-      "algorithms and data structures": [
+      "technical": [
         {
           category: {id: "5feca3235c775b1ddfe93a68", title: "technical", __typename: "Category"},
           description: "You understand algorithmic (time and space) and code (cyclomatic) complexity",
@@ -59,9 +59,9 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
           __typename: "SkillDTO"
         }
       ],
-      "code quality": [
+      "delivery": [
           {
-            category: {id: "5feca3235c775b1ddfe93a68", title: "technical", __typename: "Category"},
+            category: {id: "5feca3235c775b1ddfe93a11", title: "delivery", __typename: "Category"},
             description: "You understand a wide range of design patterns and how they solve common recurring problems",
             grade: {id: "5feca323bce133e744d09b2d", title: "developer", __typename: "Grade"},
             id: "5feca323bc67214a38e40710",
@@ -69,9 +69,9 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
             __typename: "SkillDTO"
           }
       ],
-      "running and deploying": [
+      "communication": [
           {
-            category: {id: "5feca3235c775b1ddfe93a68", title: "technical", __typename: "Category"},
+            category: {id: "5feca3235c775b1ddfe93a00", title: "communication", __typename: "Category"},
             description:
               "You understand a wide range of design patterns and how they solve common recurring problems",
             grade: {id: "5feca323bce133e744d09b2d", title: "analystDeveloper", __typename: "Grade"},

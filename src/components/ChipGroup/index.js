@@ -22,10 +22,7 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
   const classes = useStyles();
   const [selectedTitles, setSelectedTitles] = useState([]);
 
-  function handleSelection(e) {
-    e.persist();
-    const value = camelCase(e.target.innerHTML);
-
+  function handleSelection(value) {
     let titles = [];
     if (selectedTitles.includes(value)) {
       titles = selectedTitles.filter(title => title !== value);
@@ -42,7 +39,7 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
         <Chip
           className={`${classes.chip} ${selectedTitles.includes(item.title) ? classes.selected: ""}`}
           key={item.id}
-          onClick={handleSelection}
+          onClick={() => handleSelection(item.title)}
           label={startCase(item.title)}
           variant="outlined"
         />

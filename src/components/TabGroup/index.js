@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.5rem"
   },
   selected: {
-    background: `linear-gradient(to top, ${theme.palette.secondary.main}, ${theme.palette.secondary.main} 100%,transparent 100%,transparent)`,
+    background: `linear-gradient(to top, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100%,transparent 100%,transparent)`,
     backgroundSize: "100% 40%",
     backgroundPosition: "center 100%",
     backgroundRepeat: "no-repeat",

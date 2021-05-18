@@ -94,7 +94,7 @@ export default function SimpleAccordion({ skills }) {
           />
         </FormGroup>
       </FormControl>
-      {Object.keys(skills).map((topic, index) => {
+      {Object.keys(skills).map((category, index) => {
         return <Accordion
           className={classes.accordion}
           key={index}
@@ -108,12 +108,12 @@ export default function SimpleAccordion({ skills }) {
               id={`accordion${index}-header`}
             >
               <Typography variant="h5" component="h5">
-                {startCase(topic)}
+                {startCase(category)}
               </Typography>
             </AccordionSummary>
           <AccordionDetails className={classes.details}>
               <List className={classes.list}>
-                {skills[topic].map((skill) => {
+                {skills[category].map((skill) => {
                   return <ListItem
                     key={skill.id}
                   >
