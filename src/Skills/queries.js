@@ -4,7 +4,6 @@ export const GET_SKILLS_QUERY = gql`
   query Skills($filter: SkillFilter) {
     skills(filter: $filter) {
       id
-      topic
       description
       category {
         id
