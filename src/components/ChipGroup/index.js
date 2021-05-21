@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import startCase from "lodash/startCase";
 import { Chip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import camelCase from "lodash/camelCase";
 
 const useStyles = makeStyles((theme) => ({
   chipGroup: {
@@ -11,10 +10,12 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
+    lineHeight: "1.3em",
+    fontSize: theme.spacing(2)
   },
   selected: {
-    border: `3px solid ${theme.palette.primary.main}`
+    border: `1px solid ${theme.palette.primary.main}`
   }
 }));
 
@@ -51,5 +52,5 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
 ChipGroup.propTypes = {
   handleFilterChange: PropTypes.func,
   chipItems: PropTypes.array,
-  keyName: PropTypes.string
+  keyName: PropTypes.string.isRequired
 };

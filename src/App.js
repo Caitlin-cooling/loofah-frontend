@@ -20,6 +20,26 @@ export const theme = createMuiTheme({
     secondary: {
       main: "#9dd4cf"
     }
+  },
+  typography: {
+    h1: {
+      fontFamily: "ChronicleDisp-Roman",
+      fontSize: "4rem",
+      color: "#111820"
+    },
+    body1: {
+      color: "#111820"
+    },
+    body2: {
+      color: "#6b6d70"
+    }
+  },
+  overrides: {
+    MuiTab: {
+      wrapper: {
+        display: "inline"
+      }
+    }
   }
 });
 
@@ -32,6 +52,10 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     color: "black",
     zIndex: theme.zIndex.drawer + 1
+  },
+  toolBar: {
+    width: "75%",
+    margin: "auto"
   },
   divider: {
     margin: theme.spacing(1)
@@ -46,7 +70,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <div className="App">
         <AppBar className={classes.appBar} position="fixed">
-          <Toolbar>
+          <Toolbar className={classes.toolBar}>
             <img src={logo} alt="Deloitte Digital logo" className={classes.logo} />
             <Divider orientation="vertical" flexItem className={classes.divider} />
             <Typography variant="h6">
@@ -57,6 +81,8 @@ const App = () => {
           <Switch>
             <Route exact path="/skills">
               <Skills />
+            </Route>
+            <Route exact path="/crafts">
             </Route>
           </Switch>
         </div>

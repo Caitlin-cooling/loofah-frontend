@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
-
+import { Link } from "react-router-dom";
 import {
   Typography,
-  Toolbar
+  Toolbar,
+  Tooltip
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
@@ -29,18 +30,21 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth
   },
   content: {
-    maxWidth: "70%",
+    maxWidth: "60%",
     margin: "auto",
     padding: theme.spacing(3)
   },
   heading: {
-    fontFamily: "ChronicleDisp-Roman",
-    fontSize: "4rem",
-    paddingTop: theme.spacing(3)
+    padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
+  },
+  paragraph: {
+    fontSize: "1.2rem",
+    lineHeight: "1.56"
   },
   craftFilter:{
     fontWeight: "bold",
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(4),
+    width: "100px"
   }
 }));
 
@@ -81,19 +85,26 @@ const Skills = () => {
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
           <Typography variant="h1" className={classes.heading}>
-            Engineering pathways
+            Engineering Pathways
           </Typography>
           <TabGroup
             handleFilterChange={handleFilterChange}
             listItems={gradesResponse.grades}
             keyName="gradeTitles"
           />
-          <Typography variant="body1">
+          <Typography variant="body2" className={classes.paragraph}>
             { getSelectedGradeByTitle(selectedGradeTitle).description }
           </Typography>
-          <Typography variant="body1" className={classes.craftFilter}>
-            By Craft:
-          </Typography>
+          <div>
+          <Tooltip title="See more information about the crafts" arrow>
+            <Typography variant="body1" className={classes.craftFilter}>
+              <span>By </span>
+              <Link to="/crafts">
+                  Craft:
+              </Link>
+            </Typography>
+          </Tooltip>
+          </div>
           <ChipGroup
             handleFilterChange={handleFilterChange}
             chipItems={craftsResponse.crafts}
