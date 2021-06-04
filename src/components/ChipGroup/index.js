@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.spacing(2)
   },
   selected: {
-    border: `1px solid ${theme.palette.primary.main}`
+    border: `3px solid ${theme.palette.primary.main}`,
+    backgroundColor: "rgba(0, 0, 0, 0.04)"
   }
 }));
 

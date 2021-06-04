@@ -1,4 +1,4 @@
-import { groupSkillsByTitleAndGrade } from "../formatters";
+import { groupSkillsByTitleAndGrade, orderCraftTitles } from "../formatters";
 
 describe("formatters.groupSkillsByTitleAndGrade", () => {
   it("returns null if no skills are passed in", () => {
@@ -82,5 +82,25 @@ describe("formatters.groupSkillsByTitleAndGrade", () => {
         ]
       }
     );
+  });
+});
+
+describe("formatters.orderCraftTitles", () => {
+  it("orders titles correctly", () => {
+    expect(orderCraftTitles([
+      { title: "architecture" },
+      { title: "backend" },
+      { title: "core" },
+      { title: "frontend" },
+      { title: "mobile" },
+      { title: "platform" }
+    ])).toEqual([
+      { title: "core" },
+      { title: "architecture" },
+      { title: "backend" },
+      { title: "frontend" },
+      { title: "mobile" },
+      { title: "platform" }
+    ]);
   });
 });

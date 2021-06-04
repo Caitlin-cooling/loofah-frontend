@@ -28,10 +28,12 @@ export const theme = createMuiTheme({
       color: "#111820"
     },
     body1: {
-      color: "#111820"
+      color: "#111820",
+      fontFamily: "Open Sans, sans-serif"
     },
     body2: {
-      color: "#6b6d70"
+      color: "#6b6d70",
+      fontFamily: "Open Sans, sans-serif"
     }
   },
   overrides: {
@@ -45,7 +47,7 @@ export const theme = createMuiTheme({
 
 const useStyles = makeStyles({
   logo: {
-    height: theme.spacing(5)
+    height: theme.spacing(8)
   },
   appBar: {
     padding: theme.spacing(3),
@@ -54,7 +56,7 @@ const useStyles = makeStyles({
     zIndex: theme.zIndex.drawer + 1
   },
   toolBar: {
-    width: "75%",
+    width: "95%",
     margin: "auto"
   },
   divider: {

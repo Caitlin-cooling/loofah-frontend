@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
     color: grey[900],
     marginTop: theme.spacing(2),
     textTransform: "capitalize",
-    fontSize: "1.5rem"
+    fontSize: "1.5rem",
+    lineHeight: "1em"
   },
   selected: {
     background: `linear-gradient(to top, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100%,transparent 100%,transparent)`,
     backgroundSize: "100% 40%",
     backgroundPosition: "center 100%",
-    backgroundRepeat: "no-repeat",
-    lineHeight: "1em"
+    backgroundRepeat: "no-repeat"
   }
 }));
 

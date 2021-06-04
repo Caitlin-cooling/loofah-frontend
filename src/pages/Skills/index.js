@@ -12,6 +12,7 @@ import { DEFAULT_GRADE } from "../../data";
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
 import { SkillsList } from "./SkillsList";
+import { orderCraftTitles } from "../../utils/formatters";
 
 const drawerWidth = 300;
 
@@ -41,9 +42,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.2rem",
     lineHeight: "1.56"
   },
+  skillsAndFilters: {
+    position: "relative",
+    paddingTop: theme.spacing(15)
+  },
+  filters: {
+    display: "flex",
+    position: "absolute",
+    top: "7%"
+  },
   craftFilter:{
     fontWeight: "bold",
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(2),
     width: "100px"
   }
 }));
@@ -80,6 +91,8 @@ const Skills = () => {
     return <p>Loading...</p>;
   if (gradesError || craftsError) return <p>Error</p>;
 
+  const orderedCraftTitles = orderCraftTitles(craftsResponse.crafts);
+
   return (
     <div className={classes.root}>
       <main className={classes.content}>
@@ -95,22 +108,24 @@ const Skills = () => {
           <Typography variant="body2" className={classes.paragraph}>
             { getSelectedGradeByTitle(selectedGradeTitle).description }
           </Typography>
-          <div>
-          <Tooltip title="See more information about the crafts" arrow>
-            <Typography variant="body1" className={classes.craftFilter}>
-              <span>By </span>
-              <Link to="/crafts">
-                  Craft:
-              </Link>
-            </Typography>
-          </Tooltip>
+          <div className={classes.skillsAndFilters}>
+            <div className={classes.filters}>
+                <Tooltip title="See more information about the crafts" arrow>
+                  <Typography variant="body1" className={classes.craftFilter}>
+                    <span>By </span>
+                    <Link to="/crafts">
+                        Craft:
+                    </Link>
+                  </Typography>
+                </Tooltip>
+              <ChipGroup
+                handleFilterChange={handleFilterChange}
+                chipItems={orderedCraftTitles}
+                keyName="craftTitles"
+              />
+            </div>
+            <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
           </div>
-          <ChipGroup
-            handleFilterChange={handleFilterChange}
-            chipItems={craftsResponse.crafts}
-            keyName="craftTitles"
-          />
-          <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
       </main>
     </div>
   );

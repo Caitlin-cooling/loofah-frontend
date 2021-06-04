@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   accordion: {
     boxShadow: "none",
     border: `${grey[300]} solid 1px`,
-    borderRadius: "4px"
+    borderRadius: "4px",
+    marginBottom: theme.spacing(3)
   },
   summary: {
     borderBottom: `${grey[300]} solid 3px`
@@ -45,9 +46,13 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: "100%"
   },
+  listText: {
+    fontSize: "1.1rem"
+  },
   expandAllSwitch: {
-    alignItems: "flex-end",
-    marginBottom: theme.spacing(1)
+    position: "absolute",
+    top: "7%",
+    right: 0
   }
 }));
 
@@ -117,7 +122,16 @@ export default function SimpleAccordion({ skills }) {
                   return <ListItem
                     key={skill.id}
                   >
-                    <ListItemText primary={skill.description} />
+                  <ListItemText primary={
+                    <React.Fragment>
+                      <Typography
+                        component="span"
+                        variant="body1"
+                        className={classes.listText}
+                      >
+                        {skill.description}
+                      </Typography>
+                    </React.Fragment>} />
                   </ListItem>;
                 })}
               </List>
