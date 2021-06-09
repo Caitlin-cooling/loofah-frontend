@@ -17,6 +17,7 @@ import { GET_CATEGORIES_QUERY } from "../Categories/queries";
 import { Crafts } from "../Crafts";
 import { GET_CRAFTS_QUERY } from "../Crafts/queries";
 import { Skills } from "../Skills";
+import { DownloadCsv } from "../components/DownloadCsv";
 
 const drawerWidth = 300;
 
@@ -123,6 +124,7 @@ const Home = () => {
         <Typography variant="h1" className={classes.heading}>
           Engineering pathways
         </Typography>
+        <DownloadCsv />
         <Skills queryDetails={{ variables: { filter: queryFilter } }} />
       </main>
     </div>
