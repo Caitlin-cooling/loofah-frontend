@@ -20,21 +20,17 @@ import { startCase, range } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "75%",
     display: "flex",
     flexDirection: "column"
   },
   accordion: {
     boxShadow: "none",
     border: `${grey[300]} solid 1px`,
-    borderRadius: "4px"
+    borderRadius: "4px",
+    marginBottom: theme.spacing(3)
   },
   summary: {
     borderBottom: `${grey[300]} solid 3px`
-  },
-  grade: {
-    padding: `${theme.spacing(2)}px 0 ${theme.spacing(2)}px ${theme.spacing(2)}px`,
-    borderBottom: `${grey[300]} solid 1px`
   },
   skills: {
     paddingLeft: 0,
@@ -43,9 +39,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(3),
     width: "auto"
   },
-  borderBottom: {
-    borderBottom: `${grey[300]} solid 1px`
-  },
   details: {
     paddingLeft: 0,
     width: "100%"
@@ -53,8 +46,13 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: "100%"
   },
+  listText: {
+    fontSize: "1.1rem"
+  },
   expandAllSwitch: {
-    alignItems: "flex-end"
+    position: "absolute",
+    top: "7%",
+    right: 0
   }
 }));
 
@@ -90,7 +88,7 @@ export default function SimpleAccordion({ skills }) {
             value="top"
             control={
               <Switch
-                color="default"
+                color="primary"
                 checked={state.showAll}
                 onChange={handleExpandAll}
                 name="showAll"
@@ -101,7 +99,7 @@ export default function SimpleAccordion({ skills }) {
           />
         </FormGroup>
       </FormControl>
-      {Object.keys(skills).map((topic, index) => {
+      {Object.keys(skills).map((category, index) => {
         return <Accordion
           className={classes.accordion}
           key={index}
@@ -115,30 +113,27 @@ export default function SimpleAccordion({ skills }) {
               id={`accordion${index}-header`}
             >
               <Typography variant="h5" component="h5">
-                {startCase(topic)}
+                {startCase(category)}
               </Typography>
             </AccordionSummary>
           <AccordionDetails className={classes.details}>
               <List className={classes.list}>
-                {Object.keys(skills[topic]).map((grade) => {
-                    return <div key={grade}>
-                      <Typography variant="h6" component="h6" className={classes.grade}>
-                        {startCase(grade)}
+                {skills[category].map((skill) => {
+                  return <ListItem
+                    key={skill.id}
+                  >
+                  <ListItemText primary={
+                    <React.Fragment>
+                      <Typography
+                        component="span"
+                        variant="body1"
+                        className={classes.listText}
+                      >
+                        {skill.description}
                       </Typography>
-                      {skills[topic][grade].map((skill, index) => {
-                        return <ListItem
-                          key={skill.id}
-                          className={
-                            classes.skills
-                            + " "
-                            + (index + 1 >= skills[topic][grade].length ? "" : classes.borderBottom)
-                          }
-                        >
-                          <ListItemText primary={skill.description} />
-                        </ListItem>;
-                      })}
-                    </div>;
-                  })}
+                    </React.Fragment>} />
+                  </ListItem>;
+                })}
               </List>
           </AccordionDetails>
         </Accordion>;

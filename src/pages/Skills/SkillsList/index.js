@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { GET_SKILLS_QUERY } from "./queries";
-import { groupSkillsByTitleAndGrade } from "../utils/formatters";
+import { GET_SKILLS_QUERY } from "../../../queries/skill.queries";
+import { groupSkillsByTitleAndGrade } from "../../../utils/formatters";
 import SimpleAccordion from "./SimpleAccordion";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Skills = ({ queryDetails }) => {
+export const SkillsList = ({ queryDetails }) => {
   const classes = useStyles();
   const { loading, error, data, refetch } = useQuery(GET_SKILLS_QUERY, {
     variables: queryDetails.variables
@@ -41,6 +41,6 @@ export const Skills = ({ queryDetails }) => {
   return(isEmpty(groupedSkills) ? noResults : skills);
 };
 
-Skills.propTypes = {
+SkillsList.propTypes = {
   queryDetails: PropTypes.object
 };

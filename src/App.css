@@ -2,4 +2,7 @@ li {
   list-style-type: none;
 }
 
-
+p, a, span, h2, h3, h4, h5 {
+  color: #111820;
+  font-family: "Open Sans", sans-serif;
+}
