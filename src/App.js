@@ -17,6 +17,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import logo from "./assets/Deloitte-Digital-Logo.png";
+import About from "./pages/About";
 
 export const theme = createMuiTheme({
   palette: {
@@ -31,15 +32,43 @@ export const theme = createMuiTheme({
     h1: {
       fontFamily: "ChronicleDisp-Roman",
       fontSize: "4rem",
-      color: "#111820"
+      color: "#111820",
+      padding: "60px 0px 20px 0px"
+    },
+    h4: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.4rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "4px 0px 2px 0px"
+    },
+    h5: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.2rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "16px 0px 8px 0px"
+    },
+    h6: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.2rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "16px 0px 8px 0px"
     },
     body1: {
       color: "#111820",
-      fontFamily: "Open Sans, sans-serif"
+      fontFamily: "Open Sans, sans-serif",
+      lineHeight: "1.6",
+      fontSize: "1.1rem",
+      padding: "10px 0px"
     },
     body2: {
       color: "#6b6d70",
-      fontFamily: "Open Sans, sans-serif"
+      fontFamily: "Open Sans, sans-serif",
+      lineHeight: "1.6",
+      fontSize: "1.0rem",
+      padding: "10px 0px"
     }
   },
   overrides: {
@@ -74,7 +103,7 @@ const useStyles = makeStyles({
     justifyContent: "space-between"
   },
   divider: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(3)
   },
   drawer: {
     flexShrink: 0
@@ -164,6 +193,9 @@ const App = () => {
           <Switch>
             <Route exact path="/skills">
               <Skills />
+            </Route>
+            <Route exact path="/about">
+              <About />
             </Route>
             <Route exact path="/crafts">
             </Route>
