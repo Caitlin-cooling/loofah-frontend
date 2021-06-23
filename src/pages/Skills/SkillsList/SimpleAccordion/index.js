@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 0,
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-    width: "auto"
+    width: "100%"
   },
   details: {
     paddingLeft: 0,
@@ -117,7 +117,7 @@ export default function SimpleAccordion({ skills }) {
               </Typography>
             </AccordionSummary>
           <AccordionDetails className={classes.details}>
-              <List className={classes.list}>
+              <List component="nav" className={classes.list}>
                 {skills[category].map((skill) => {
                   return <ListItem
                     key={skill.id}
@@ -129,9 +129,17 @@ export default function SimpleAccordion({ skills }) {
                         variant="body1"
                         className={classes.listText}
                       >
-                        {skill.description}
+                        {skill.headline}
                       </Typography>
                     </React.Fragment>} />
+                    <List component="div" disablePadding>
+                        {
+                          skill.examples.map((example) => {
+                            return <div><ul>{example}</ul></div>
+                          })
+                        }
+                    </List>
+
                   </ListItem>;
                 })}
               </List>
