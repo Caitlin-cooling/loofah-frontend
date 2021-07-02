@@ -122,6 +122,7 @@ const Skills = () => {
                 handleFilterChange={handleFilterChange}
                 chipItems={orderedCraftTitles}
                 keyName="craftTitles"
+                variant="outlined"
               />
             </div>
             <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />

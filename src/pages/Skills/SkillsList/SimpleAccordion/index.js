@@ -16,6 +16,7 @@ import {
   Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { ChipGroup } from "../../../../components/ChipGroup";
 import { startCase, range } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
@@ -111,38 +112,45 @@ export default function SimpleAccordion({ skills }) {
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`accordion${index}-content`}
               id={`accordion${index}-header`}
-            >
-              <Typography variant="h5" component="h5">
-                {startCase(category)}
-              </Typography>
-            </AccordionSummary>
+          >
+            <Typography variant="h5" component="h5">
+              {startCase(category)}
+            </Typography>
+          </AccordionSummary>
           <AccordionDetails className={classes.details}>
-              <List component="nav" className={classes.list}>
-                {skills[category].map((skill) => {
-                  return <ListItem
-                    key={skill.id}
-                  >
-                  <ListItemText primary={
-                    <React.Fragment>
-                      <Typography
-                        component="span"
-                        variant="body1"
-                        className={classes.listText}
-                      >
-                        {skill.headline}
-                      </Typography>
-                    </React.Fragment>} />
-                    <List component="div" disablePadding>
-                        {
-                          skill.examples.map((example) => {
-                            return <div><ul>{example}</ul></div>
-                          })
-                        }
-                    </List>
+            <List component="nav" className={classes.list}>
+              {skills[category].map((skill) => {
+                return <ListItem
+                  key={skill.id}
+                >
+                <ListItemText primary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body1"
+                      className={classes.listText}
+                    >
+                      {skill.headline}
+                    </Typography>
+                    <ChipGroup
+                      chipItems={skill.crafts}
+                      keyName="craftTitles"
+                      backgroundColor="green"
+                      outlined={false}
+                    />
+                  </React.Fragment>
+                  } />
+                  <List component="div" disablePadding>
+                    {
+                      skill.examples.map((example, index) => {
+                        return <div key={index}><ul>{example}</ul></div>;
+                      })
+                    }
+                  </List>
 
-                  </ListItem>;
-                })}
-              </List>
+                </ListItem>;
+              })}
+            </List>
           </AccordionDetails>
         </Accordion>;
       })}

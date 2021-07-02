@@ -7,6 +7,9 @@ export const GET_SKILLS_QUERY = gql`
       headline
       description
       examples
+      crafts {
+        title
+      }
       category {
         id
         title

@@ -17,10 +17,13 @@ const useStyles = makeStyles((theme) => ({
   selected: {
     border: `3px solid ${theme.palette.primary.main}`,
     backgroundColor: "rgba(0, 0, 0, 0.04)"
+  },
+  green: {
+    backgroundColor: "#f3fde5"
   }
 }));
 
-export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
+export const ChipGroup = ({ handleFilterChange, chipItems, keyName, backgroundColor, variant }) => {
   const classes = useStyles();
   const [selectedTitles, setSelectedTitles] = useState([]);
 
@@ -39,11 +42,15 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
     <div className={classes.chipGroup}>
       {chipItems.map((item) => (
         <Chip
-          className={`${classes.chip} ${selectedTitles.includes(item.title) ? classes.selected: ""}`}
+          className={`
+            ${classes.chip}
+            ${selectedTitles.includes(item.title) ? classes.selected: ""}
+            ${classes[backgroundColor]}
+          `}
           key={item.id}
-          onClick={() => handleSelection(item.title)}
+          onClick={handleFilterChange ? () => handleSelection(item.title) : undefined}
           label={startCase(item.title)}
-          variant="outlined"
+          variant={variant}
         />
       ))}
   </div>
@@ -53,5 +60,7 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName }) => {
 ChipGroup.propTypes = {
   handleFilterChange: PropTypes.func,
   chipItems: PropTypes.array,
-  keyName: PropTypes.string.isRequired
+  keyName: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
+  variant: PropTypes.string
 };
