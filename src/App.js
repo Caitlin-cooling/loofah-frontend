@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Skills from "./pages/Skills";
+import Pathway from "./pages/Pathway";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeProvider,
@@ -31,11 +32,34 @@ export const theme = createMuiTheme({
     h1: {
       fontFamily: "ChronicleDisp-Roman",
       fontSize: "4rem",
-      color: "#111820"
+      color: "#111820",
+      padding: "60px 0px 20px 0px"
+    },
+    h4: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.4rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "4px 0px 2px 0px"
+    },
+    h5: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.2rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "16px 0px 8px 0px"
+    },
+    h6: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.1rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "16px 0px 8px 0px"
     },
     body1: {
       color: "#111820",
-      fontFamily: "Open Sans, sans-serif"
+      fontFamily: "Open Sans, sans-serif",
+      padding: "8px 0px 16px 0px"
     },
     body2: {
       color: "#6b6d70",
@@ -165,7 +189,8 @@ const App = () => {
             <Route exact path="/skills">
               <Skills />
             </Route>
-            <Route exact path="/crafts">
+            <Route exact path="/pathway">
+              <Pathway />
             </Route>
           </Switch>
         </div>
@@ -185,7 +210,8 @@ const App = () => {
           </div>
           <List className={classes.list}>
             {[
-              { text: "Browse Skills", path: "/skills" }
+              { text: "Browse Skills", path: "/skills" },
+              { text: "Career Pathway", path: "/pathway" }
             ].map((link) => (
               <ListItem button key={link.text}>
                 <Link
