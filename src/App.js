@@ -202,9 +202,6 @@ const App = () => {
             <Route exact path="/pathway">
               <Pathway />
             </Route>
-            <Route exact path="/career-faqs">
-              <CareerFaqs />
-            </Route>
           </Switch>
         </div>
           <Drawer
