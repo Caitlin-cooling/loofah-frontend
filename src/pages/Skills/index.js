@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { Typography, Toolbar, Tooltip } from "@material-ui/core";
@@ -49,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Skills = () => {
+  const location = useLocation();
+  const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
   const classes = useStyles();
   const [queryFilter, setQueryFilter] = useState({
     gradeTitles: [DEFAULT_GRADE]
@@ -69,7 +72,7 @@ const Skills = () => {
   const selectedGradeTitle = queryFilter.gradeTitles[0];
 
   function getSelectedGradeByTitle(title) {
-    return gradesResponse.grades.find((grade) => grade.title === title);
+    return gradesResponse.grades.find((grade) => grade.title === title) || {};
   }
 
   function handleFilterChange(value) {

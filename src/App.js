@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Skills from "./pages/Skills";
 import CareerFaqs from "./pages/CareerFaqs";
+import Pathway from "./pages/Pathway";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeProvider,
@@ -198,7 +199,8 @@ const App = () => {
             <Route exact path="/about">
               <About />
             </Route>
-            <Route exact path="/crafts">
+            <Route exact path="/pathway">
+              <Pathway />
             </Route>
             <Route exact path="/career-faqs">
               <CareerFaqs />
@@ -221,6 +223,8 @@ const App = () => {
           </div>
           <List className={classes.list}>
             {[
+              { text: "How to Use", path: "/about" },
+              { text: "Career Pathway", path: "/pathway" },
               { text: "Detailed Skills", path: "/skills" },
               { text: "Career FAQs", path: "/career-faqs" }
             ].map((link) => (
