@@ -195,15 +195,11 @@ const App = () => {
             <Route exact path="/skills">
               <Skills />
             </Route>
-<<<<<<< HEAD
             <Route exact path="/about">
               <About />
             </Route>
-            <Route exact path="/crafts">
-=======
             <Route exact path="/pathway">
               <Pathway />
->>>>>>> LFH-128 Implements engineering career page
             </Route>
           </Switch>
         </div>
