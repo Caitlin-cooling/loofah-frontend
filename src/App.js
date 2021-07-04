@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Skills from "./pages/Skills";
+import Pathway from "./pages/Pathway";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeProvider,
@@ -51,7 +52,7 @@ export const theme = createMuiTheme({
     },
     h6: {
       fontFamily: "Open Sans, sans-serif",
-      fontSize: "1.2rem",
+      fontSize: "1.1rem",
       fontWeight: "bold",
       color: "#111820",
       padding: "16px 0px 8px 0px"
@@ -61,7 +62,7 @@ export const theme = createMuiTheme({
       fontFamily: "Open Sans, sans-serif",
       lineHeight: "1.6",
       fontSize: "1.1rem",
-      padding: "10px 0px"
+      padding: "8px 0px 16px 0px"
     },
     body2: {
       color: "#6b6d70",
@@ -194,10 +195,15 @@ const App = () => {
             <Route exact path="/skills">
               <Skills />
             </Route>
+<<<<<<< HEAD
             <Route exact path="/about">
               <About />
             </Route>
             <Route exact path="/crafts">
+=======
+            <Route exact path="/pathway">
+              <Pathway />
+>>>>>>> LFH-128 Implements engineering career page
             </Route>
           </Switch>
         </div>
@@ -217,7 +223,8 @@ const App = () => {
           </div>
           <List className={classes.list}>
             {[
-              { text: "Browse Skills", path: "/skills" }
+              { text: "Browse Skills", path: "/skills" },
+              { text: "Career Pathway", path: "/pathway" }
             ].map((link) => (
               <ListItem button key={link.text}>
                 <Link
