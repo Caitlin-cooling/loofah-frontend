@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   expandAllSwitch: {
     position: "absolute",
-    top: "7%",
+    top: theme.spacing(3),
     right: 0
   }
 }));

@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   filters: {
     display: "flex",
     position: "absolute",
-    top: "7%"
+    top: theme.spacing(3)
   },
   craftFilter:{
     fontWeight: "bold",
