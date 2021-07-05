@@ -1,10 +1,9 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import { Link } from "react-router-dom";
 import {
   Typography,
-  Toolbar,
-  Tooltip
+  Toolbar
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
@@ -60,8 +59,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Skills = () => {
+  const location = useLocation();
+  const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
   const classes = useStyles();
-  const [queryFilter, setQueryFilter] = useState({gradeTitles: [DEFAULT_GRADE]});
+  const [queryFilter, setQueryFilter] = useState({gradeTitles: [defaultGrade]});
 
   const {
     loading: gradesLoading,
@@ -78,7 +79,7 @@ const Skills = () => {
   const selectedGradeTitle = queryFilter.gradeTitles[0];
 
   function getSelectedGradeByTitle(title) {
-    return gradesResponse.grades.find((grade) => grade.title === title);
+    return gradesResponse.grades.find((grade) => grade.title === title) || {};
   }
 
   function handleFilterChange(value) {
@@ -104,20 +105,16 @@ const Skills = () => {
             handleFilterChange={handleFilterChange}
             listItems={gradesResponse.grades}
             keyName="gradeTitles"
+            selectedGradeTitle={selectedGradeTitle}
           />
           <Typography variant="body2" className={classes.paragraph}>
             { getSelectedGradeByTitle(selectedGradeTitle).description }
           </Typography>
           <div className={classes.skillsAndFilters}>
             <div className={classes.filters}>
-                <Tooltip title="See more information about the crafts" arrow>
-                  <Typography variant="body1" className={classes.craftFilter}>
-                    <span>By </span>
-                    <Link to="/crafts">
-                        Craft:
-                    </Link>
-                  </Typography>
-                </Tooltip>
+              <Typography variant="body1" className={classes.craftFilter}>
+                By Craft:
+              </Typography>
               <ChipGroup
                 handleFilterChange={handleFilterChange}
                 chipItems={orderedCraftTitles}

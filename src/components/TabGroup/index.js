@@ -24,9 +24,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const TabGroup = ({ handleFilterChange, listItems, keyName }) => {
+export const TabGroup = ({ handleFilterChange, listItems, selectedGradeTitle, keyName }) => {
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(
+    listItems.findIndex((item) => item.title === selectedGradeTitle) || 0
+  );
 
   function handleSelection(e, value) {
     setSelectedIndex(value);
@@ -65,5 +67,6 @@ export const TabGroup = ({ handleFilterChange, listItems, keyName }) => {
 TabGroup.propTypes = {
   handleFilterChange: PropTypes.func,
   listItems: PropTypes.array,
+  selectedGradeTitle: PropTypes.string,
   keyName: PropTypes.string.isRequired
 };
