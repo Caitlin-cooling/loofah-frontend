@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Skills from "./pages/Skills";
+import CareerFaqs from "./pages/CareerFaqs";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeProvider,
@@ -40,7 +41,7 @@ export const theme = createMuiTheme({
       fontSize: "1.4rem",
       fontWeight: "bold",
       color: "#111820",
-      padding: "4px 0px 2px 0px"
+      padding: "8px 0px 2px 0px"
     },
     h5: {
       fontFamily: "Open Sans, sans-serif",
@@ -51,7 +52,7 @@ export const theme = createMuiTheme({
     },
     h6: {
       fontFamily: "Open Sans, sans-serif",
-      fontSize: "1.2rem",
+      fontSize: "1.1rem",
       fontWeight: "bold",
       color: "#111820",
       padding: "16px 0px 8px 0px"
@@ -61,7 +62,7 @@ export const theme = createMuiTheme({
       fontFamily: "Open Sans, sans-serif",
       lineHeight: "1.6",
       fontSize: "1.1rem",
-      padding: "10px 0px"
+      padding: "8px 0px 16px 0px"
     },
     body2: {
       color: "#6b6d70",
@@ -113,7 +114,7 @@ const useStyles = makeStyles({
     width: "100%"
     },
     [theme.breakpoints.up("md")]: {
-    width: "15%"
+    width: "20%"
     },
     zIndex: theme.zIndex.drawer + 2
   },
@@ -199,6 +200,9 @@ const App = () => {
             </Route>
             <Route exact path="/crafts">
             </Route>
+            <Route exact path="/career-faqs">
+              <CareerFaqs />
+            </Route>
           </Switch>
         </div>
           <Drawer
@@ -217,7 +221,8 @@ const App = () => {
           </div>
           <List className={classes.list}>
             {[
-              { text: "Browse Skills", path: "/skills" }
+              { text: "Detailed Skills", path: "/skills" },
+              { text: "Career FAQs", path: "/career-faqs" }
             ].map((link) => (
               <ListItem button key={link.text}>
                 <Link
