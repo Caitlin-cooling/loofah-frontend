@@ -45,10 +45,33 @@ const useStyles = makeStyles((theme) => ({
     width: "100%"
   },
   list: {
-    width: "100%"
+    width: "100%",
+    padding: `0 ${theme.spacing(4)}px`
   },
-  listText: {
-    fontSize: "1.1rem"
+  skill: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    paddingBottom: theme.spacing(4)
+  },
+  headline: {
+    fontSize: "1.2rem",
+    fontWeight: "bold"
+  },
+  description: {
+    padding: `${theme.spacing(2)}px 0 0 0`,
+    fontStyle: "italic"
+  },
+  examples: {
+    paddingTop: theme.spacing(1)
+  },
+  example: {
+    listStyleType: "disc",
+    display: "list-item",
+    padding: `${theme.spacing(1)}px 0px 0px 0px`,
+    marginLeft: theme.spacing(2)
+  },
+  craftChips: {
+    padding: theme.spacing(3)
   },
   expandAllSwitch: {
     position: "absolute",
@@ -66,18 +89,18 @@ export default function SimpleAccordion({ skills }) {
 
   const handleExpandAll = (event) => {
     if (event.target.checked) {
-      setState({ ...state, expanded: range(Object.keys(skills).length)});
+      setState({ ...state, expanded: range(Object.keys(skills).length) });
     } else {
-      setState({ ...state, expanded: []});
+      setState({ ...state, expanded: [] });
     }
   };
 
   const handleExpandSingle = (index) => () => {
     if (state.expanded.includes(index)) {
       const newArray = state.expanded.filter((element) => element !== index);
-      setState({ ...state, expanded: newArray});
+      setState({ ...state, expanded: newArray });
     } else {
-      setState({ ...state, expanded: [...state.expanded, index]});
+      setState({ ...state, expanded: [...state.expanded, index] });
     }
   };
 
@@ -101,58 +124,72 @@ export default function SimpleAccordion({ skills }) {
         </FormGroup>
       </FormControl>
       {Object.keys(skills).map((category, index) => {
-        return <Accordion
-          className={classes.accordion}
-          key={index}
-          expanded={state.expanded.includes(index)}
-          onChange={handleExpandSingle(index)}
-        >
-          <AccordionSummary
+        return (
+          <Accordion
+            className={classes.accordion}
+            key={index}
+            expanded={state.expanded.includes(index)}
+            onChange={handleExpandSingle(index)}
+          >
+            <AccordionSummary
               className={classes.summary}
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`accordion${index}-content`}
               id={`accordion${index}-header`}
-          >
-            <Typography variant="h5" component="h5">
-              {startCase(category)}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails className={classes.details}>
-            <List component="nav" className={classes.list}>
-              {skills[category].map((skill) => {
-                return <ListItem
-                  key={skill.id}
-                >
-                <ListItemText primary={
-                  <React.Fragment>
-                    <Typography
-                      component="span"
-                      variant="body1"
-                      className={classes.listText}
-                    >
-                      {skill.headline}
-                    </Typography>
-                    <ChipGroup
-                      chipItems={skill.crafts}
-                      keyName="craftTitles"
-                      backgroundColor="green"
-                      outlined={false}
-                    />
-                  </React.Fragment>
-                  } />
-                  <List component="div" disablePadding>
-                    {
-                      skill.examples.map((example, index) => {
-                        return <div key={index}><ul>{example}</ul></div>;
-                      })
-                    }
-                  </List>
+            >
+              <Typography variant="h5" component="h5">
+                {startCase(category)}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails className={classes.details}>
+              <List component="nav" className={classes.list}>
+                {skills[category].map((skill) => {
+                  return (
+                    <ListItem key={skill.id} className={classes.skill}>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Typography
+                              component="h3"
+                              className={classes.headline}
+                            >
+                              {skill.headline}
+                            </Typography>
+                            {skill.description ? (
+                              <Typography
+                                variant="body2"
+                                className={classes.description}
+                              >
+                                {skill.description}
+                              </Typography>
+                            ) : null}
+                          </React.Fragment>
+                        }
+                      />
 
-                </ListItem>;
-              })}
-            </List>
-          </AccordionDetails>
-        </Accordion>;
+                      <List className={classes.examples}>
+                        {skill.examples.map((example, index) => {
+                          return (
+                            <ListItem key={index} className={classes.example}>
+                              {example}
+                            </ListItem>
+                          );
+                        })}
+                      </List>
+                      <ChipGroup
+                        chipItems={skill.crafts}
+                        keyName="craftTitles"
+                        backgroundColor="green"
+                        outlined={false}
+                        className={classes.craftChips}
+                      />
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </AccordionDetails>
+          </Accordion>
+        );
       })}
     </div>
   );
