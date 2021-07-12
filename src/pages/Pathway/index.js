@@ -26,9 +26,16 @@ const useStyles = makeStyles((theme) => ({
     padding: `${theme.spacing(1)}px 0px 0px 0px`,
     marginLeft: theme.spacing(2)
   },
+  anchor: {
+    marginTop: "-130px",
+    paddingBottom: "130px",
+    display: "block"
+  },
   link: {
     color: "#0E5B7C",
-    textDecoration: "underline"
+    textDecoration: "underline",
+    display: "inline-block",
+    paddingBottom: theme.spacing(2)
   }
 }));
 
@@ -141,7 +148,8 @@ const Pathway = () => {
           below. The codes in brackets are the internal levels used by HR to calibrate
           salaries.
         </Typography>
-        <Typography variant="h5" id="analyst">
+        <Typography variant="h5">
+          <span id="analyst-developer" className={classes.anchor}></span>
           Analyst Developer (P1, P4)
         </Typography>
         <Typography>
@@ -170,7 +178,8 @@ const Pathway = () => {
         >
           Analyst Developer Capabilities
         </Link>
-        <Typography variant="h5" id="consultant">
+        <Typography variant="h5">
+          <span id="developer" className={classes.anchor}></span>
           Developer (M1)
         </Typography>
         <Typography>
@@ -189,7 +198,8 @@ const Pathway = () => {
         >
           Developer Capabilities
         </Link>
-        <Typography variant="h5" id="senior">
+        <Typography variant="h5">
+          <span id="senior-developer" className={classes.anchor}></span>
           Senior Developer (M2)
         </Typography>
         <Typography>
@@ -205,7 +215,8 @@ const Pathway = () => {
         >
           Senior Developer Capabilities
         </Link>
-        <Typography variant="h5" id="tech-lead">
+        <Typography variant="h5">
+          <span id="technical-lead" className={classes.anchor}></span>
           Technical Lead (M4)
         </Typography>
         <Typography>
@@ -289,7 +300,8 @@ const Pathway = () => {
             shared vision of what is possible and reasonable.
           </ListItem>
         </List>
-        <Typography variant="h5" id="senior-tech-lead">
+        <Typography variant="h5">
+          <span id="senior-technical-lead" className={classes.anchor}></span>
           Senior Technical Lead (M5)
         </Typography>
         <Typography>
@@ -356,7 +368,8 @@ const Pathway = () => {
             chairing Solution Review Boards for projects.
           </ListItem>
         </List>
-        <Typography variant="h5" id="technical-director">
+        <Typography variant="h5">
+          <span id="technical-director" className={classes.anchor}></span>
           Technical Director (M6)
         </Typography>
         <Typography>
@@ -364,7 +377,8 @@ const Pathway = () => {
           very personal to you and your career. You will have presented a specific
           business case for your promotion, which you are now executing on.
         </Typography>
-        <Typography variant="h5" id="partner">
+        <Typography variant="h5">
+          <span id="partner" className={classes.anchor}></span>
           Partner (A, B)
         </Typography>
         <Typography>
