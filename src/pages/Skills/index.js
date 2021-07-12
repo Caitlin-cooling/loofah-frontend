@@ -5,6 +5,8 @@ import {
   Typography,
   Toolbar
 } from "@material-ui/core";
+import kebabCase from "lodash/kebabCase";
+import { HashLink as Link } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
 import { DEFAULT_GRADE } from "../../data";
@@ -38,8 +40,12 @@ const useStyles = makeStyles((theme) => ({
     padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
   },
   paragraph: {
-    fontSize: "1.2rem",
-    lineHeight: "1.56"
+    lineHeight: "1.56",
+    paddingBottom: theme.spacing(2)
+  },
+  seeMore: {
+    color: "#0E5B7C",
+    textDecoration: "underline"
   },
   skillsAndFilters: {
     position: "relative",
@@ -88,6 +94,11 @@ const Skills = () => {
     });
   }
 
+  function getSeeMoreLink(gradeTitle) {
+    const gradesWithMore = ["technicalLead", "seniorTechnicalLead", "technicalDirector", "partner"];
+    return gradesWithMore.includes(gradeTitle) ? `/pathway#${kebabCase(gradeTitle)}` : null;
+  }
+
   if (gradesLoading || craftsLoading)
     return <p>Loading...</p>;
   if (gradesError || craftsError) return <p>Error</p>;
@@ -107,9 +118,15 @@ const Skills = () => {
             keyName="gradeTitles"
             selectedGradeTitle={selectedGradeTitle}
           />
-          <Typography variant="body2" className={classes.paragraph}>
+          <Typography variant="body1" className={classes.paragraph}>
             { getSelectedGradeByTitle(selectedGradeTitle).description }
           </Typography>
+          { getSeeMoreLink(selectedGradeTitle)
+            ? (<Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
+                See more
+              </Link>)
+            : null
+          }
           <div className={classes.skillsAndFilters}>
             <div className={classes.filters}>
               <Typography variant="body1" className={classes.craftFilter}>

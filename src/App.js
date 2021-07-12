@@ -35,6 +35,13 @@ export const theme = createMuiTheme({
       color: "#111820",
       padding: "60px 0px 20px 0px"
     },
+    h3: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.6rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "16px 0px 2px 0px"
+    },
     h4: {
       fontFamily: "Open Sans, sans-serif",
       fontSize: "1.4rem",
@@ -108,7 +115,7 @@ const useStyles = makeStyles({
     width: "100%"
     },
     [theme.breakpoints.up("md")]: {
-    width: "15%"
+    width: "20%"
     },
     zIndex: theme.zIndex.drawer + 2
   },
@@ -210,8 +217,8 @@ const App = () => {
           </div>
           <List className={classes.list}>
             {[
-              { text: "Browse Skills", path: "/skills" },
-              { text: "Career Pathway", path: "/pathway" }
+              { text: "Engineering Career Pathway", path: "/pathway" },
+              { text: "Browse Skills", path: "/skills" }
             ].map((link) => (
               <ListItem button key={link.text}>
                 <Link
