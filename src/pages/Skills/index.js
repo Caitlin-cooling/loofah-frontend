@@ -35,13 +35,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: theme.spacing(3)
   },
-  heading: {
-    padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
-  },
-  paragraph: {
-    fontSize: "1.2rem",
-    lineHeight: "1.56"
-  },
   skillsAndFilters: {
     position: "relative",
     paddingTop: theme.spacing(15)
@@ -97,7 +90,7 @@ const Skills = () => {
     <div className={classes.root}>
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
-          <Typography variant="h1" className={classes.heading}>
+          <Typography variant="h1">
             Engineering Pathways
           </Typography>
           <TabGroup
@@ -110,14 +103,14 @@ const Skills = () => {
           </Typography>
           <div className={classes.skillsAndFilters}>
             <div className={classes.filters}>
-                <Tooltip title="See more information about the crafts" arrow>
-                  <Typography variant="body1" className={classes.craftFilter}>
-                    <span>By </span>
-                    <Link to="/crafts">
-                        Craft:
-                    </Link>
-                  </Typography>
-                </Tooltip>
+              <Tooltip title="See more information about the crafts" arrow>
+                <Typography variant="body1" className={classes.craftFilter}>
+                  <span>By </span>
+                  <Link to="/crafts">
+                    Craft:
+                  </Link>
+                </Typography>
+              </Tooltip>
               <ChipGroup
                 handleFilterChange={handleFilterChange}
                 chipItems={orderedCraftTitles}
