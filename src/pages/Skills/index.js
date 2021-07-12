@@ -87,9 +87,7 @@ const Skills = () => {
     <div className={classes.root}>
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
-        <Typography variant="h1" className={classes.heading}>
-          Engineering Skills
-        </Typography>
+        <Typography variant="h1">Engineering Skills</Typography>
         <TabGroup
           handleFilterChange={handleFilterChange}
           listItems={gradesResponse.grades}
