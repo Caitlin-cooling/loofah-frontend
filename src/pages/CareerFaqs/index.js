@@ -37,7 +37,7 @@ const CareerFaqs = () => {
         <Typography variant="h1">
           Engineering Career FAQs
         </Typography>
-        <Typography variant="h4">
+        <Typography variant="h3">
           How do promotions work for engineers?
         </Typography>
         <Typography>
@@ -114,7 +114,7 @@ const CareerFaqs = () => {
           proxy for what the firm values you for. In other words: do what you love, once you figure
           out what that is.
         </Typography>
-        <Typography variant="h4">
+        <Typography variant="h3">
           How about industry specialism?
         </Typography>
         <Typography>
@@ -138,7 +138,7 @@ const CareerFaqs = () => {
           albeit one that is sometimes made with retrospective coherence. You should work with
           your coach and other relevant leaders to understand what is right for you.
         </Typography>
-        <Typography variant="h4">
+        <Typography variant="h3">
           How long should I stay on a project?
         </Typography>
         <Typography>

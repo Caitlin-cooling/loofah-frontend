@@ -37,6 +37,13 @@ export const theme = createMuiTheme({
       color: "#111820",
       padding: "60px 0px 20px 0px"
     },
+    h3: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "1.6rem",
+      fontWeight: "bold",
+      color: "#111820",
+      padding: "16px 0px 2px 0px"
+    },
     h4: {
       fontFamily: "Open Sans, sans-serif",
       fontSize: "1.4rem",
@@ -202,6 +209,9 @@ const App = () => {
             <Route exact path="/pathway">
               <Pathway />
             </Route>
+            <Route exact path="/career-faqs">
+              <CareerFaqs />
+            </Route>
           </Switch>
         </div>
           <Drawer
@@ -221,8 +231,8 @@ const App = () => {
           <List className={classes.list}>
             {[
               { text: "How to Use", path: "/about" },
-              { text: "Career Pathway", path: "/pathway" },
-              { text: "Detailed Skills", path: "/skills" },
+              { text: "Engineering Career Pathway", path: "/pathway" },
+              { text: "Engineering Skills", path: "/skills" },
               { text: "Career FAQs", path: "/career-faqs" }
             ].map((link) => (
               <ListItem button key={link.text}>

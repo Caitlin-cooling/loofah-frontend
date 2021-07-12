@@ -40,12 +40,11 @@ const useStyles = makeStyles((theme) => ({
     padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
   },
   paragraph: {
-    fontSize: "1.2rem",
-    lineHeight: "1.56",
     paddingBottom: theme.spacing(2)
   },
   seeMore: {
-    color: "#0E5B7C",
+    display: "inline-block",
+    marginBottom: theme.spacing(2),
     textDecoration: "underline"
   },
   skillsAndFilters: {
@@ -70,7 +69,7 @@ const Skills = () => {
   const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
   const classes = useStyles();
   const [queryFilter, setQueryFilter] = useState({
-    gradeTitles: [DEFAULT_GRADE]
+    gradeTitles: [defaultGrade]
   });
 
   const {
@@ -98,7 +97,8 @@ const Skills = () => {
   }
 
   function getSeeMoreLink(gradeTitle) {
-    return `/pathway#${kebabCase(gradeTitle)}`;
+    const gradesWithMore = ["technicalLead", "seniorTechnicalLead", "technicalDirector", "partner"];
+    return gradesWithMore.includes(gradeTitle) ? `/pathway#${kebabCase(gradeTitle)}` : null;
   }
 
   if (gradesLoading || craftsLoading)
@@ -118,12 +118,15 @@ const Skills = () => {
             keyName="gradeTitles"
             selectedGradeTitle={selectedGradeTitle}
           />
-          <Typography variant="body2" className={classes.paragraph}>
+          <Typography variant="body1" className={classes.paragraph}>
             { getSelectedGradeByTitle(selectedGradeTitle).description }
+            { getSeeMoreLink(selectedGradeTitle)
+            ? (<span>... <Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
+                Read more
+              </Link></span>)
+            : null
+          }
           </Typography>
-          <Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
-            See more
-          </Link>
           <div className={classes.skillsAndFilters}>
             <div className={classes.filters}>
               <Typography variant="body1" className={classes.craftFilter}>
