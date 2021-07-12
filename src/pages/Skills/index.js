@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
   },
   paragraph: {
-    fontSize: "1.2rem",
     lineHeight: "1.56",
     paddingBottom: theme.spacing(2)
   },
@@ -96,7 +95,8 @@ const Skills = () => {
   }
 
   function getSeeMoreLink(gradeTitle) {
-    return `/pathway#${kebabCase(gradeTitle)}`;
+    const gradesWithMore = ["technicalLead", "seniorTechnicalLead", "technicalDirector", "partner"];
+    return gradesWithMore.includes(gradeTitle) ? `/pathway#${kebabCase(gradeTitle)}` : null;
   }
 
   if (gradesLoading || craftsLoading)
@@ -118,12 +118,15 @@ const Skills = () => {
             keyName="gradeTitles"
             selectedGradeTitle={selectedGradeTitle}
           />
-          <Typography variant="body2" className={classes.paragraph}>
+          <Typography variant="body1" className={classes.paragraph}>
             { getSelectedGradeByTitle(selectedGradeTitle).description }
           </Typography>
-          <Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
-            See more
-          </Link>
+          { getSeeMoreLink(selectedGradeTitle)
+            ? (<Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
+                See more
+              </Link>)
+            : null
+          }
           <div className={classes.skillsAndFilters}>
             <div className={classes.filters}>
               <Typography variant="body1" className={classes.craftFilter}>

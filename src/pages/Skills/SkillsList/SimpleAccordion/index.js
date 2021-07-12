@@ -108,10 +108,10 @@ export default function SimpleAccordion({ skills }) {
           onChange={handleExpandSingle(index)}
         >
           <AccordionSummary
-              className={classes.summary}
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`accordion${index}-content`}
-              id={`accordion${index}-header`}
+            className={classes.summary}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`accordion${index}-content`}
+            id={`accordion${index}-header`}
           >
             <Typography variant="h5" component="h5">
               {startCase(category)}

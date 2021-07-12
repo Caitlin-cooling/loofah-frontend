@@ -18,12 +18,13 @@ const useStyles = makeStyles((theme) => ({
       padding: "0 0 1.5em"
   },
   listHeading: {
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(0)
   },
   listItem: {
     listStyleType: "disc",
     display: "list-item",
-    padding: `${theme.spacing(1)}px 0px 0px 0px`,
+    padding: `${theme.spacing(1)}px 0 ${theme.spacing(1)}px 0`,
     marginLeft: theme.spacing(2)
   },
   anchor: {
@@ -36,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
     display: "inline-block",
     paddingBottom: theme.spacing(2)
+  },
+  bold: {
+    fontWeight: "bold",
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(2)
   }
 }));
 
@@ -52,13 +58,13 @@ const Pathway = () => {
         <Typography>
           This page outlines high-level career expectations, specifically for engineers.
           We recommend that you read this first, and then dive into the
-          <span> <Link to="/skills" className={classes.link}>Detailed Capabilities</Link> </span>
+          <span> <Link to="/skills" className={classes.link}>Detailed Skills</Link> </span>
           expected at each grade.
         </Typography>
-        <Typography variant="h4">
+        <Typography variant="h3">
           General Expectations
         </Typography>
-        <Typography>
+        <Typography className={classes.listHeading}>
           There are few cross-cutting expectations that apply to all grades:
         </Typography>
         <List>
@@ -140,7 +146,7 @@ const Pathway = () => {
             </Typography>
           </ListItem>
         </List>
-        <Typography variant="h4">
+        <Typography variant="h3">
           Engineering grades
         </Typography>
         <Typography>
@@ -176,7 +182,7 @@ const Pathway = () => {
           to={{pathname: "/skills", state: {grade: "analystDeveloper"} }}
           className={classes.link}
         >
-          Analyst Developer Capabilities
+          Analyst Developer Skills
         </Link>
         <Typography variant="h5">
           <span id="developer" className={classes.anchor}></span>
@@ -196,7 +202,7 @@ const Pathway = () => {
           to={{pathname: "/skills", state: {grade: "developer"} }}
           className={classes.link}
         >
-          Developer Capabilities
+          Developer Skills
         </Link>
         <Typography variant="h5">
           <span id="senior-developer" className={classes.anchor}></span>
@@ -213,7 +219,7 @@ const Pathway = () => {
           to={{pathname: "/skills", state: {grade: "seniorDeveloper"} }}
           className={classes.link}
         >
-          Senior Developer Capabilities
+          Senior Developer Skills
         </Link>
         <Typography variant="h5">
           <span id="technical-lead" className={classes.anchor}></span>
@@ -240,7 +246,7 @@ const Pathway = () => {
           include a mixture of these skills, but at a high level, the expectations of
           each type of technical lead are:
         </Typography>
-        <Typography variant="h6">
+        <Typography className={classes.bold}>
           Principal Developer
         </Typography>
         <List>
@@ -256,7 +262,7 @@ const Pathway = () => {
             high-performance systems.
           </ListItem>
         </List>
-        <Typography variant="h6">
+        <Typography className={classes.bold}>
           Architect
         </Typography>
         <List>
@@ -274,7 +280,7 @@ const Pathway = () => {
             Advising our clients on architecture related concerns.
           </ListItem>
         </List>
-        <Typography variant="h6">
+        <Typography className={classes.bold}>
           Technical Delivery Lead
         </Typography>
         <List>
