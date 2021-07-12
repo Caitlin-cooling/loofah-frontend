@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   example: {
     listStyleType: "disc",
     display: "list-item",
-    padding: `${theme.spacing(1)}px 0px 0px 0px`,
+    padding: `${theme.spacing(1)}px 0 0 0`,
     marginLeft: theme.spacing(2)
   },
   craftChips: {
@@ -137,7 +137,7 @@ export default function SimpleAccordion({ skills }) {
               aria-controls={`accordion${index}-content`}
               id={`accordion${index}-header`}
             >
-              <Typography variant="h5" component="h5">
+              <Typography variant="h5" component="h2">
                 {startCase(category)}
               </Typography>
             </AccordionSummary>
