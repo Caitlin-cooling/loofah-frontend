@@ -18,12 +18,13 @@ const useStyles = makeStyles((theme) => ({
       padding: "0 0 1.5em"
   },
   listHeading: {
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(0)
   },
   listItem: {
     listStyleType: "disc",
     display: "list-item",
-    padding: `${theme.spacing(1)}px 0px 0px 0px`,
+    padding: `${theme.spacing(1)}px 0 ${theme.spacing(1)}px 0`,
     marginLeft: theme.spacing(2)
   },
   anchor: {
@@ -32,10 +33,21 @@ const useStyles = makeStyles((theme) => ({
     display: "block"
   },
   link: {
-    color: "#0E5B7C",
-    textDecoration: "underline",
     display: "inline-block",
-    paddingBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    background: `linear-gradient(to top, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100%,transparent 100%,transparent)`,
+    backgroundSize: "100% 40%",
+    backgroundPosition: "center 100%",
+    backgroundRepeat: "no-repeat",
+    "&:hover": {
+      backgroundSize: "100% 100%",
+      transition: "all 500ms ease"
+    }
+  },
+  bold: {
+    fontWeight: "bold",
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(2)
   }
 }));
 
@@ -52,17 +64,17 @@ const Pathway = () => {
         <Typography>
           This page outlines high-level career expectations, specifically for engineers.
           We recommend that you read this first, and then dive into the
-          <span> <Link to="/skills" className={classes.link}>Detailed Capabilities</Link> </span>
+          <span> <Link to="/skills" className={classes.link}>Engineering skills</Link> </span>
           expected at each grade.
         </Typography>
-        <Typography variant="h4">
+        <Typography variant="h3">
           General Expectations
         </Typography>
-        <Typography>
+        <Typography className={classes.listHeading}>
           There are few cross-cutting expectations that apply to all grades:
         </Typography>
         <List>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Put the client’s long-term needs first:</strong> Satisfying
               our client’s needs, building solutions that are effective and efficient
@@ -72,7 +84,7 @@ const Pathway = () => {
               not to them.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Act as part of a team:</strong> We believe that the unit of
               delivery is the team, not the individual. Our value proposition is
@@ -81,7 +93,7 @@ const Pathway = () => {
               and an interpersonal level
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Respect others:</strong> We believe that diversity makes us
               stronger. Working well with those who are different from you, whether
@@ -90,7 +102,7 @@ const Pathway = () => {
               deserves personal investment like any other.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Be a professional:</strong> You are the firm’s brand. Being a
               professional does not mean putting on a suit (but try to avoid sandals).
@@ -100,21 +112,21 @@ const Pathway = () => {
               that we deliver good news.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Stay curious:</strong> We don’t expect you to know everything,
               but we do expect you to want to keep learning, growing, and challenging
               your own assumptions, whether you are a graduate or a Partner.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Be agile at heart:</strong> Agile is something that you are,
               not something that you do. We want you to understand and embrace the
               principles and values of agile in your day-to-day work.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Take responsibility for the process:</strong> We strive to
               achieve flow in our work. Working effectively means participating
@@ -122,7 +134,7 @@ const Pathway = () => {
               over time.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Take responsibility for quality:</strong> While there are
               sometimes specialised testing roles, the team as a unit is responsible
@@ -131,7 +143,7 @@ const Pathway = () => {
               Test-driven development is part of our DNA.
             </Typography>
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             <Typography component="span">
               <strong>Take responsibility for operability:</strong> While there
               are specific infrastructure engineering skills, all engineers are
@@ -140,7 +152,7 @@ const Pathway = () => {
             </Typography>
           </ListItem>
         </List>
-        <Typography variant="h4">
+        <Typography variant="h3">
           Engineering grades
         </Typography>
         <Typography>
@@ -176,7 +188,7 @@ const Pathway = () => {
           to={{pathname: "/skills", state: {grade: "analystDeveloper"} }}
           className={classes.link}
         >
-          Analyst Developer Capabilities
+          See the Analyst Developer Skills
         </Link>
         <Typography variant="h5">
           <span id="developer" className={classes.anchor}></span>
@@ -196,7 +208,7 @@ const Pathway = () => {
           to={{pathname: "/skills", state: {grade: "developer"} }}
           className={classes.link}
         >
-          Developer Capabilities
+          See the Developer Skills
         </Link>
         <Typography variant="h5">
           <span id="senior-developer" className={classes.anchor}></span>
@@ -213,7 +225,7 @@ const Pathway = () => {
           to={{pathname: "/skills", state: {grade: "seniorDeveloper"} }}
           className={classes.link}
         >
-          Senior Developer Capabilities
+          See the Senior Developer Skills
         </Link>
         <Typography variant="h5">
           <span id="technical-lead" className={classes.anchor}></span>
@@ -240,62 +252,62 @@ const Pathway = () => {
           include a mixture of these skills, but at a high level, the expectations of
           each type of technical lead are:
         </Typography>
-        <Typography variant="h6">
+        <Typography className={classes.bold}>
           Principal Developer
         </Typography>
         <List>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Ability to write clear, high-performance code that solves complex problems.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Designing and building frameworks, tools, and platforms that make us more
             productive and effective.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Demonstrated experience designing, building and maintaining large-scale,
             high-performance systems.
           </ListItem>
         </List>
-        <Typography variant="h6">
+        <Typography className={classes.bold}>
           Architect
         </Typography>
         <List>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             With a development background, understanding architecture and its value.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Designing evolutionary architecture.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Writing code alongside the development team, helping to make your
             architecture real.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Advising our clients on architecture related concerns.
           </ListItem>
         </List>
-        <Typography variant="h6">
+        <Typography className={classes.bold}>
           Technical Delivery Lead
         </Typography>
         <List>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Building, supporting, and mentoring high performing delivery teams.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Acting as a champion for our delivery methods, and evolving good
             delivery practice.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Working with your team to solve problems and remove impediments.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Writing code alongside your development team, helping them succeed.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Representing (and sometimes, protecting) your team to clients and
             senior stakeholders.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             Facilitating your team through estimating and planning, creating a
             shared vision of what is possible and reasonable.
           </ListItem>
@@ -331,40 +343,40 @@ const Pathway = () => {
           guardians of quality and innovation:
         </Typography>
         <List>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             On a project, the role of a Chief Engineer is to make us the best
             engineers we can be on that project.
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             In the practice, the role of a Chief Engineer is the make us the
             best engineers we can be, full stop.
           </ListItem>
         </List>
-        <Typography className={classes.listHeading}>
+        <Typography className={[classes.listItem, "MuiTypography-body1"]}>
           Our Chief Engineers do this by:
         </Typography>
         <List>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             acting as architects and technical leaders on large engagements;
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             providing technical assurance over one large and/or multiple smaller
             engagements;
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             offering a pragmatic, constructive counterbalance to short term date
             - or budget-driven decisions in the interest of doing what is right
             for the long term health of the solution and the delivery team;
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             inspiring our people to take pride in their craft and adopt good
             working practices;
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             helping project teams share their experiences and innovations with
             the wider practice; and
           </ListItem>
-          <ListItem className={classes.listItem}>
+          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
             chairing Solution Review Boards for projects.
           </ListItem>
         </List>
