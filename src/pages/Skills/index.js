@@ -1,27 +1,18 @@
 import React, { useState } from "react";
-import {
-  Typography,
-  Toolbar
-} from "@material-ui/core";
+import { Typography, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  gradeKeys,
-  DEFAULT_GRADE,
-  craftKeys
-} from "../../data";
+import { gradeKeys, DEFAULT_GRADE, craftKeys } from "../../data";
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
 import GradeDescriptions from "./GradeDescriptions";
 import LoofahLink from "../../components/LoofahLink";
 import { SkillsList } from "./SkillsList";
 import { camelCase, kebabCase } from "lodash";
+import { MainWrapper } from "../../components/MainWrapper";
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex"
-  },
   toolbar: {
     padding: "0 0 1.5em"
   },
@@ -31,11 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth
-  },
-  content: {
-    maxWidth: "60%",
-    margin: "auto",
-    padding: theme.spacing(3)
   },
   heading: {
     padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
@@ -58,9 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const getCraftsFromURLSearchParams = (searchParams) => {
-
-  return searchParams.getAll("crafts")
-            .map((craft) => camelCase(craft));
+  return searchParams.getAll("crafts").map((craft) => camelCase(craft));
 };
 
 const Skills = () => {
@@ -99,43 +83,42 @@ const Skills = () => {
     applyFilterChanges(value);
 
     searchParams.delete("crafts");
-    if (value.crafts) value.crafts.forEach((craft) => {
-      searchParams.append("crafts", kebabCase(craft));
-    });
+    if (value.crafts)
+      value.crafts.forEach((craft) => {
+        searchParams.append("crafts", kebabCase(craft));
+      });
     window.history.pushState({}, "", currentPageUrl);
   }
 
   return (
-    <div className={classes.root}>
-      <main className={classes.content}>
-        <Toolbar className={classes.toolbar} />
-        <Typography variant="h1">Engineering Skills</Typography>
-        <TabGroup
-          handleFilterChange={handleGradeChange}
-          listItems={gradesList}
-          keyName="grade"
-          selectedGradeTitle={selectedGradeTitle}
-        />
-        <GradeDescriptions selectedGrade={selectedGradeTitle} />
-        <div className={classes.skillsAndFilters}>
-          <div className={classes.filters}>
-            <Typography variant="body1" className={classes.craftFilter}>
-              <span>By </span>
-              <LoofahLink to="/crafts">Craft:</LoofahLink>
-            </Typography>
-            <ChipGroup
-              handleFilterChange={handleCraftChange}
-              chipItems={craftsList}
-              keyName="crafts"
-              variant="outlined"
-              id="craft-filter"
-              preSelectedTitles={crafts}
-            />
-          </div>
-          <SkillsList filterParams={filterParams} />
+    <MainWrapper>
+      <Toolbar className={classes.toolbar} />
+      <Typography variant="h1">Engineering Skills</Typography>
+      <TabGroup
+        handleFilterChange={handleGradeChange}
+        listItems={gradesList}
+        keyName="grade"
+        selectedGradeTitle={selectedGradeTitle}
+      />
+      <GradeDescriptions selectedGrade={selectedGradeTitle} />
+      <div className={classes.skillsAndFilters}>
+        <div className={classes.filters}>
+          <Typography variant="body1" className={classes.craftFilter}>
+            <span>By </span>
+            <LoofahLink to="/crafts">Craft:</LoofahLink>
+          </Typography>
+          <ChipGroup
+            handleFilterChange={handleCraftChange}
+            chipItems={craftsList}
+            keyName="crafts"
+            variant="outlined"
+            id="craft-filter"
+            preSelectedTitles={crafts}
+          />
         </div>
-      </main>
-    </div>
+        <SkillsList filterParams={filterParams} />
+      </div>
+    </MainWrapper>
   );
 };
 
