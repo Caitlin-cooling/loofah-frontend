@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
-import {
-  Typography,
-  Toolbar,
-  Tooltip
-} from "@material-ui/core";
+import { Typography, Toolbar, Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
 import { DEFAULT_GRADE } from "../../data";
@@ -44,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: theme.spacing(3)
   },
-  craftFilter:{
+  craftFilter: {
     fontWeight: "bold",
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(2),
@@ -54,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Skills = () => {
   const classes = useStyles();
-  const [queryFilter, setQueryFilter] = useState({gradeTitles: [DEFAULT_GRADE]});
+  const [queryFilter, setQueryFilter] = useState({
+    gradeTitles: [DEFAULT_GRADE]
+  });
 
   const {
     loading: gradesLoading,
@@ -80,8 +78,7 @@ const Skills = () => {
     });
   }
 
-  if (gradesLoading || craftsLoading)
-    return <p>Loading...</p>;
+  if (gradesLoading || craftsLoading) return <p>Loading...</p>;
   if (gradesError || craftsError) return <p>Error</p>;
 
   const orderedCraftTitles = orderCraftTitles(craftsResponse.crafts);
@@ -90,36 +87,32 @@ const Skills = () => {
     <div className={classes.root}>
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
-          <Typography variant="h1">
-            Engineering Pathways
-          </Typography>
-          <TabGroup
-            handleFilterChange={handleFilterChange}
-            listItems={gradesResponse.grades}
-            keyName="gradeTitles"
-          />
-          <Typography variant="body2" className={classes.paragraph}>
-            { getSelectedGradeByTitle(selectedGradeTitle).description }
-          </Typography>
-          <div className={classes.skillsAndFilters}>
-            <div className={classes.filters}>
-              <Tooltip title="See more information about the crafts" arrow>
-                <Typography variant="body1" className={classes.craftFilter}>
-                  <span>By </span>
-                  <Link to="/crafts">
-                    Craft:
-                  </Link>
-                </Typography>
-              </Tooltip>
-              <ChipGroup
-                handleFilterChange={handleFilterChange}
-                chipItems={orderedCraftTitles}
-                keyName="craftTitles"
-                variant="outlined"
-              />
-            </div>
-            <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+        <Typography variant="h1">Engineering Skills</Typography>
+        <TabGroup
+          handleFilterChange={handleFilterChange}
+          listItems={gradesResponse.grades}
+          keyName="gradeTitles"
+        />
+        <Typography variant="body2" className={classes.paragraph}>
+          {getSelectedGradeByTitle(selectedGradeTitle).description}
+        </Typography>
+        <div className={classes.skillsAndFilters}>
+          <div className={classes.filters}>
+            <Tooltip title="See more information about the crafts" arrow>
+              <Typography variant="body1" className={classes.craftFilter}>
+                <span>By </span>
+                <Link to="/crafts">Craft:</Link>
+              </Typography>
+            </Tooltip>
+            <ChipGroup
+              handleFilterChange={handleFilterChange}
+              chipItems={orderedCraftTitles}
+              keyName="craftTitles"
+              variant="outlined"
+            />
           </div>
+          <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+        </div>
       </main>
     </div>
   );
