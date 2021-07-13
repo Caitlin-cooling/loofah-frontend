@@ -5,6 +5,7 @@ import { Typography, Toolbar, Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
 import { DEFAULT_GRADE } from "../../data";
+import { MainWrapper } from "../../components/MainWrapper";
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
 import { SkillsList } from "./SkillsList";
@@ -13,9 +14,6 @@ import { orderCraftTitles } from "../../utils/formatters";
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex"
-  },
   toolbar: {
     padding: "0 0 1.5em"
   },
@@ -25,11 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth
-  },
-  content: {
-    maxWidth: "60%",
-    margin: "auto",
-    padding: theme.spacing(3)
   },
   skillsAndFilters: {
     position: "relative",
@@ -84,37 +77,35 @@ const Skills = () => {
   const orderedCraftTitles = orderCraftTitles(craftsResponse.crafts);
 
   return (
-    <div className={classes.root}>
-      <main className={classes.content}>
-        <Toolbar className={classes.toolbar} />
-        <Typography variant="h1">Engineering Skills</Typography>
-        <TabGroup
-          handleFilterChange={handleFilterChange}
-          listItems={gradesResponse.grades}
-          keyName="gradeTitles"
-        />
-        <Typography variant="body2" className={classes.paragraph}>
-          {getSelectedGradeByTitle(selectedGradeTitle).description}
-        </Typography>
-        <div className={classes.skillsAndFilters}>
-          <div className={classes.filters}>
-            <Tooltip title="See more information about the crafts" arrow>
-              <Typography variant="body1" className={classes.craftFilter}>
-                <span>By </span>
-                <Link to="/crafts">Craft:</Link>
-              </Typography>
-            </Tooltip>
-            <ChipGroup
-              handleFilterChange={handleFilterChange}
-              chipItems={orderedCraftTitles}
-              keyName="craftTitles"
-              variant="outlined"
-            />
-          </div>
-          <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+    <MainWrapper>
+      <Toolbar className={classes.toolbar} />
+      <Typography variant="h1">Engineering Skills</Typography>
+      <TabGroup
+        handleFilterChange={handleFilterChange}
+        listItems={gradesResponse.grades}
+        keyName="gradeTitles"
+      />
+      <Typography variant="body2" className={classes.paragraph}>
+        {getSelectedGradeByTitle(selectedGradeTitle).description}
+      </Typography>
+      <div className={classes.skillsAndFilters}>
+        <div className={classes.filters}>
+          <Tooltip title="See more information about the crafts" arrow>
+            <Typography variant="body1" className={classes.craftFilter}>
+              <span>By </span>
+              <Link to="/crafts">Craft:</Link>
+            </Typography>
+          </Tooltip>
+          <ChipGroup
+            handleFilterChange={handleFilterChange}
+            chipItems={orderedCraftTitles}
+            keyName="craftTitles"
+            variant="outlined"
+          />
         </div>
-      </main>
-    </div>
+        <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+      </div>
+    </MainWrapper>
   );
 };
 
