@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import { Link } from "react-router-dom";
-import { Typography, Toolbar, Tooltip } from "@material-ui/core";
+import {
+  Typography,
+  Toolbar
+} from "@material-ui/core";
+import kebabCase from "lodash/kebabCase";
+import { HashLink as Link } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
 import { DEFAULT_GRADE } from "../../data";
@@ -31,6 +36,17 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: theme.spacing(3)
   },
+  heading: {
+    padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
+  },
+  paragraph: {
+    paddingBottom: theme.spacing(2)
+  },
+  seeMore: {
+    display: "inline-block",
+    marginBottom: theme.spacing(2),
+    textDecoration: "underline"
+  },
   skillsAndFilters: {
     position: "relative",
     paddingTop: theme.spacing(15)
@@ -49,9 +65,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Skills = () => {
+  const location = useLocation();
+  const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
   const classes = useStyles();
   const [queryFilter, setQueryFilter] = useState({
-    gradeTitles: [DEFAULT_GRADE]
+    gradeTitles: [defaultGrade]
   });
 
   const {
@@ -69,7 +87,7 @@ const Skills = () => {
   const selectedGradeTitle = queryFilter.gradeTitles[0];
 
   function getSelectedGradeByTitle(title) {
-    return gradesResponse.grades.find((grade) => grade.title === title);
+    return gradesResponse.grades.find((grade) => grade.title === title) || {};
   }
 
   function handleFilterChange(value) {
@@ -78,7 +96,13 @@ const Skills = () => {
     });
   }
 
-  if (gradesLoading || craftsLoading) return <p>Loading...</p>;
+  function getSeeMoreLink(gradeTitle) {
+    const gradesWithMore = ["technicalLead", "seniorTechnicalLead", "technicalDirector", "partner"];
+    return gradesWithMore.includes(gradeTitle) ? `/pathway#${kebabCase(gradeTitle)}` : null;
+  }
+
+  if (gradesLoading || craftsLoading)
+    return <p>Loading...</p>;
   if (gradesError || craftsError) return <p>Error</p>;
 
   const orderedCraftTitles = orderCraftTitles(craftsResponse.crafts);
@@ -88,28 +112,33 @@ const Skills = () => {
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
         <Typography variant="h1">Engineering Skills</Typography>
-        <TabGroup
-          handleFilterChange={handleFilterChange}
-          listItems={gradesResponse.grades}
-          keyName="gradeTitles"
-        />
-        <Typography variant="body2" className={classes.paragraph}>
-          {getSelectedGradeByTitle(selectedGradeTitle).description}
-        </Typography>
-        <div className={classes.skillsAndFilters}>
-          <div className={classes.filters}>
-            <Tooltip title="See more information about the crafts" arrow>
+          <TabGroup
+            handleFilterChange={handleFilterChange}
+            listItems={gradesResponse.grades}
+            keyName="gradeTitles"
+            selectedGradeTitle={selectedGradeTitle}
+          />
+          <Typography variant="body1" className={classes.paragraph}>
+            { getSelectedGradeByTitle(selectedGradeTitle).description }
+            { getSeeMoreLink(selectedGradeTitle)
+            ? (<span>... <Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
+                Read more
+              </Link></span>)
+            : null
+          }
+          </Typography>
+          <div className={classes.skillsAndFilters}>
+            <div className={classes.filters}>
               <Typography variant="body1" className={classes.craftFilter}>
                 <span>By </span>
                 <Link to="/crafts">Craft:</Link>
               </Typography>
-            </Tooltip>
-            <ChipGroup
-              handleFilterChange={handleFilterChange}
-              chipItems={orderedCraftTitles}
-              keyName="craftTitles"
-              variant="outlined"
-            />
+              <ChipGroup
+                handleFilterChange={handleFilterChange}
+                chipItems={orderedCraftTitles}
+                keyName="craftTitles"
+                variant="outlined"
+              />
           </div>
           <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
         </div>
