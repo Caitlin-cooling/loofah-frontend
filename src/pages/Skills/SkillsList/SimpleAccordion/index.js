@@ -166,15 +166,14 @@ export default function SimpleAccordion({ skills }) {
                           </React.Fragment>
                         }
                       />
-
                       <List className={classes.examples}>
-                        {skill.examples.map((example, index) => {
+                        {skill.examples ? skill.examples.map((example, index) => {
                           return (
-                            <ListItem key={index} className={classes.example}>
-                              {example}
-                            </ListItem>
+                              <ListItem key={index} className={classes.example}>
+                                  {example}
+                              </ListItem>
                           );
-                        })}
+                        }) : null}
                       </List>
                       <ChipGroup
                         chipItems={skill.crafts}
