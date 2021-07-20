@@ -1,0 +1,30 @@
+[
+  {
+    "id": "pathway",
+    "title": "Engineering Career Pathway",
+    "alt": "image of books",
+    "image": "pathway",
+    "href": "pathway"
+  },
+  {
+    "id": "skills",
+    "title": "Browse Engineering Skills",
+    "alt": "image of a laptop",
+    "image": "skills",
+    "href": "skills"
+  },
+  {
+    "id": "resources",
+    "title": "Find Learning Resources",
+    "alt": "image of a person using a laptop",
+    "image": "resources",
+    "href": "resources"
+  },
+  {
+    "id": "api",
+    "title": "View Skills API",
+    "alt": "image of a cables",
+    "image": "api",
+    "href": "api"
+  }
+]

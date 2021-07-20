@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Landing from "./pages/Landing";
 import Skills from "./pages/Skills";
 import CareerFaqs from "./pages/CareerFaqs";
 import Pathway from "./pages/Pathway";
@@ -24,7 +25,7 @@ import About from "./pages/About";
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#8cf101"
+      main: "#7AF9B8"
     },
     secondary: {
       main: "#9dd4cf"
@@ -36,6 +37,12 @@ export const theme = createMuiTheme({
       fontSize: "4rem",
       color: "#111820",
       padding: "60px 0px 20px 0px"
+    },
+    h2: {
+      fontFamily: "Open Sans, sans-serif",
+      fontSize: "2.5rem",
+      color: "#111820",
+      padding: "16px 0px 2px 0px"
     },
     h3: {
       fontFamily: "Open Sans, sans-serif",
@@ -200,6 +207,9 @@ const App = () => {
           </Toolbar>
         </AppBar>
           <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
             <Route exact path="/skills">
               <Skills />
             </Route>
