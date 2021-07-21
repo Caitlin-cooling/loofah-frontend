@@ -9,10 +9,7 @@ import GrowthImage from "../../assets/DD-GWTH-H1-W-4x3.png";
 import Energy from "../../assets/energy.png";
 import Lightbulb from "../../assets/lightbulb.png";
 import PathwayIcon from "../../assets/pathway-icon.png";
-import exploreItems from "../../data/exploreItems.json";
-import exploreImages from "../../data/exploreImages";
-
-exploreItems.forEach(item => item.image = exploreImages[item.image]);
+import exploreItems from "../../data/exploreItems";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -26,14 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "right",
     backgroundSize: "1000px",
     height: "600px",
-    margin: "0 100px"
-  },
-  toolbar: {
-    padding: "0 0 1.5em"
-  },
-  image: {
-    maxWidth: "40%",
-    paddingLeft: theme.spacing(8)
+    margin: "0 400px"
   },
   underline: {
     background: `linear-gradient(to top, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100%,transparent 100%,transparent)`,
@@ -108,13 +98,12 @@ const Landing = ()  => {
       <div className={classes.jumbo}>
         <div className={classes.headingWrapper}>
           <Typography variant="h1">
-            Level Up Your <span className={`${classes.heading} ${classes.underline}`}>
-              Engineering Skills
+            Level up your <span className={`${classes.heading} ${classes.underline}`}>
+              engineering skills
             </span>
           </Typography>
           <Typography variant="body2">
-            Loofah is a tool built for Engineers by Engineers to provide access to
-            learning materials for anyone, anywhere.
+            Loofah is a tool, built by engineers, for engineers - to help you grow
           </Typography>
         </div>
       </div>
@@ -123,41 +112,39 @@ const Landing = ()  => {
           <img src={Energy} alt="energy icon" className={classes.aboutIcon} />
           <Typography>
             <span className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}>
-              Understand what skills to focus on
+            Understand what’s expected
             </span>
           </Typography>
           <Typography variant="body2">
-            Get a prioritised list of the things you need to know at each stage of your career.
+            Get a sense of the things you should know at each stage of your development
           </Typography>
         </div>
         <div className={classes.aboutBox}>
           <img src={Lightbulb} alt="lightbulb icon" className={classes.aboutIcon} />
           <Typography>
             <span className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}>
-              Make a plan for your learning
+              Create your own personal pathway
             </span>
           </Typography>
           <Typography variant="body2">
-            Browse recommended resources and ideas for honing skills, suitable for
-            a range of different learning preferences
+            {"Filter skills for your chosen craft(s) and the grades you're interested in"}
           </Typography>
         </div>
         <div className={classes.aboutBox}>
           <img src={PathwayIcon} alt="pathway icon" className={classes.aboutIcon} />
           <Typography>
             <span className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}>
-              Create your own personal pathway
+              Make a plan for how to learn
             </span>
           </Typography>
           <Typography variant="body2">
-            {"Filter skills for your chosen craft(s) and the grades you're interested in,"
-            + " depending on where you're at in your career."}
+            Browse recommended resources and ideas for honing capabilities
           </Typography>
         </div>
       </div>
       <div className={classes.exploreSection}>
         <Typography variant="h2" className={classes.heading}>
-          What would you like to explore?
+          What do you want to explore?
         </Typography>
         <div className={classes.exploreCards}>
           {

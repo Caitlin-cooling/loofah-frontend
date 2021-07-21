@@ -91,19 +91,19 @@ const CareerFaqs = () => {
           As general guidance:
         </Typography>
         <List>
-          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
+          <ListItem className={`${classes.listItem} MuiTypography-body1`}>
             Try to learn at least one scripting language (e.g. Bash), one interpreted language
             (e.g. Python, JavaScript, Ruby), and one general-purpose statically typed language
             (e.g. Java, C#).
           </ListItem>
-          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
+          <ListItem className={`${classes.listItem} MuiTypography-body1`}>
             Gain experience across both the front end (web, mobile) and back end (server-side,
             integration) domains.
           </ListItem>
-          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
+          <ListItem className={`${classes.listItem} MuiTypography-body1`}>
             Spend some time in ops, managing infrastructure and pipeline code.
           </ListItem>
-          <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
+          <ListItem className={`${classes.listItem} MuiTypography-body1`}>
             Try to learn one new technology, pattern, library, or tool every few months, both
             because they may be useful to you, and to keep your aptitude for learning sharp.
           </ListItem>

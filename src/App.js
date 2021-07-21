@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Landing from "./pages/Landing";
+import ScrollToTop from "./components/ScrollToTop";
 import Skills from "./pages/Skills";
 import CareerFaqs from "./pages/CareerFaqs";
 import Pathway from "./pages/Pathway";
@@ -183,29 +184,30 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
-        <AppBar className={classes.appBar} position="fixed">
-          <Toolbar className={classes.toolBar}>
-            <div className={classes.logoAndLoofah}>
-              <Link to={"/"}>
-                <img src={logo} alt="Deloitte Digital logo" className={classes.logo} />
-              </Link>
-              <Divider orientation="vertical" flexItem className={classes.divider} />
-              <Link to={"/"}>
-                <Typography variant="h6">
-                  LOOFAH
-                </Typography>
-              </Link>
-            </div>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              className={classes.menuIconWrapper}
-            >
-              <MenuIcon className={classes.menuIcon} />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
+          <ScrollToTop />
+          <AppBar className={classes.appBar} position="fixed">
+            <Toolbar className={classes.toolBar}>
+              <div className={classes.logoAndLoofah}>
+                <Link to={"/"}>
+                  <img src={logo} alt="Deloitte Digital logo" className={classes.logo} />
+                </Link>
+                <Divider orientation="vertical" flexItem className={classes.divider} />
+                <Link to={"/"}>
+                  <Typography variant="h6">
+                    LOOFAH
+                  </Typography>
+                </Link>
+              </div>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                className={classes.menuIconWrapper}
+              >
+                <MenuIcon className={classes.menuIcon} />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
           <Switch>
             <Route exact path="/">
               <Landing />

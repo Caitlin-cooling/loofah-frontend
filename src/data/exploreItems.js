@@ -1,30 +1,35 @@
-[
+import Pathway from "../assets/pathway.png";
+import Skills from "../assets/skills.png";
+import Resources from "../assets/resources.png";
+import Api from "../assets/api.png";
+
+export default [
   {
     "id": "pathway",
-    "title": "Engineering Career Pathway",
+    "title": "Read the Engineering Career Pathway",
     "alt": "image of books",
-    "image": "pathway",
+    "image": Pathway,
     "href": "pathway"
   },
   {
     "id": "skills",
     "title": "Browse Engineering Skills",
     "alt": "image of a laptop",
-    "image": "skills",
+    "image": Skills,
     "href": "skills"
   },
   {
     "id": "resources",
     "title": "Find Learning Resources",
     "alt": "image of a person using a laptop",
-    "image": "resources",
+    "image": Resources,
     "href": "resources"
   },
   {
     "id": "api",
-    "title": "View Skills API",
+    "title": "Use the Loofah API",
     "alt": "image of a cables",
-    "image": "api",
+    "image": Api,
     "href": "api"
   }
-]
+];
