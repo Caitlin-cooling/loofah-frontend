@@ -5,6 +5,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Skills from "./pages/Skills";
 import CareerFaqs from "./pages/CareerFaqs";
 import Pathway from "./pages/Pathway";
+import Crafts from "./pages/Crafts";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeProvider,
@@ -224,6 +225,9 @@ const App = () => {
             <Route exact path="/career-faqs">
               <CareerFaqs />
             </Route>
+            <Route exact path="/crafts">
+              <Crafts />
+            </Route>
           </Switch>
         </div>
           <Drawer
@@ -245,7 +249,8 @@ const App = () => {
               { text: "How to Use", path: "/about" },
               { text: "Engineering Career Pathway", path: "/pathway" },
               { text: "Engineering Skills", path: "/skills" },
-              { text: "Career FAQs", path: "/career-faqs" }
+              { text: "Career FAQs", path: "/career-faqs" },
+              { text: "Craft Resources", path: "/crafts" }
             ].map((link) => (
               <ListItem button key={link.text}>
                 <Link

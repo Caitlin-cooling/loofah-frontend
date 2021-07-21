@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   makeStyles,
   Toolbar,
@@ -7,6 +6,7 @@ import {
   List,
   ListItem
 } from "@material-ui/core";
+import LoofahLink from "../../components/LoofahLink";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -32,18 +32,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "130px",
     display: "block"
   },
-  link: {
-    display: "inline-block",
-    marginBottom: theme.spacing(2),
-    background: `linear-gradient(to top, ${theme.palette.primary.main}, ${theme.palette.primary.main} 100%,transparent 100%,transparent)`,
-    backgroundSize: "100% 40%",
-    backgroundPosition: "center 100%",
-    backgroundRepeat: "no-repeat",
-    transition: "all 500ms ease",
-    "&:hover": {
-      backgroundSize: "100% 100%"
-    }
-  },
   bold: {
     fontWeight: "bold",
     paddingBottom: theme.spacing(1),
@@ -64,7 +52,7 @@ const Pathway = () => {
         <Typography>
           This page outlines high-level career expectations, specifically for engineers.
           We recommend that you read this first, and then dive into the
-          <span> <Link to="/skills" className={classes.link}>Engineering Skills</Link> </span>
+          <span> <LoofahLink to="/skills"> Engineering skills</LoofahLink> </span>
           expected at each grade.
         </Typography>
         <Typography variant="h3">
@@ -184,12 +172,9 @@ const Pathway = () => {
           the breadth required from a career in consulting which may not have been the case
           in your previous experience.
         </Typography>
-        <Link
-          to={{pathname: "/skills", state: {grade: "analystDeveloper"} }}
-          className={classes.link}
-        >
+        <LoofahLink to={{pathname: "/skills", state: {grade: "analystDeveloper"} }}>
           See the Analyst Developer Skills
-        </Link>
+        </LoofahLink>
         <Typography variant="h5">
           <span id="developer" className={classes.anchor}></span>
           Developer (M1)
@@ -204,12 +189,9 @@ const Pathway = () => {
           also likely that you’ll also start to manage and mentor some more junior people
           on your project.
         </Typography>
-        <Link
-          to={{pathname: "/skills", state: {grade: "developer"} }}
-          className={classes.link}
-        >
+        <LoofahLink to={{pathname: "/skills", state: {grade: "developer"} }}>
           See the Developer Skills
-        </Link>
+        </LoofahLink>
         <Typography variant="h5">
           <span id="senior-developer" className={classes.anchor}></span>
           Senior Developer (M2)
@@ -221,12 +203,9 @@ const Pathway = () => {
           of the solution, and/or building productive client relationships. You’ll also
           start to play a bigger role in the practice and our internal community.
         </Typography>
-        <Link
-          to={{pathname: "/skills", state: {grade: "seniorDeveloper"} }}
-          className={classes.link}
-        >
+        <LoofahLink to={{pathname: "/skills", state: {grade: "seniorDeveloper"} }}>
           See the Senior Developer Skills
-        </Link>
+        </LoofahLink>
         <Typography variant="h5">
           <span id="technical-lead" className={classes.anchor}></span>
           Technical Lead (M4)
