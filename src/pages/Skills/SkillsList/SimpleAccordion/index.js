@@ -55,14 +55,15 @@ const useStyles = makeStyles((theme) => ({
   },
   headline: {
     fontSize: "1.2rem",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    padding: 0
   },
   description: {
     padding: `${theme.spacing(2)}px 0 0 0`,
     fontStyle: "italic"
   },
   examples: {
-    paddingTop: theme.spacing(1)
+    paddingTop: 0
   },
   example: {
     listStyleType: "disc",
