@@ -7,9 +7,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex"
   },
   content: {
-    maxWidth: "60%",
     margin: "auto",
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
+    width: "960px",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "67%"
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "80%"
+    }
   }
 }));
 
