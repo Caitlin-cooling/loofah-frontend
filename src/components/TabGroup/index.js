@@ -27,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
 export const TabGroup = ({ handleFilterChange, listItems, selectedGradeTitle, keyName }) => {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = useState(
-    listItems.findIndex((item) => item.title === selectedGradeTitle) || 0
+    listItems.findIndex((item) => item === selectedGradeTitle) || 0
   );
 
   function handleSelection(e, value) {
     setSelectedIndex(value);
-    handleFilterChange({ [keyName]: [listItems[value].title] });
+    handleFilterChange({ [keyName]: [listItems[value]] });
   }
 
   return (
@@ -47,14 +47,14 @@ export const TabGroup = ({ handleFilterChange, listItems, selectedGradeTitle, ke
       >
         {listItems.map((item, index) => (
           <Tab
-            key={item.id}
+            key={item}
             label={
               <span
                 className={`${classes.tabText} ${
                   index === selectedIndex ? classes.selected : ""
                 }`}
               >
-                {startCase(item.title)}
+                {startCase(item)}
               </span>
             }
           />

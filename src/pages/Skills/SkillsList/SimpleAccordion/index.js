@@ -105,6 +105,11 @@ export default function SimpleAccordion({ skills }) {
     }
   };
 
+  // TODO this can be removed when we migrate to hosted backend
+  const getCraftList = (crafts) => {
+   return Object.keys(crafts).map((craft) => crafts[craft].title);
+  };
+
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.expandAllSwitch}>
@@ -170,18 +175,19 @@ export default function SimpleAccordion({ skills }) {
                       <List className={classes.examples}>
                         {skill.examples ? skill.examples.map((example, index) => {
                           return (
-                              <ListItem key={index} className={classes.example}>
-                                  {example}
-                              </ListItem>
+                            <ListItem key={index} className={classes.example}>
+                              {example}
+                            </ListItem>
                           );
                         }) : null}
                       </List>
                       <ChipGroup
-                        chipItems={skill.crafts}
+                        chipItems={getCraftList(skill.crafts)}
                         keyName="craftTitles"
                         backgroundColor="green"
                         outlined={false}
                         className={classes.craftChips}
+                        id="craft-chip"
                       />
                     </ListItem>
                   );

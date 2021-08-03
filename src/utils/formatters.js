@@ -14,10 +14,3 @@ export const groupSkillsByTitleAndGrade = (skills) => {
   }
 };
 
-export const orderCraftTitles = (crafts) => {
-  const craftsCopy = [...crafts];
-  const coreIndex = crafts.findIndex((craft) => craft.title === "core");
-  craftsCopy.splice(coreIndex, 1);
-  craftsCopy.unshift(crafts[coreIndex]);
-  return craftsCopy;
-};
