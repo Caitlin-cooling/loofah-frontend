@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useQuery } from "@apollo/react-hooks";
 import {
   Typography,
   Toolbar
 } from "@material-ui/core";
-import kebabCase from "lodash/kebabCase";
 import { HashLink as Link } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
-import { GET_GRADES_QUERY, GET_CRAFTS_QUERY } from "../../queries";
-import { DEFAULT_GRADE } from "../../data";
+import {
+  grades,
+  DEFAULT_GRADE,
+  crafts
+} from "../../data";
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
+import GradeDescriptions from "./GradeDescriptions";
 import { SkillsList } from "./SkillsList";
-import { orderCraftTitles } from "../../utils/formatters";
 
 const drawerWidth = 300;
 
@@ -39,14 +40,6 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
   },
-  paragraph: {
-    paddingBottom: theme.spacing(2)
-  },
-  seeMore: {
-    display: "inline-block",
-    marginBottom: theme.spacing(2),
-    textDecoration: "underline"
-  },
   skillsAndFilters: {
     position: "relative",
     paddingTop: theme.spacing(15)
@@ -66,29 +59,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Skills = () => {
   const location = useLocation();
-  const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
   const classes = useStyles();
+
+  const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
   const [queryFilter, setQueryFilter] = useState({
     gradeTitles: [defaultGrade]
   });
 
-  const {
-    loading: gradesLoading,
-    error: gradesError,
-    data: gradesResponse
-  } = useQuery(GET_GRADES_QUERY);
-
-  const {
-    loading: craftsLoading,
-    error: craftsError,
-    data: craftsResponse
-  } = useQuery(GET_CRAFTS_QUERY);
-
   const selectedGradeTitle = queryFilter.gradeTitles[0];
-
-  function getSelectedGradeByTitle(title) {
-    return gradesResponse.grades.find((grade) => grade.title === title) || {};
-  }
+  const gradesList = Object.keys(grades).map((grade) => grades[grade]);
+  const craftsList = Object.keys(crafts).map((craft) => crafts[craft]);
 
   function handleFilterChange(value) {
     setQueryFilter((oldDetails) => {
@@ -96,49 +76,31 @@ const Skills = () => {
     });
   }
 
-  function getSeeMoreLink(gradeTitle) {
-    const gradesWithMore = ["technicalLead", "seniorTechnicalLead", "technicalDirector", "partner"];
-    return gradesWithMore.includes(gradeTitle) ? `/pathway#${kebabCase(gradeTitle)}` : null;
-  }
-
-  if (gradesLoading || craftsLoading)
-    return <p>Loading...</p>;
-  if (gradesError || craftsError) return <p>Error</p>;
-
-  const orderedCraftTitles = orderCraftTitles(craftsResponse.crafts);
-
   return (
     <div className={classes.root}>
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
         <Typography variant="h1">Engineering Skills</Typography>
-          <TabGroup
-            handleFilterChange={handleFilterChange}
-            listItems={gradesResponse.grades}
-            keyName="gradeTitles"
-            selectedGradeTitle={selectedGradeTitle}
-          />
-          <Typography variant="body1" className={classes.paragraph}>
-            { getSelectedGradeByTitle(selectedGradeTitle).description }
-            { getSeeMoreLink(selectedGradeTitle)
-            ? (<span>... <Link to={getSeeMoreLink(selectedGradeTitle)} className={classes.seeMore}>
-                Read more
-              </Link></span>)
-            : null
-          }
-          </Typography>
-          <div className={classes.skillsAndFilters}>
-            <div className={classes.filters}>
-              <Typography variant="body1" className={classes.craftFilter}>
-                <span>By </span>
-                <Link to="/crafts">Craft:</Link>
-              </Typography>
-              <ChipGroup
-                handleFilterChange={handleFilterChange}
-                chipItems={orderedCraftTitles}
-                keyName="craftTitles"
-                variant="outlined"
-              />
+        <TabGroup
+          handleFilterChange={handleFilterChange}
+          listItems={gradesList}
+          keyName="gradeTitles"
+          selectedGradeTitle={selectedGradeTitle}
+        />
+        <GradeDescriptions selectedGrade={selectedGradeTitle} />
+        <div className={classes.skillsAndFilters}>
+          <div className={classes.filters}>
+            <Typography variant="body1" className={classes.craftFilter}>
+              <span>By </span>
+              <Link to="/crafts">Craft:</Link>
+            </Typography>
+            <ChipGroup
+              handleFilterChange={handleFilterChange}
+              chipItems={craftsList}
+              keyName="craftTitles"
+              variant="outlined"
+              id="craft-filter"
+            />
           </div>
           <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
         </div>

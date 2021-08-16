@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const ChipGroup = ({ handleFilterChange, chipItems, keyName, backgroundColor, variant }) => {
+export const ChipGroup = ({ handleFilterChange, chipItems, keyName, backgroundColor, variant, id }) => {
   const classes = useStyles();
   const [selectedTitles, setSelectedTitles] = useState([]);
 
@@ -44,12 +44,12 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName, backgroundCo
         <Chip
           className={`
             ${classes.chip}
-            ${selectedTitles.includes(item.title) ? classes.selected: ""}
+            ${selectedTitles.includes(item) ? classes.selected: ""}
             ${classes[backgroundColor]}
           `}
-          key={item.id}
-          onClick={handleFilterChange ? () => handleSelection(item.title) : undefined}
-          label={startCase(item.title)}
+          key={`${item}-${id}`}
+          onClick={handleFilterChange ? () => handleSelection(item) : undefined}
+          label={startCase(item)}
           variant={variant}
         />
       ))}
@@ -58,6 +58,7 @@ export const ChipGroup = ({ handleFilterChange, chipItems, keyName, backgroundCo
 };
 
 ChipGroup.propTypes = {
+  id: PropTypes.string,
   handleFilterChange: PropTypes.func,
   chipItems: PropTypes.array,
   keyName: PropTypes.string.isRequired,

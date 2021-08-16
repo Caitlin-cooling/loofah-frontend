@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// TODO this needs to be changed when we migrate to hosted backend
 export const GET_SKILLS_QUERY = gql`
   query Skills($filter: SkillFilter) {
     skills(filter: $filter) {
@@ -11,11 +12,9 @@ export const GET_SKILLS_QUERY = gql`
         title
       }
       category {
-        id
         title
       }
       grade {
-        id
         title
       }
     }
