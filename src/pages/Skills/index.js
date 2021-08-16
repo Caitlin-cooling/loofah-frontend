@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import {
   Typography,
   Toolbar
@@ -15,6 +14,7 @@ import { ChipGroup } from "../../components/ChipGroup";
 import GradeDescriptions from "./GradeDescriptions";
 import LoofahLink from "../../components/LoofahLink";
 import { SkillsList } from "./SkillsList";
+import { camelCase, kebabCase } from "lodash";
 
 const drawerWidth = 300;
 
@@ -58,22 +58,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Skills = () => {
-  const location = useLocation();
   const classes = useStyles();
+  const gradesList = Object.keys(grades).map((grade) => grades[grade]);
+  const craftsList = Object.keys(crafts).map((craft) => crafts[craft]);
 
-  const defaultGrade = location.state ? location.state.grade : DEFAULT_GRADE;
+  const url = new URL(window.location);
+  const { searchParams } = url;
+  const defaultGrade = searchParams.get("grade")
+    ? camelCase(searchParams.get("grade"))
+    : DEFAULT_GRADE;
+  const preSelectedCraftTitles =
+    searchParams.getAll("crafts").map((craft) => camelCase(craft));
+  const craftTitles = preSelectedCraftTitles.length ? preSelectedCraftTitles : null;
+
   const [queryFilter, setQueryFilter] = useState({
-    gradeTitles: [defaultGrade]
+    gradeTitles: [defaultGrade],
+    ...(craftTitles && { craftTitles })
   });
 
   const selectedGradeTitle = queryFilter.gradeTitles[0];
-  const gradesList = Object.keys(grades).map((grade) => grades[grade]);
-  const craftsList = Object.keys(crafts).map((craft) => crafts[craft]);
 
   function handleFilterChange(value) {
     setQueryFilter((oldDetails) => {
       return { ...oldDetails, ...value };
     });
+  }
+
+  function handleGradeChange(value) {
+    handleFilterChange(value);
+    searchParams.set("grade", kebabCase(value.gradeTitles[0]));
+    window.history.pushState({}, "", url);
+  }
+
+  function handleCraftChange(value) {
+    handleFilterChange(value);
+    searchParams.delete("crafts");
+    if (value.craftTitles) value.craftTitles.forEach((title) => {
+      searchParams.append("crafts", kebabCase(title));
+    });
+    window.history.pushState({}, "", url);
   }
 
   return (
@@ -82,7 +105,7 @@ const Skills = () => {
         <Toolbar className={classes.toolbar} />
         <Typography variant="h1">Engineering Skills</Typography>
         <TabGroup
-          handleFilterChange={handleFilterChange}
+          handleFilterChange={handleGradeChange}
           listItems={gradesList}
           keyName="gradeTitles"
           selectedGradeTitle={selectedGradeTitle}
@@ -95,11 +118,12 @@ const Skills = () => {
               <LoofahLink to="/crafts">Craft:</LoofahLink>
             </Typography>
             <ChipGroup
-              handleFilterChange={handleFilterChange}
+              handleFilterChange={handleCraftChange}
               chipItems={craftsList}
               keyName="craftTitles"
               variant="outlined"
               id="craft-filter"
+              preSelectedTitles={preSelectedCraftTitles}
             />
           </div>
           <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
