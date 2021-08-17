@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles, Toolbar, Typography } from "@material-ui/core";
 import { MainWrapper } from "../../components/MainWrapper";
+import { makeStyles, Toolbar, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
