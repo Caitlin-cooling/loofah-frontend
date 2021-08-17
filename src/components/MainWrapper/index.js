@@ -9,7 +9,18 @@ const useStyles = makeStyles((theme) => ({
   content: {
     margin: "auto",
     padding: theme.spacing(3),
-    width: "960px",
+    maxWidth: "40%",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "50%"
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "80%"
+    }
+  },
+  extraWide: {
+    margin: "auto",
+    padding: theme.spacing(3),
+    maxWidth: "50%",
     [theme.breakpoints.down("md")]: {
       maxWidth: "67%"
     },
@@ -19,15 +30,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const MainWrapper = (props) => {
+export const MainWrapper = ({ children, styleType = "default" }) => {
   const classes = useStyles();
+  const contentClass =
+    styleType === "extra-wide" ? classes.extraWide : classes.content;
   return (
     <div className={classes.root}>
-      <main className={classes.content}>{props.children}</main>
+      <main className={contentClass}>{children}</main>
     </div>
   );
 };
 
 MainWrapper.propTypes = {
+  styleType: PropTypes.string,
   children: PropTypes.node
 };
