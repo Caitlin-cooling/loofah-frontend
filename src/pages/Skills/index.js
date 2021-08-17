@@ -91,7 +91,7 @@ const Skills = () => {
   }
 
   return (
-    <MainWrapper>
+    <MainWrapper styleType="extra-wide">
       <Toolbar className={classes.toolbar} />
       <Typography variant="h1">Engineering Skills</Typography>
       <TabGroup
