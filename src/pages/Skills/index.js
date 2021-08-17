@@ -1,27 +1,18 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  Typography,
-  Toolbar
-} from "@material-ui/core";
+import { Typography, Toolbar } from "@material-ui/core";
 import { HashLink as Link } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  grades,
-  DEFAULT_GRADE,
-  crafts
-} from "../../data";
+import { grades, DEFAULT_GRADE, crafts } from "../../data";
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
 import GradeDescriptions from "./GradeDescriptions";
 import { SkillsList } from "./SkillsList";
+import { MainWrapper } from "../../components/MainWrapper";
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex"
-  },
   toolbar: {
     padding: "0 0 1.5em"
   },
@@ -31,11 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth
-  },
-  content: {
-    maxWidth: "60%",
-    margin: "auto",
-    padding: theme.spacing(3)
   },
   heading: {
     padding: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px 0`
@@ -77,35 +63,34 @@ const Skills = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <main className={classes.content}>
-        <Toolbar className={classes.toolbar} />
-        <Typography variant="h1">Engineering Skills</Typography>
-        <TabGroup
-          handleFilterChange={handleFilterChange}
-          listItems={gradesList}
-          keyName="gradeTitles"
-          selectedGradeTitle={selectedGradeTitle}
-        />
-        <GradeDescriptions selectedGrade={selectedGradeTitle} />
-        <div className={classes.skillsAndFilters}>
-          <div className={classes.filters}>
-            <Typography variant="body1" className={classes.craftFilter}>
-              <span>By </span>
-              <Link to="/crafts">Craft:</Link>
-            </Typography>
-            <ChipGroup
-              handleFilterChange={handleFilterChange}
-              chipItems={craftsList}
-              keyName="craftTitles"
-              variant="outlined"
-              id="craft-filter"
-            />
-          </div>
-          <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+    <MainWrapper styleType="extra-wide">
+      <Toolbar className={classes.toolbar} />
+      <Typography variant="h1">Engineering Skills</Typography>
+      <TabGroup
+        handleFilterChange={handleFilterChange}
+        listItems={gradesList}
+        keyName="gradeTitles"
+        selectedGradeTitle={selectedGradeTitle}
+      />
+      <GradeDescriptions selectedGrade={selectedGradeTitle} />
+      <div className={classes.skillsAndFilters}>
+        <div className={classes.filters}>
+          <Typography variant="body1" className={classes.craftFilter}>
+            <span>By </span>
+            <Link to="/crafts">Craft:</Link>
+          </Typography>
+          <ChipGroup
+            handleFilterChange={handleFilterChange}
+            chipItems={craftsList}
+            keyName="craftTitles"
+            variant="outlined"
+            id="craft-filter"
+          />
         </div>
-      </main>
-    </div>
+        <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+      </div>
+      <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+    </MainWrapper>
   );
 };
 
