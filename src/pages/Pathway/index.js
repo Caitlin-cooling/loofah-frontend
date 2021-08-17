@@ -10,11 +10,6 @@ import {
 import LoofahLink from "../../components/LoofahLink";
 
 const useStyles = makeStyles((theme) => ({
-  content: {
-    maxWidth: "42%",
-    margin: "auto",
-    padding: theme.spacing(3)
-  },
   toolbar: {
     padding: "0 0 1.5em"
   },
