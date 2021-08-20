@@ -64,7 +64,7 @@ const Pathway = () => {
         <Typography>
           This page outlines high-level career expectations, specifically for engineers.
           We recommend that you read this first, and then dive into the
-          <span> <Link to="/skills" className={classes.link}>Engineering skills</Link> </span>
+          <span> <Link to="/skills" className={classes.link}>Engineering Skills</Link> </span>
           expected at each grade.
         </Typography>
         <Typography variant="h3">
