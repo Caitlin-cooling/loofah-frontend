@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   extraWide: {
     margin: "auto",
     padding: theme.spacing(3),
-    maxWidth: "50%",
+    maxWidth: "55%",
     [theme.breakpoints.down("md")]: {
       maxWidth: "67%"
     },
