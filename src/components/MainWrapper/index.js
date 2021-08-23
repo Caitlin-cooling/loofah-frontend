@@ -32,11 +32,9 @@ const useStyles = makeStyles((theme) => ({
 
 export const MainWrapper = ({ children, styleType = "default" }) => {
   const classes = useStyles();
-  const contentClass =
-    styleType === "extra-wide" ? classes.extraWide : classes.content;
   return (
     <div className={classes.root}>
-      <main className={contentClass}>{children}</main>
+      <main className={classes[styleType]}>{children}</main>
     </div>
   );
 };
