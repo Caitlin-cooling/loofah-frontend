@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const MainWrapper = ({ children, styleType = "default" }) => {
+export const MainWrapper = ({ children, styleType = "content" }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
