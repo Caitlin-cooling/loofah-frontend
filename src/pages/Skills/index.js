@@ -4,7 +4,6 @@ import {
   Typography,
   Toolbar
 } from "@material-ui/core";
-import { HashLink as Link } from "react-router-hash-link";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   grades,
@@ -14,6 +13,7 @@ import {
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
 import GradeDescriptions from "./GradeDescriptions";
+import LoofahLink from "../../components/LoofahLink";
 import { SkillsList } from "./SkillsList";
 
 const drawerWidth = 300;
@@ -92,7 +92,7 @@ const Skills = () => {
           <div className={classes.filters}>
             <Typography variant="body1" className={classes.craftFilter}>
               <span>By </span>
-              <Link to="/crafts">Craft:</Link>
+              <LoofahLink to="/crafts">Craft:</LoofahLink>
             </Typography>
             <ChipGroup
               handleFilterChange={handleFilterChange}
