@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const GradeDescriptions = ({selectedGrade}) => {
+const GradeDescriptions = ({ selectedGrade }) => {
   const classes = useStyles();
 
   const descriptionParagraphs = gradeDescriptions[selectedGrade];

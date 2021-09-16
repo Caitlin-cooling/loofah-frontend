@@ -23,9 +23,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const ChipGroup = ({ handleFilterChange, chipItems, keyName, backgroundColor, variant, id }) => {
+export const ChipGroup = ({
+  handleFilterChange,
+  chipItems,
+  keyName,
+  backgroundColor,
+  variant,
+  id,
+  preSelectedTitles = []
+}) => {
   const classes = useStyles();
-  const [selectedTitles, setSelectedTitles] = useState([]);
+  const [selectedTitles, setSelectedTitles] = useState(preSelectedTitles);
 
   function handleSelection(value) {
     let titles = [];
@@ -63,5 +71,6 @@ ChipGroup.propTypes = {
   chipItems: PropTypes.array,
   keyName: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  preSelectedTitles: PropTypes.array
 };

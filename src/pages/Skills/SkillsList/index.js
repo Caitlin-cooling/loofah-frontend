@@ -34,7 +34,7 @@ export const SkillsList = ({ queryDetails }) => {
 
   const skills = <SimpleAccordion skills={groupedSkills} />;
 
-  const noResults = <Typography component="p" variant="body-2" className={classes.container}>
+  const noResults = <Typography component="p" variant="body2" className={classes.container}>
       No results found. Try changing your filters.
     </Typography>;
 

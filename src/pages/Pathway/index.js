@@ -172,7 +172,7 @@ const Pathway = () => {
           the breadth required from a career in consulting which may not have been the case
           in your previous experience.
         </Typography>
-        <LoofahLink to={{pathname: "/skills", state: {grade: "analystDeveloper"} }}>
+        <LoofahLink to={{pathname: "/skills", search: "?grade=analyst-developer"}}>
           See the Analyst Developer Skills
         </LoofahLink>
         <Typography variant="h5">
@@ -189,7 +189,7 @@ const Pathway = () => {
           also likely that you’ll also start to manage and mentor some more junior people
           on your project.
         </Typography>
-        <LoofahLink to={{pathname: "/skills", state: {grade: "developer"} }}>
+        <LoofahLink to={{pathname: "/skills", search: "?grade=developer"}}>
           See the Developer Skills
         </LoofahLink>
         <Typography variant="h5">
@@ -203,7 +203,7 @@ const Pathway = () => {
           of the solution, and/or building productive client relationships. You’ll also
           start to play a bigger role in the practice and our internal community.
         </Typography>
-        <LoofahLink to={{pathname: "/skills", state: {grade: "seniorDeveloper"} }}>
+        <LoofahLink to={{pathname: "/skills", search: "?grade=senior-developer"}}>
           See the Senior Developer Skills
         </LoofahLink>
         <Typography variant="h5">
