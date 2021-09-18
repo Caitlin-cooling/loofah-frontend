@@ -5,9 +5,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  grades,
+  gradeKeys,
   DEFAULT_GRADE,
-  crafts
+  craftKeys
 } from "../../data";
 import { TabGroup } from "../../components/TabGroup";
 import { ChipGroup } from "../../components/ChipGroup";
@@ -57,46 +57,52 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const getCraftsFromURLSearchParams = (searchParams) => {
+
+  return searchParams.getAll("crafts")
+            .map((craft) => camelCase(craft));
+};
+
 const Skills = () => {
   const classes = useStyles();
-  const gradesList = Object.keys(grades).map((grade) => grades[grade]);
-  const craftsList = Object.keys(crafts).map((craft) => crafts[craft]);
+  const gradesList = Object.keys(gradeKeys).map((grade) => gradeKeys[grade]);
+  const craftsList = Object.keys(craftKeys).map((craft) => craftKeys[craft]);
 
-  const url = new URL(window.location);
-  const { searchParams } = url;
+  const currentPageUrl = new URL(window.location);
+  const { searchParams } = currentPageUrl;
   const defaultGrade = searchParams.get("grade")
     ? camelCase(searchParams.get("grade"))
     : DEFAULT_GRADE;
-  const preSelectedCraftTitles =
-    searchParams.getAll("crafts").map((craft) => camelCase(craft));
-  const craftTitles = preSelectedCraftTitles.length ? preSelectedCraftTitles : null;
 
-  const [queryFilter, setQueryFilter] = useState({
-    gradeTitles: [defaultGrade],
-    ...(craftTitles && { craftTitles })
+  const crafts = getCraftsFromURLSearchParams(searchParams);
+
+  const [filterParams, setFilterParams] = useState({
+    grade: defaultGrade,
+    ...(crafts.length > 1 && { crafts })
   });
 
-  const selectedGradeTitle = queryFilter.gradeTitles[0];
+  const selectedGradeTitle = filterParams.grade;
 
-  function handleFilterChange(value) {
-    setQueryFilter((oldDetails) => {
+  function applyFilterChanges(value) {
+    setFilterParams((oldDetails) => {
       return { ...oldDetails, ...value };
     });
   }
 
   function handleGradeChange(value) {
-    handleFilterChange(value);
-    searchParams.set("grade", kebabCase(value.gradeTitles[0]));
-    window.history.pushState({}, "", url);
+    applyFilterChanges(value);
+    searchParams.set("grade", kebabCase(value.grade));
+    window.history.pushState({}, "", currentPageUrl);
   }
 
   function handleCraftChange(value) {
-    handleFilterChange(value);
+    applyFilterChanges(value);
+
     searchParams.delete("crafts");
-    if (value.craftTitles) value.craftTitles.forEach((title) => {
-      searchParams.append("crafts", kebabCase(title));
+    if (value.crafts) value.crafts.forEach((craft) => {
+      searchParams.append("crafts", kebabCase(craft));
     });
-    window.history.pushState({}, "", url);
+    window.history.pushState({}, "", currentPageUrl);
   }
 
   return (
@@ -107,7 +113,7 @@ const Skills = () => {
         <TabGroup
           handleFilterChange={handleGradeChange}
           listItems={gradesList}
-          keyName="gradeTitles"
+          keyName="grade"
           selectedGradeTitle={selectedGradeTitle}
         />
         <GradeDescriptions selectedGrade={selectedGradeTitle} />
@@ -120,13 +126,13 @@ const Skills = () => {
             <ChipGroup
               handleFilterChange={handleCraftChange}
               chipItems={craftsList}
-              keyName="craftTitles"
+              keyName="crafts"
               variant="outlined"
               id="craft-filter"
-              preSelectedTitles={preSelectedCraftTitles}
+              preSelectedTitles={crafts}
             />
           </div>
-          <SkillsList queryDetails={{ variables: { filter: queryFilter } }} />
+          <SkillsList filterParams={filterParams} />
         </div>
       </main>
     </div>

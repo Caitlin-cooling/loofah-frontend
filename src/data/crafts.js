@@ -1,4 +1,4 @@
-export const crafts = {
+export const craftKeys = {
   CORE: "core",
   ARCHITECTURE: "architecture",
   BACK_END: "backEnd",
@@ -10,7 +10,7 @@ export const crafts = {
 export const craftResources =  [
   {
     title: "Architecture",
-    value: crafts.ARCHITECTURE,
+    value: craftKeys.ARCHITECTURE,
     channel: "#architecture",
     leads: "Wajid Unar",
     linkText: "Architecture on Dev Services",
@@ -18,7 +18,7 @@ export const craftResources =  [
   },
   {
     title: "Back End",
-    value: crafts.BACK_END,
+    value: craftKeys.BACK_END,
     channel: "#back-end",
     leads: "Will Smith & Richard Ankers",
     linkText: "Back End on Dev Services",
@@ -26,7 +26,7 @@ export const craftResources =  [
   },
   {
     title: "Front End",
-    value: crafts.FRONT_END,
+    value: craftKeys.FRONT_END,
     channel: "#front-end",
     leads: "Yousuf Shaikh & Ben Dunlop",
     linkText: "Front End on Dev Services",
@@ -34,7 +34,7 @@ export const craftResources =  [
   },
   {
     title: "Mobile",
-    value: crafts.MOBILE,
+    value: craftKeys.MOBILE,
     channel: "#mobile",
     leads: "Josh Dubey",
     linkText: "Mobile on Dev Services",
@@ -42,7 +42,7 @@ export const craftResources =  [
   },
   {
     title: "Platform",
-    value: crafts.PLATFORM,
+    value: craftKeys.PLATFORM,
     channel: "#devops",
     leads: "Gavin Montgomery",
     linkText: "Platform on Dev Services",

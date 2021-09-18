@@ -1,20 +1,12 @@
 # Loofah
 ## Run locally
-This app requires the back end components to be running in order to start. Speak to @Caitlin-cooling to get the required api reo, db repo and tooling repo.
+This app requires data from an graphQL API that runs in AWS. Speak to @Caitlin-cooling to get the required api key,which will need to be added to the `config.js` file. 
 
-Once the required repo's have been cloned, to start the app, navigate to the tooling repo:
+`npm clean install`
+`npm start`
 
-`./scripts/runLoofah.sh`
-This will build and run all the required components for loofah. Open http://localhost:3000 to view the UI in the browser.
+Open http://localhost:3000 to view the UI in the browser.
 
-## Run without building backend
-During front end development it can be slow to constantly restart the UI using the runLoofah script.
-
-A quicker way to start the UI, if you are not making changes to the API and therefore do not require it to be rebuilt, is to run this command, which will not rebuild the java components like the runLoofah script does:
-
-`docker-compose -f docker-compose-loofah.yml down -v && docker-compose -f docker-compose-loofah.yml build && docker-compose -f docker-compose-loofah.yml up`
-
-We are working on a better way to do this :)
 
 ## Available Scripts
 `npm test`

@@ -32,7 +32,7 @@ export const TabGroup = ({ handleFilterChange, listItems, selectedGradeTitle, ke
 
   function handleSelection(e, value) {
     setSelectedIndex(value);
-    handleFilterChange({ [keyName]: [listItems[value]] });
+    handleFilterChange({ [keyName]: listItems[value] });
   }
 
   return (
