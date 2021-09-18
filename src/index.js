@@ -1,20 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { ApolloProvider } from "@apollo/react-hooks";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { loofahApiUrl } from "./config/config";
-
-export const client = new ApolloClient({
-  uri: `${loofahApiUrl}`,
-  cache: new InMemoryCache()
-});
+import AwsApiClient from "./api/awsApiClient";
+import { ApolloProvider } from "@apollo/react-hooks";
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={AwsApiClient}>
     <BrowserRouter><App /></BrowserRouter>
   </ApolloProvider>,
   document.getElementById("root")

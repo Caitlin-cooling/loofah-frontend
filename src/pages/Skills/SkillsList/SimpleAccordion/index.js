@@ -105,11 +105,6 @@ export default function SimpleAccordion({ skills }) {
     }
   };
 
-  // TODO this can be removed when we migrate to hosted backend
-  const getCraftList = (crafts) => {
-   return Object.keys(crafts).map((craft) => crafts[craft].title);
-  };
-
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.expandAllSwitch}>
@@ -182,8 +177,8 @@ export default function SimpleAccordion({ skills }) {
                         }) : null}
                       </List>
                       <ChipGroup
-                        chipItems={getCraftList(skill.crafts)}
-                        keyName="craftTitles"
+                        chipItems={skill.crafts}
+                        keyName="crafts"
                         backgroundColor="green"
                         outlined={false}
                         className={classes.craftChips}
