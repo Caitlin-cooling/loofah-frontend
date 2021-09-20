@@ -1,23 +1,14 @@
-import { ApolloClient, InMemoryCache, HttpLink, ApolloLink, concat } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { loofahApiUrl, awsApiKey } from "../config/config";
 
-
-const httpLink = new HttpLink({ uri: `${loofahApiUrl}` });
-
-const authMiddleware = new ApolloLink((operation, forward) => {
-  operation.setContext(({ headers = {} }) => ({
-    headers: {
-      ...headers,
-      "x-api-key": awsApiKey
-    }
-  }));
-
-  return forward(operation);
-});
-
+// Documentation on creating Apollo client with headers:
+// https://www.apollographql.com/docs/react/networking/basic-http-networking/#customizing-request-headers
 const AwsApiClient = new ApolloClient({
     cache: new InMemoryCache(),
-    link: concat(authMiddleware, httpLink)
+    uri: `${loofahApiUrl}`,
+    headers: {
+      "x-api-key": awsApiKey
+    }
   });
 
 export default AwsApiClient;
