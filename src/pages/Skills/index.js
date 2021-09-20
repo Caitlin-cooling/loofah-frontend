@@ -103,7 +103,7 @@ const Skills = () => {
     <div className={classes.root}>
       <main className={classes.content}>
         <Toolbar className={classes.toolbar} />
-        <Typography variant="h1">Engineering Skills</Typography>
+        <Typography variant="h1">Engineering Learning Framework</Typography>
         <TabGroup
           handleFilterChange={handleGradeChange}
           listItems={gradesList}

@@ -13,7 +13,7 @@ export default [
   },
   {
     "id": "skills",
-    "title": "Browse Engineering Skills",
+    "title": "Browse the Engineering Learning Framework",
     "alt": "image of a laptop",
     "image": Skills,
     "href": "skills"

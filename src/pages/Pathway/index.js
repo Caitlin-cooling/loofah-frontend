@@ -52,8 +52,8 @@ const Pathway = () => {
         <Typography>
           This page outlines high-level career expectations, specifically for engineers.
           We recommend that you read this first, and then dive into the
-          <span> <LoofahLink to="/skills"> Engineering skills</LoofahLink> </span>
-          expected at each grade.
+          <span> <LoofahLink to="/skills"> Engineering Learning Framework</LoofahLink> </span>
+          for each grade.
         </Typography>
         <Typography variant="h3">
           General Expectations
@@ -173,7 +173,7 @@ const Pathway = () => {
           in your previous experience.
         </Typography>
         <LoofahLink to={{pathname: "/skills", search: "?grade=analyst-developer"}}>
-          See the Analyst Developer Skills
+          See the Analyst Developer Learning Framework
         </LoofahLink>
         <Typography variant="h5">
           <span id="developer" className={classes.anchor}></span>
@@ -190,7 +190,7 @@ const Pathway = () => {
           on your project.
         </Typography>
         <LoofahLink to={{pathname: "/skills", search: "?grade=developer"}}>
-          See the Developer Skills
+          See the Developer Learning Framework
         </LoofahLink>
         <Typography variant="h5">
           <span id="senior-developer" className={classes.anchor}></span>
@@ -204,7 +204,7 @@ const Pathway = () => {
           start to play a bigger role in the practice and our internal community.
         </Typography>
         <LoofahLink to={{pathname: "/skills", search: "?grade=senior-developer"}}>
-          See the Senior Developer Skills
+          See the Senior Developer Learning Framework
         </LoofahLink>
         <Typography variant="h5">
           <span id="technical-lead" className={classes.anchor}></span>

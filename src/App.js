@@ -247,9 +247,9 @@ const App = () => {
           <List className={classes.list}>
             {[
               { text: "How to Use", path: "/about" },
-              { text: "Engineering Career Pathway", path: "/pathway" },
-              { text: "Engineering Skills", path: "/skills" },
+              { text: "Career Pathway", path: "/pathway" },
               { text: "Career FAQs", path: "/career-faqs" },
+              { text: "Learning Framework", path: "/skills" },
               { text: "Craft Resources", path: "/crafts" }
             ].map((link) => (
               <ListItem button key={link.text}>
