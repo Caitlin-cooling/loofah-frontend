@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  makeStyles,
-  Typography
-} from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import grey from "@material-ui/core/colors/grey";
 import { Link } from "react-router-dom";
 import GrowthImage from "../../assets/DD-GWTH-H1-W-4x3.png";
@@ -10,13 +7,9 @@ import Energy from "../../assets/energy.png";
 import Lightbulb from "../../assets/lightbulb.png";
 import PathwayIcon from "../../assets/pathway-icon.png";
 import exploreItems from "../../data/exploreItems";
+import { MainWrapper } from "../../components/MainWrapper";
 
 const useStyles = makeStyles((theme) => ({
-  content: {
-    margin: "auto",
-    marginTop: "100px",
-    padding: `${theme.spacing(3)}px 0`
-  },
   jumbo: {
     backgroundImage: `url(${GrowthImage})`,
     backgroundRepeat: "no-repeat",
@@ -91,19 +84,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Landing = ()  => {
+const Landing = () => {
   const classes = useStyles();
   return (
-    <main className={classes.content}>
+    <MainWrapper styleType="fullWidth">
       <div className={classes.jumbo}>
         <div className={classes.headingWrapper}>
           <Typography variant="h1">
-            Level up your <span className={`${classes.heading} ${classes.underline}`}>
+            Level up your{" "}
+            <span className={`${classes.heading} ${classes.underline}`}>
               engineering skills
             </span>
           </Typography>
           <Typography variant="body2">
-            Loofah is a tool, built by engineers, for engineers - to help you grow
+            Loofah is a tool, built by engineers, for engineers - to help you
+            grow
           </Typography>
         </div>
       </div>
@@ -111,29 +106,46 @@ const Landing = ()  => {
         <div className={classes.aboutBox}>
           <img src={Energy} alt="energy icon" className={classes.aboutIcon} />
           <Typography>
-            <span className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}>
-            Understand what’s expected
+            <span
+              className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}
+            >
+              Understand what’s expected
             </span>
           </Typography>
           <Typography variant="body2">
-            Get a sense of the things you should know at each stage of your development
+            Get a sense of the things you should know at each stage of your
+            development
           </Typography>
         </div>
         <div className={classes.aboutBox}>
-          <img src={Lightbulb} alt="lightbulb icon" className={classes.aboutIcon} />
+          <img
+            src={Lightbulb}
+            alt="lightbulb icon"
+            className={classes.aboutIcon}
+          />
           <Typography>
-            <span className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}>
+            <span
+              className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}
+            >
               Create your own personal pathway
             </span>
           </Typography>
           <Typography variant="body2">
-            {"Filter skills for your chosen craft(s) and the grades you're interested in"}
+            {
+              "Filter skills for your chosen craft(s) and the grades you're interested in"
+            }
           </Typography>
         </div>
         <div className={classes.aboutBox}>
-          <img src={PathwayIcon} alt="pathway icon" className={classes.aboutIcon} />
+          <img
+            src={PathwayIcon}
+            alt="pathway icon"
+            className={classes.aboutIcon}
+          />
           <Typography>
-            <span className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}>
+            <span
+              className={`${classes.heading} ${classes.subHeading} ${classes.underline}`}
+            >
               Make a plan for how to learn
             </span>
           </Typography>
@@ -147,23 +159,21 @@ const Landing = ()  => {
           What do you want to explore?
         </Typography>
         <div className={classes.exploreCards}>
-          {
-            exploreItems.map((item) =>
-              <Link
-                key={item.id}
-                to={item.href}
-                className={classes.exploreLink}
-              >
-                <img src={item.image} alt={item.alt} className={classes.exploreImage} />
-                <span className={`${classes.heading} ${classes.exploreLinkText}`}>
-                  {item.title}
-                </span>
-              </Link>
-            )
-          }
+          {exploreItems.map((item) => (
+            <Link key={item.id} to={item.href} className={classes.exploreLink}>
+              <img
+                src={item.image}
+                alt={item.alt}
+                className={classes.exploreImage}
+              />
+              <span className={`${classes.heading} ${classes.exploreLinkText}`}>
+                {item.title}
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
-    </main>
+    </MainWrapper>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   ListItem
 } from "@material-ui/core";
 import { craftResources } from "../../data/crafts";
+import { MainWrapper } from "../../components/MainWrapper";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -37,38 +38,34 @@ const Crafts = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      <main className={classes.content}>
-        <Toolbar className={classes.toolbar}/>
-        <Typography variant="h1">
-          Crafts Resources
-        </Typography>
-        <List>
-          {
-            craftResources.map((craft) => <ListItem key={craft.title}>
-              <div className={classes.detailsContainer}>
-                <Typography variant="h3">
-                  {craft.title}
-                </Typography>
-                <Typography className={`${classes.craftDetails} ${classes.craftChannel}`}>
-                  {craft.channel}
-                </Typography>
-                <Typography className={classes.craftDetails}>
-                  {craft.leads}
-                </Typography>
-                <a
-                  href={craft.link}
-                  target="blank"
-                  className={`${classes.craftDetails} ${classes.craftLink}`}
-                >
-                  {craft.linkText}
-                </a>
-              </div>
-            </ListItem>)
-          }
-        </List>
-      </main>
-    </div>
+    <MainWrapper>
+      <Toolbar className={classes.toolbar} />
+      <Typography variant="h1">Crafts Resources</Typography>
+      <List>
+        {craftResources.map((craft) => (
+          <ListItem key={craft.title}>
+            <div className={classes.detailsContainer}>
+              <Typography variant="h3">{craft.title}</Typography>
+              <Typography
+                className={`${classes.craftDetails} ${classes.craftChannel}`}
+              >
+                {craft.channel}
+              </Typography>
+              <Typography className={classes.craftDetails}>
+                {craft.leads}
+              </Typography>
+              <a
+                href={craft.link}
+                target="blank"
+                className={`${classes.craftDetails} ${classes.craftLink}`}
+              >
+                {craft.linkText}
+              </a>
+            </div>
+          </ListItem>
+        ))}
+      </List>
+    </MainWrapper>
   );
 };
 

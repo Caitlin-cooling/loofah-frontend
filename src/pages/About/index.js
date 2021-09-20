@@ -44,14 +44,14 @@ const About = () => {
         through the organisation.
       </Typography>
       <List>
-        <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
+        <ListItem className={`${classes.listItem} MuiTypography-body1`}>
           Read the{" "}
           <Link to={{ pathname: "/pathway" }} className={classes.link}>
             Engineering Career Pathway
           </Link>{" "}
           to get a sense of the high-level expectations at each grade.
         </ListItem>
-        <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
+        <ListItem className={`${classes.listItem} MuiTypography-body1`}>
           Dive into the{" "}
           <Link
             to={{ pathname: "/skills", state: { grade: "analystDeveloper" } }}

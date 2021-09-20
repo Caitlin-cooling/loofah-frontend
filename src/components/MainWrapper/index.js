@@ -27,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       maxWidth: "80%"
     }
+  },
+  fullWidth: {
+    margin: "auto",
+    padding: theme.spacing(3),
+    maxWidth: "100%"
   }
 }));
 
