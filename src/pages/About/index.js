@@ -62,21 +62,21 @@ const About = () => {
                    </ListItem>
                     <ListItem className={[classes.listItem, "MuiTypography-body1"]}>
                         Dive into the <Link to={{pathname: "/skills", state: {grade: "analystDeveloper"} }} className={classes.link}>
-                            Engineering Skills
+                            Engineering Learning Framework
                         </Link> to get a more detailed picture of the technical and soft skills you should be developing day to
                         day, and how you might go about doing that.
                     </ListItem>
                 </List>
 
                 <Typography variant="h3" className={classes.subHeading}>
-                    Understanding the Engineering Skills
+                    Understanding the Engineering Learning Framework
                 </Typography>
                 <Typography variant="body1">
-                    Engineering Skills are grouped into 7 categories: leadership, collaboration,
+                    The framework is made up of 7 categories: leadership, collaboration,
                     delivery, technical, software design and security.
                 </Typography>
                 <Typography variant="body1">
-                    Each skill is positioned as a headline capability, with some prompting questions, designed to help you
+                    Each growth area is positioned as a headline capability, with some prompting questions, designed to help you
                     assess whether you are operating at the target level. The questions are not an exhaustive list of all the things
                     you need to cover to meet a capability, nor should they be seen as a list of tick box items. Please
                     use them as a guide, rather than a to do list.
@@ -96,12 +96,12 @@ const About = () => {
                     Crafting your own learning journey
                 </Typography>
                 <Typography variant="body1">
-                    Skills can be filtered by craft, so you can focus on your personal area(s) of interest. Along
+                    The framework can be filtered by craft, so you can focus on your personal area(s) of interest. Along
                     this axis, there is also a “core” tag, which includes all the capabilities which we expect of you as
                     an engineer, irrespective of your specialism.
                 </Typography>
                 <Typography variant="body1" className={classes.paragraph}>
-                    Skills are viewed by grade. Grades build upon each other. If you are at a more senior grade,
+                    The framework can be browsed by grade. Grades build upon each other. If you are at a more senior grade,
                     we expect you still to be demonstrating the capabilities listed for more junior grades.
                 </Typography>
 
