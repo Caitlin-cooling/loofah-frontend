@@ -6,6 +6,7 @@ import Skills from "./pages/Skills";
 import CareerFaqs from "./pages/CareerFaqs";
 import Pathway from "./pages/Pathway";
 import Crafts from "./pages/Crafts";
+import Feedback from "./pages/Feedback";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeProvider,
@@ -228,6 +229,9 @@ const App = () => {
             <Route exact path="/crafts">
               <Crafts />
             </Route>
+            <Route exact path="/feedback">
+              <Feedback />
+            </Route>
           </Switch>
         </div>
           <Drawer
@@ -250,7 +254,8 @@ const App = () => {
               { text: "Career Pathway", path: "/pathway" },
               { text: "Career FAQs", path: "/career-faqs" },
               { text: "Learning Framework", path: "/skills" },
-              { text: "Craft Resources", path: "/crafts" }
+              { text: "Craft Resources", path: "/crafts" },
+              { text: "Feedback", path: "/feedback" }
             ].map((link) => (
               <ListItem button key={link.text}>
                 <Link
